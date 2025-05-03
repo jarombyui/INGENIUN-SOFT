@@ -8,8 +8,8 @@ const Courses = () => {
       description: 'Aprende a crear y optimizar embudos de ventas digitales para captar y convertir clientes en internet.',
       duration: '3 semanas',
       level: 'Intermedio',
-      image: '/images/Ingeniumsoft_ultimo.png',
-      price: 'S/ 180 + IGV',
+      image: '/images/cursos-images/envudo-ventas.png',
+      price: 'S/ 1400 + IGV',
       schedule: 'Lunes y Miércoles',
       time: '7:00 PM - 9:00 PM'
     },
@@ -18,9 +18,9 @@ const Courses = () => {
       title: 'Creación de Negocios',
       description: 'Descubre cómo lanzar tu propio negocio digital desde cero, validando ideas y estructurando tu emprendimiento.',
       duration: '1 mes',
-      level: 'Básico',
-      image: '/images/Ingeniumsoft_ultimo.png',
-      price: 'S/ 200 + IGV',
+      level: 'Básico a intermedio',
+      image: '/images/cursos-images/crear-negocio.jpg',
+      price: 'S/ 1200 + IGV',
       schedule: 'Sábados',
       time: '10:00 AM - 1:00 PM'
     },
@@ -28,10 +28,10 @@ const Courses = () => {
       id: 3,
       title: 'Marketing Digital',
       description: 'Domina las estrategias y herramientas clave para promocionar productos y servicios en internet.',
-      duration: '1 mes',
+      duration: '3 semanasa 1 mes',
       level: 'Intermedio',
-      image: '/images/Ingeniumsoft_ultimo.png',
-      price: 'S/ 220 + IGV',
+      image: '/images/cursos-images/marketing-digital.jpg',
+      price: 'S/ 320 + IGV',
       schedule: 'Martes y Jueves',
       time: '7:00 PM - 9:00 PM'
     },
@@ -39,12 +39,12 @@ const Courses = () => {
       id: 4,
       title: 'Técnicas de Ventas',
       description: 'Aprende técnicas modernas de ventas para aumentar tus resultados tanto en el mundo digital como presencial.',
-      duration: '2 semanas',
-      level: 'Básico',
-      image: '/images/Ingeniumsoft_ultimo.png',
-      price: 'S/ 150 + IGV',
+      duration: '2 semanas a 4 semanas',
+      level: 'Básico a intermedio',
+      image: '/images/cursos-images/tecnicas-de-ventas.png',
+      price: 'S/ 1050 + IGV',
       schedule: 'Viernes',
-      time: '6:00 PM - 9:00 PM'
+      time: '6:00 PM - 8:00 PM'
     }
   ];
 
@@ -67,7 +67,7 @@ const Courses = () => {
                 <img
                   src={course.image}
                   alt={course.title}
-                  className="h-32 w-auto object-contain rounded-xl shadow-lg"
+                  className="h-44 w-auto object-contain rounded-xl shadow-lg"
                 />
               </div>
               <div className="p-6 flex-1 flex flex-col">

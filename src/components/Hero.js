@@ -8,6 +8,12 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
+
+    {
+      src: '/images/TECNICAS-VENTAS.jpg',
+      title: 'Técnicas de Ventas Efectivas',
+      description: 'Aprende las estrategias más efectivas para cerrar más ventas y aumentar tus ingresos'
+    },
     {
       src: '/images/negocio_inteligente.jpg',
       title: 'Transforma tu negocio con tecnología inteligente',
@@ -28,6 +34,7 @@ const Hero = () => {
       title: 'Marketing digital efectivo',
       description: 'Estrategias digitales que generan resultados reales'
     }
+    
   ];
 
   useEffect(() => {
