@@ -136,7 +136,7 @@ const ServicesPage = () => {
             className="bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-300"
             onClick={() => {
               const phone = '51947726382'; // Reemplaza con el número de WhatsApp de contacto
-              const message = 'Hola, estoy interesado en los servicios de ISSEGUREX.';
+              const message = 'Hola, estoy interesado en los servicios de INGENIUM SOFT.';
               window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
             }}
           >
