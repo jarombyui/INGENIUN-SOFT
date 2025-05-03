@@ -3,61 +3,61 @@ import React, { useState, useRef } from 'react';
 const initialBlogPosts = [
   {
     id: 1,
-    title: 'Tragedia en mina de oro Séguéla: Un trabajador fallecido por explosión de extintor',
-    excerpt: 'Un accidente mortal en la mina Séguéla, operada por Fortuna Mining, dejó un trabajador fallecido tras la explosión de un extintor durante labores de mantenimiento. El hecho resalta la importancia de protocolos rigurosos de SST en minería.',
-    date: '25 de Febrero, 2025',
-    author: 'Inspenet / Fortuna Mining',
-    category: 'Accidentes Mineros',
-    image: '/images/mina-zequele.jpg',
-    readTime: '4 min',
-    tags: ['Minería', 'Accidentes', 'SST', 'Seguridad']
+    title: 'Tendencias en Desarrollo Web 2024',
+    excerpt: 'Descubre las últimas tecnologías y frameworks que están revolucionando el desarrollo web, desde React y Next.js hasta las nuevas APIs de navegador.',
+    date: '15 de Marzo, 2024',
+    author: 'Equipo Ingenium Soft',
+    category: 'Desarrollo Web',
+    image: '/images/blog-images/tendencias-web.png',
+    readTime: '5 min',
+    tags: ['Web', 'Tecnología', 'React', 'Next.js']
   },
   {
     id: 2,
-    title: 'Stilfontein, Sudáfrica: 87 mineros muertos tras meses de encierro',
-    excerpt: 'Un enfrentamiento entre la policía y mineros ilegales en la mina de oro Stilfontein terminó con al menos 87 fallecidos. La falta de protocolos de seguridad y la negligencia de las autoridades agravaron la tragedia.',
-    date: '16 de Enero, 2025',
-    author: 'AP / BBC / Wikipedia',
-    category: 'Desastre Minero',
-    image: '/images/87-enciero-mineria.jpg',
+    title: 'Inteligencia Artificial en el Desarrollo de Software',
+    excerpt: 'Cómo la IA está transformando la forma en que desarrollamos software, desde la generación de código hasta la optimización de procesos.',
+    date: '10 de Marzo, 2024',
+    author: 'Equipo Ingenium Soft',
+    category: 'Inteligencia Artificial',
+    image: '/images/blog-images/IA-SOFTWARE.jpg',
     readTime: '6 min',
-    tags: ['Minería', 'Sudáfrica', 'Accidentes', 'SST']
+    tags: ['IA', 'Desarrollo', 'Innovación', 'Tecnología']
   },
   {
     id: 3,
-    title: 'La falta de SST sigue costando vidas en la gran minería',
-    excerpt: 'Expertos internacionales advierten que la ausencia de una cultura de Seguridad y Salud en el Trabajo (SST) sigue siendo la principal causa de accidentes fatales en grandes empresas mineras alrededor del mundo.',
-    date: '23 de Abril, 2025',
-    author: 'Equipo ISSEGUREX',
-    category: 'Prevención',
-    image: '/images/gran-mineria.jpg',
-    readTime: '5 min',
-    tags: ['SST', 'Prevención', 'Minería', 'Empresas']
+    title: 'Optimización de Bases de Datos para Empresas',
+    excerpt: 'Estrategias y mejores prácticas para optimizar el rendimiento de tus bases de datos y mejorar la experiencia del usuario.',
+    date: '5 de Marzo, 2024',
+    author: 'Equipo Ingenium Soft',
+    category: 'Bases de Datos',
+    image: '/images/blog-images/Optimizar-Base-Dato.jpg',
+    readTime: '4 min',
+    tags: ['Bases de Datos', 'Optimización', 'Empresas', 'Rendimiento']
   }
 ];
 
 const fallbackPosts = [
   {
     id: 4,
-    title: 'Explosión en mina de cobre en Chile deja varios heridos',
-    excerpt: 'Un accidente en una mina de cobre en el norte de Chile dejó varios trabajadores heridos. La investigación apunta a fallas en los protocolos de seguridad.',
-    date: '10 de Marzo, 2025',
-    author: 'Agencia Reuters',
-    category: 'Accidentes Mineros',
-    image: '/images/chile-explosion.jpg',
-    readTime: '3 min',
-    tags: ['Minería', 'Chile', 'Accidentes', 'SST']
+    title: 'Marketing Digital para Empresas de Software',
+    excerpt: 'Estrategias efectivas para promocionar tu empresa de software y llegar a más clientes potenciales en el mundo digital.',
+    date: '28 de Febrero, 2024',
+    author: 'Equipo Ingenium Soft',
+    category: 'Marketing Digital',
+    image: '/images/blog-images/marketing-empresas.jpg',
+    readTime: '5 min',
+    tags: ['Marketing', 'Digital', 'Empresas', 'Software']
   },
   {
     id: 5,
-    title: 'Colapso en mina de oro en Perú: consecuencias de la falta de SST',
-    excerpt: 'El colapso de una galería en una mina de oro peruana evidenció la falta de supervisión y capacitación en seguridad, resultando en pérdidas humanas y económicas.',
-    date: '2 de Febrero, 2025',
-    author: 'El Comercio',
-    category: 'Desastre Minero',
-    image: '/images/derrumbe-peru.jpg',
-    readTime: '4 min',
-    tags: ['Minería', 'Perú', 'Accidentes', 'SST']
+    title: 'Seguridad en Aplicaciones Web',
+    excerpt: 'Principales amenazas y mejores prácticas para proteger tus aplicaciones web y los datos de tus usuarios.',
+    date: '20 de Febrero, 2024',
+    author: 'Equipo Ingenium Soft',
+    category: 'Seguridad',
+    image: '/images/blog-images/seguridad-web.png',
+    readTime: '6 min',
+    tags: ['Seguridad', 'Web', 'Aplicaciones', 'Datos']
   }
 ];
 
@@ -103,11 +103,11 @@ const Blog = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-            Blog ISSEGUREX
+          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl font-['Montserrat'] tracking-wide">
+            Blog INGENIUM SOFT
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Noticias recientes y casos reales: la importancia de la Seguridad y Salud en el Trabajo (SST) en minería y grandes empresas.
+          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto font-['Poppins']">
+            Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
           </p>
         </div>
 
@@ -137,8 +137,8 @@ const Blog = () => {
                     </span>
                     <span className="text-sm text-gray-500">{post.readTime} de lectura</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 whitespace-normal break-words">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 whitespace-normal break-words font-['Montserrat']">{post.title}</h3>
+                  <p className="text-gray-600 mb-4 font-['Poppins']">{post.excerpt}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags && post.tags.map((tag, index) => (
                       <span key={index} className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
@@ -152,11 +152,11 @@ const Blog = () => {
                         <span className="text-gray-500">👤</span>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{post.author}</p>
-                        <p className="text-xs text-gray-500">{post.date}</p>
+                        <p className="text-sm font-medium text-gray-900 font-['Poppins']">{post.author}</p>
+                        <p className="text-xs text-gray-500 font-['Poppins']">{post.date}</p>
                       </div>
                     </div>
-                    <button className="text-primary hover:text-primary-dark transition-colors duration-300 font-semibold">
+                    <button className="text-primary hover:text-primary-dark transition-colors duration-300 font-semibold font-['Montserrat']">
                       Leer más →
                     </button>
                   </div>
@@ -166,15 +166,15 @@ const Blog = () => {
           })}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="text-center mt-12">
           <button
-            className="bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition-colors duration-300 font-semibold shadow-md hover:shadow-lg"
+            className="bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition-colors duration-300 font-semibold shadow-md hover:shadow-lg font-['Montserrat']"
             onClick={handleLoadMore}
             disabled={loading}
           >
             {loading ? 'Cargando...' : 'Ver más artículos'}
           </button>
-          {error && <p className="mt-4 text-red-500">{error}</p>}
+          {error && <p className="mt-4 text-red-500 font-['Poppins']">{error}</p>}
         </div>
       </div>
     </div>

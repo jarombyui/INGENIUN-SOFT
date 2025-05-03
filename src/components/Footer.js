@@ -5,9 +5,9 @@ const Footer = () => {
   const socialLinks = [
     { name: 'Facebook', path: 'https://www.facebook.com/profile.php?id=100088810666184', icon: 'fab fa-facebook-f' },
     { name: 'Twitter', path: '#', icon: 'fab fa-twitter' },
-    { name: 'LinkedIn', path: 'https://www.linkedin.com/in/1ssecurex-instituto-para-la-seguridad-industrial-0846a8363/', icon: 'fab fa-linkedin-in' },
-    { name: 'Instagram', path: 'https://www.instagram.com/1sse.curex/', icon: 'fab fa-instagram' },
-    { name: 'YouTube', path: 'https://www.youtube.com/@ISSEGUREInstitutoparalaSegurid', icon: 'fab fa-youtube' },
+    { name: 'LinkedIn', path: 'https://www.linkedin.com/company/105239905/admin/dashboard/in/1ssecurex-instituto-para-la-seguridad-industrial-0846a8363/', icon: 'fab fa-linkedin-in' },
+    { name: 'Instagram', path: 'https://www.instagram.com/software.negocios.facilito/?hl=es/', icon: 'fab fa-instagram' },
+    { name: 'YouTube', path: 'https://www.youtube.com/@ingeniumsoftwares/@ingeniumsoftwares', icon: 'fab fa-youtube' },
   ];
 
   const footerLinks = [
