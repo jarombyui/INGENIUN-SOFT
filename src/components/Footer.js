@@ -20,31 +20,31 @@ const Footer = () => {
 
   return (
     <footer className="bg-gradient-to-r from-primary via-secondary to-accent text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 items-start">
           {/* Company Info */}
-          <div className="flex flex-col items-center md:items-start">
-            <div className="mb-6">
+          <div className="flex flex-col items-center sm:items-start">
+            <div className="mb-4 sm:mb-6">
               <img
                 src="/images/Ingeniumsoft_ultimo.png"
                 alt="Ingenium Soft Logo"
-                className="h-24 w-auto max-w-[300px] object-contain drop-shadow-lg rounded"
+                className="h-16 sm:h-20 md:h-24 w-auto max-w-[200px] sm:max-w-[250px] md:max-w-[300px] object-contain drop-shadow-lg rounded"
               />
             </div>
-            <p className="text-white/80 mb-4 text-center md:text-left">
+            <p className="text-white/80 mb-4 text-center sm:text-left text-sm sm:text-base font-['Poppins']">
               Soluciones de software, desarrollo web y tecnología para empresas modernas.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col items-center">
-            <h4 className="text-lg font-semibold mb-4 text-accent">Enlaces Rápidos</h4>
-            <ul className="space-y-2">
+          <div className="flex flex-col items-center sm:items-start">
+            <h4 className="text-base sm:text-lg font-semibold mb-4 text-accent font-['Montserrat']">Enlaces Rápidos</h4>
+            <ul className="space-y-2 text-center sm:text-left">
               {footerLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-white/70 hover:text-accent transition-colors duration-200 text-base"
+                    className="text-white/70 hover:text-accent transition-colors duration-200 text-sm sm:text-base font-['Poppins']"
                   >
                     {link.name}
                   </Link>
@@ -54,18 +54,19 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex flex-col items-center">
-            <h4 className="text-lg font-semibold mb-4 text-accent">Síguenos</h4>
-            <div className="flex space-x-4">
+          <div className="flex flex-col items-center sm:items-start">
+            <h4 className="text-base sm:text-lg font-semibold mb-4 text-accent font-['Montserrat']">Síguenos</h4>
+            <div className="flex space-x-4 sm:space-x-6">
               {socialLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.path}
-                  className="text-white/70 hover:text-accent transition-colors duration-200"
+                  className="text-white/70 hover:text-accent transition-all duration-300 transform hover:scale-110"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={link.name}
                 >
-                  <i className={`${link.icon} text-2xl`}></i>
+                  <i className={`${link.icon} text-xl sm:text-2xl`}></i>
                 </a>
               ))}
             </div>
@@ -73,8 +74,10 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t-4 border-accent mt-12 pt-8 text-center text-white/60">
-          <p>&copy; {new Date().getFullYear()} Ingenium Soft. Todos los derechos reservados.</p>
+        <div className="border-t border-accent/30 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+          <p className="text-white/60 text-sm sm:text-base font-['Poppins']">
+            &copy; {new Date().getFullYear()} Ingenium Soft. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>

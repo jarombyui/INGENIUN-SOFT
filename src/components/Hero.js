@@ -8,7 +8,6 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-
     {
       src: '/images/TECNICAS-VENTAS.jpg',
       title: 'Técnicas de Ventas Efectivas',
@@ -34,7 +33,6 @@ const Hero = () => {
       title: 'Marketing digital efectivo',
       description: 'Estrategias digitales que generan resultados reales'
     }
-    
   ];
 
   useEffect(() => {
@@ -59,12 +57,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero-section h-[800px] relative">
+    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-20">
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      <div className="relative flex flex-col items-center justify-center h-full text-white text-center px-4">
-        <div className="mb-8 flex flex-col items-center justify-center w-full">
+      <div className="relative flex flex-col items-center justify-center h-full text-white text-center px-4 sm:px-6 lg:px-8">
+        <div className="mb-4 md:mb-8 flex flex-col items-center justify-center w-full">
           <div className="w-full max-w-6xl mx-auto">
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-lg md:rounded-2xl overflow-hidden shadow-2xl">
               {images.map((image, index) => (
                 <div key={index} className={`absolute w-full h-full transition-opacity duration-1000 ${
                   index === currentImageIndex ? 'opacity-100' : 'opacity-0'
@@ -78,21 +76,21 @@ const Hero = () => {
                       filter: 'brightness(0.7)',
                     }}
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg font-['Montserrat'] tracking-wide">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 text-white drop-shadow-lg font-['Montserrat'] tracking-wide">
                       {image.title}
                     </h2>
-                    <p className="text-xl md:text-2xl text-white/90 drop-shadow-lg max-w-2xl font-['Poppins'] leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 drop-shadow-lg max-w-2xl font-['Poppins'] leading-relaxed">
                       {image.description}
                     </p>
                   </div>
                 </div>
               ))}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 md:space-x-3">
                 {images.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
                       index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
                     }`}
                     onClick={() => setCurrentImageIndex(index)}
@@ -102,25 +100,25 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 font-['Montserrat'] tracking-wide">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 font-['Montserrat'] tracking-wide px-4">
           Impulsa tu negocio con soluciones de software a medida
         </h1>
-        <p className="text-xl md:text-2xl mb-8 max-w-3xl font-['Poppins'] leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-8 max-w-3xl font-['Poppins'] leading-relaxed px-4">
           Desarrollo de páginas web, bases de datos y aplicaciones web personalizadas
         </p>
-        <p className="text-lg md:text-xl mb-8 font-['Poppins']">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 md:mb-8 font-['Poppins'] px-4">
           Ingenium Soft: Innovación, calidad y tecnología para tu empresa
         </p>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 px-4">
           <Link 
             to="/servicios"
-            className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-['Montserrat'] tracking-wide"
+            className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-['Montserrat'] tracking-wide text-center"
           >
             Ver Servicios
           </Link>
           <Link
             to="/contacto"
-            className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center font-['Montserrat'] tracking-wide"
+            className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center font-['Montserrat'] tracking-wide"
           >
             Solicita tu proyecto
           </Link>
@@ -128,8 +126,8 @@ const Hero = () => {
       </div>
       {/* Modal de verificación */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full relative animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 max-w-md w-full relative animate-fade-in">
             <button
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold"
               onClick={() => {
@@ -141,7 +139,7 @@ const Hero = () => {
             >
               &times;
             </button>
-            <h3 className="text-2xl font-bold mb-4 text-primary font-['Montserrat']">Validar Certificado</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-4 text-primary font-['Montserrat']">Validar Certificado</h3>
             <form onSubmit={handleVerify} className="space-y-4">
               <input
                 type="text"
