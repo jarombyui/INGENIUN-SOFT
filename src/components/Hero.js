@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
@@ -57,12 +56,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-20">
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-24 bg-[#1A3B5C]">
+      <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative flex flex-col items-center justify-center h-full text-white text-center px-4 sm:px-6 lg:px-8">
         <div className="mb-4 md:mb-8 flex flex-col items-center justify-center w-full">
           <div className="w-full max-w-6xl mx-auto">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-lg md:rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-lg md:rounded-2xl overflow-hidden shadow-2xl">
               {images.map((image, index) => (
                 <div key={index} className={`absolute w-full h-full transition-opacity duration-1000 ${
                   index === currentImageIndex ? 'opacity-100' : 'opacity-0'
@@ -70,13 +69,9 @@ const Hero = () => {
                   <img
                     src={image.src}
                     alt={`Slide ${index + 1}`}
-                    className="w-full h-full object-cover"
-                    style={{
-                      objectPosition: 'center',
-                      filter: 'brightness(0.7)',
-                    }}
+                    className="w-full h-full object-contain object-center"
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center bg-black/30">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 text-white drop-shadow-lg font-['Montserrat'] tracking-wide">
                       {image.title}
                     </h2>
@@ -100,28 +95,31 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 font-['Montserrat'] tracking-wide px-4">
-          Impulsa tu negocio con soluciones de software a medida
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 md:mb-8 max-w-3xl font-['Poppins'] leading-relaxed px-4">
-          Desarrollo de páginas web, bases de datos y aplicaciones web personalizadas
-        </p>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 md:mb-8 font-['Poppins'] px-4">
-          Ingenium Soft: Innovación, calidad y tecnología para tu empresa
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 px-4">
-          <Link 
-            to="/servicios"
-            className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 font-['Montserrat'] tracking-wide text-center"
+        <div className="text-center">
+          <h1 className="text-5xl font-extrabold text-white mb-4 md:mb-6 font-['Montserrat'] tracking-tight pt-8">
+            Impulsa tu negocio con soluciones de software a medida
+          </h1>
+          <div className="w-32 h-1 bg-accent mx-auto mb-6 rounded-full"></div>
+          <p className="text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] leading-relaxed mb-4">
+            Desarrollo de páginas web, bases de datos y aplicaciones web personalizadas
+          </p>
+          <p className="text-xl text-white/80 mb-8 font-['Poppins']">
+            Ingenium Soft: Innovación, calidad y tecnología para tu empresa
+          </p>
+        </div>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full max-w-md mx-auto mt-4">
+          <a 
+            href="/servicios"
+            className="flex-1 bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 font-['Montserrat'] tracking-wide text-center"
           >
             Ver Servicios
-          </Link>
-          <Link
-            to="/contacto"
-            className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-white font-bold py-2 md:py-3 px-6 md:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center font-['Montserrat'] tracking-wide"
+          </a>
+          <a
+            href="/contacto"
+            className="flex-1 bg-white hover:bg-white/90 text-primary font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 text-center font-['Montserrat'] tracking-wide"
           >
             Solicita tu proyecto
-          </Link>
+          </a>
         </div>
       </div>
       {/* Modal de verificación */}

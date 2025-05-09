@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 const ServiceCard = ({ title, description, icon, onClick }) => {
   return (
     <div
-      className="bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+      className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyPress={e => { if (e.key === 'Enter') onClick && onClick(); }}
     >
       <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-accent">{icon}</div>
       <h3 className="text-lg sm:text-xl font-bold text-primary mb-2 sm:mb-3 text-center font-['Montserrat']">{title}</h3>
@@ -18,6 +21,13 @@ const Services = () => {
   const [inputCode, setInputCode] = useState('');
   const [result, setResult] = useState(null);
 
+  // Redirecciones a cursos afines
+  const handleCardClick = (index) => {
+    if (index === 0) window.location.href = '/cursos#embudo-ventas-web';
+    if (index === 1) window.location.href = '/cursos#creacion-de-negocios';
+    if (index === 2) window.location.href = '/cursos#marketing-digital';
+  };
+
   const services = [
     {
       title: "Transforma tu Negocio Online",
@@ -27,7 +37,6 @@ const Services = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm4 4h8m-8 4h8m-8 4h8" />
         </svg>
       ),
-      onClick: null
     },
     {
       title: "Automatiza y Vende Más",
@@ -37,7 +46,6 @@ const Services = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h4m0 0V7m0 4l-4-4m0 0l-4 4" />
         </svg>
       ),
-      onClick: null
     },
     {
       title: "Impulsa tu Marketing Digital",
@@ -47,7 +55,6 @@ const Services = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
         </svg>
       ),
-      onClick: null
     }
   ];
 
@@ -65,11 +72,14 @@ const Services = () => {
   };
 
   return (
-    <div className="py-12 sm:py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12 font-['Montserrat']">
-          Nuestros Servicios
-        </h2>
+    <div className="py-12 sm:py-16 bg-[#E8F1F8]">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col items-center justify-center text-center mb-12 gap-4">
+          <h2 className="text-5xl font-extrabold text-primary font-['Montserrat'] tracking-tight pt-24 scroll-mt-32">
+            Nuestros Servicios
+          </h2>
+          <div className="w-24 h-1 bg-accent mx-auto rounded-full mt-4"></div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <ServiceCard
@@ -77,7 +87,7 @@ const Services = () => {
               title={service.title}
               description={service.description}
               icon={service.icon}
-              onClick={service.onClick}
+              onClick={() => handleCardClick(index)}
             />
           ))}
         </div>

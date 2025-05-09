@@ -69,10 +69,10 @@ const ServicesPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
             Nuestros Servicios
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
             Soluciones modernas en desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad y consultoría tecnológica
           </p>
         </div>

@@ -44,10 +44,10 @@ const Contact = () => {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
             Contáctanos
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
             Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo antes posible.
           </p>
         </div>

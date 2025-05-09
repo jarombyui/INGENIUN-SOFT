@@ -52,10 +52,10 @@ const Courses = () => {
     <div className="min-h-screen bg-light py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-primary mb-4 font-sans tracking-tight">
+          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
             Nuestros Cursos
           </h2>
-          <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-sans">
+          <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
             Aprende marketing, ventas y negocios digitales con Ingenium Soft
           </p>
         </div>

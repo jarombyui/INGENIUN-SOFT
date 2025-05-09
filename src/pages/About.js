@@ -2,10 +2,10 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-white to-accent/30 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#E8F1F8] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg">
+          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
             ¿Quiénes Somos?
           </h2>
           <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
