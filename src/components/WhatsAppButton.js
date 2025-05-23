@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const WhatsAppButton = () => {
   const phoneNumber = '51947726382'; // WhatsApp number with country code
-  const message = 'Hola, estoy interesado en los servicios de ISSEGURE';
+  const message = '¡Hola, estoy interesado en los servicios de INGENIUM SOFT! Solicito imformacion';
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (

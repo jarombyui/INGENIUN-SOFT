@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import SEO from '../components/SEO';
 
 const initialBlogPosts = [
   {
@@ -100,84 +101,92 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
-            Blog INGENIUM SOFT
-          </h2>
-          <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
-            Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
-          </p>
-        </div>
+    <>
+      <SEO 
+        title="Blog - INGENIUM SOFT"
+        description="Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales. Artículos sobre desarrollo web, IA, bases de datos y más."
+        keywords="blog ingenium soft, desarrollo de software, tendencias tecnológicas, inteligencia artificial, bases de datos, seguridad informática"
+        ogUrl="https://software-ingeniun.netlify.app/blog"
+      />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+              Blog INGENIUM SOFT
+            </h2>
+            <p className="mt-4 text-2xl text-dark/80 max-w-3xl mx-auto font-['Poppins']">
+              Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
+            </p>
+          </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post, idx) => {
-            const key = typeof post.id === 'string' ? post.id : `local-${post.id}`;
-            return (
-              <div key={key} className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-                <div className="relative h-48 bg-gray-200">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center rounded-t-xl shadow-md"
-                    onError={e => {
-                      if (!errorImages.current[key]) {
-                        errorImages.current[key] = true;
-                        e.target.src = '/images/blog-sst.jpg';
-                      }
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-t-xl"></div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 text-sm font-semibold text-primary bg-primary/10 rounded-full">
-                      {post.category}
-                    </span>
-                    <span className="text-sm text-gray-500">{post.readTime} de lectura</span>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {blogPosts.map((post, idx) => {
+              const key = typeof post.id === 'string' ? post.id : `local-${post.id}`;
+              return (
+                <div key={key} className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+                  <div className="relative h-48 bg-gray-200">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="absolute inset-0 w-full h-full object-cover object-center rounded-t-xl shadow-md"
+                      onError={e => {
+                        if (!errorImages.current[key]) {
+                          errorImages.current[key] = true;
+                          e.target.src = '/images/blog-sst.jpg';
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-t-xl"></div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 whitespace-normal break-words font-['Montserrat']">{post.title}</h3>
-                  <p className="text-gray-600 mb-4 font-['Poppins']">{post.excerpt}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags && post.tags.map((tag, index) => (
-                      <span key={index} className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
-                        #{tag}
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="px-3 py-1 text-sm font-semibold text-primary bg-primary/10 rounded-full">
+                        {post.category}
                       </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mr-2">
-                        <span className="text-gray-500">👤</span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-gray-900 font-['Poppins']">{post.author}</p>
-                        <p className="text-xs text-gray-500 font-['Poppins']">{post.date}</p>
-                      </div>
+                      <span className="text-sm text-gray-500">{post.readTime} de lectura</span>
                     </div>
-                    <button className="text-primary hover:text-primary-dark transition-colors duration-300 font-semibold font-['Montserrat']">
-                      Leer más →
-                    </button>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 whitespace-normal break-words font-['Montserrat']">{post.title}</h3>
+                    <p className="text-gray-600 mb-4 font-['Poppins']">{post.excerpt}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags && post.tags.map((tag, index) => (
+                        <span key={index} className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mr-2">
+                          <span className="text-gray-500">👤</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900 font-['Poppins']">{post.author}</p>
+                          <p className="text-xs text-gray-500 font-['Poppins']">{post.date}</p>
+                        </div>
+                      </div>
+                      <button className="text-primary hover:text-primary-dark transition-colors duration-300 font-semibold font-['Montserrat']">
+                        Leer más →
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="text-center mt-12">
-          <button
-            className="bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition-colors duration-300 font-semibold shadow-md hover:shadow-lg font-['Montserrat']"
-            onClick={handleLoadMore}
-            disabled={loading}
-          >
-            {loading ? 'Cargando...' : 'Ver más artículos'}
-          </button>
-          {error && <p className="mt-4 text-red-500 font-['Poppins']">{error}</p>}
+          <div className="text-center mt-12">
+            <button
+              className="bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition-colors duration-300 font-semibold shadow-md hover:shadow-lg font-['Montserrat']"
+              onClick={handleLoadMore}
+              disabled={loading}
+            >
+              {loading ? 'Cargando...' : 'Ver más artículos'}
+            </button>
+            {error && <p className="mt-4 text-red-500 font-['Poppins']">{error}</p>}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
