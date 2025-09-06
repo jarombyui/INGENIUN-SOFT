@@ -1,46 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [inputCode, setInputCode] = useState('');
   const [result, setResult] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const images = [
-    {
-      src: '/images/TECNICAS-VENTAS.jpg',
-      title: 'Técnicas de Ventas Efectivas',
-      description: 'Aprende las estrategias más efectivas para cerrar más ventas y aumentar tus ingresos'
-    },
-    {
-      src: '/images/negocio_inteligente.jpg',
-      title: 'Transforma tu negocio con tecnología inteligente',
-      description: 'Soluciones digitales que impulsan el crecimiento empresarial'
-    },
-    {
-      src: '/images/MAS-CLIENTES.jpg',
-      title: 'Conecta con más clientes',
-      description: 'Amplía tu alcance y aumenta tus ventas con nuestra tecnología'
-    },
-    {
-      src: '/images/ABRIR-NEGOCIO.jpg',
-      title: 'Tu negocio, nuestra prioridad',
-      description: 'Desarrollamos soluciones a medida para tu emprendimiento'
-    },
-    {
-      src: '/images/DIGITAL-MARKETING.jpg',
-      title: 'Marketing digital efectivo',
-      description: 'Estrategias digitales que generan resultados reales'
-    }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [images.length]);
 
   const handleVerify = (e) => {
     e.preventDefault();
@@ -56,67 +19,37 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-24 bg-[#1A3B5C]">
-      <div className="absolute inset-0 bg-black/40"></div>
+    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-24 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 via-primary-800/80 to-secondary-900/90"></div>
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundRepeat: 'repeat'
+        }}></div>
+      </div>
       <div className="relative flex flex-col items-center justify-center h-full text-white text-center px-4 sm:px-6 lg:px-8">
-        <div className="mb-4 md:mb-8 flex flex-col items-center justify-center w-full">
-          <div className="w-full max-w-6xl mx-auto">
-            <div className="relative h-[220px] sm:h-[320px] md:h-[420px] lg:h-[500px] rounded-lg md:rounded-2xl overflow-hidden shadow-2xl">
-              {images.map((image, index) => (
-                <div key={index} className={`absolute w-full h-full transition-opacity duration-1000 ${
-                  index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`}>
-                  <img
-                    src={image.src}
-                    alt={`Slide ${index + 1}`}
-                    className="w-full h-full object-contain object-center"
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center bg-black/30">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 text-white drop-shadow-lg font-['Montserrat'] tracking-wide">
-                      {image.title}
-                    </h2>
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 drop-shadow-lg max-w-2xl font-['Poppins'] leading-relaxed">
-                      {image.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 md:space-x-3">
-                {images.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
-                    }`}
-                    onClick={() => setCurrentImageIndex(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="text-center">
           <h1 className="text-5xl font-extrabold text-white mb-4 md:mb-6 font-['Montserrat'] tracking-tight pt-8">
-            Impulsa tu negocio con soluciones de software a medida
+            Transformación Digital Integral para tu Empresa
           </h1>
-          <div className="w-32 h-1 bg-accent mx-auto mb-6 rounded-full"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-accent-400 to-accent-600 mx-auto mb-6 rounded-full shadow-lg"></div>
           <p className="text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] leading-relaxed mb-4">
-            Desarrollo de páginas web, bases de datos y aplicaciones web personalizadas
+            ERP personalizado, estandarización de procesos, desarrollo web y automatización inteligente
           </p>
           <p className="text-xl text-white/80 mb-8 font-['Poppins']">
-            Ingenium Soft: Innovación, calidad y tecnología para tu empresa
+            Ingenium Soft: Soluciones tecnológicas que impulsan el crecimiento empresarial
           </p>
         </div>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full max-w-md mx-auto mt-4">
           <a 
             href="/servicios"
-            className="flex-1 bg-accent hover:bg-accent/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 font-['Montserrat'] tracking-wide text-center"
+            className="flex-1 bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white font-bold py-4 px-8 rounded-corporate transition-all duration-300 transform hover:scale-105 hover:shadow-corporate-lg font-display tracking-wide text-center shadow-corporate focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2"
           >
             Ver Servicios
           </a>
           <a
             href="/contacto"
-            className="flex-1 bg-white hover:bg-white/90 text-primary font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 text-center font-['Montserrat'] tracking-wide"
+            className="flex-1 bg-white/95 hover:bg-white text-primary-700 font-bold py-4 px-8 rounded-corporate transition-all duration-300 transform hover:scale-105 hover:shadow-corporate-lg text-center font-display tracking-wide shadow-corporate border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2"
           >
             Solicita tu proyecto
           </a>

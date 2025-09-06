@@ -3,24 +3,28 @@ import SEO from '../components/SEO';
 
 const serviceDetails = [
   {
-    title: "Desarrollo de Páginas Web",
-    details: "Creamos sitios web modernos, responsivos y optimizados para tu negocio o emprendimiento. Incluye sitios corporativos, landing pages, tiendas online (e-commerce) y optimización SEO para mejorar tu presencia digital.",
+    title: "ERP Moderno y Personalizado",
+    details: "Sistemas ERP personalizados y modernos que integran todos los procesos de tu empresa para una gestión eficiente y automatizada. Incluye gestión de inventario inteligente, módulo de ventas y CRM, contabilidad automatizada, recursos humanos integrado, reportes y analytics avanzados, e integración con sistemas existentes.",
   },
   {
-    title: "Aplicaciones Web Personalizadas",
-    details: "Desarrollamos aplicaciones web a medida para automatizar procesos, mejorar la gestión y ofrecer experiencias únicas a tus usuarios. Sistemas de gestión, portales de clientes, dashboards interactivos e integraciones con APIs externas.",
+    title: "Estandarización de Procesos",
+    details: "Optimizamos y estandarizamos los procesos de tu empresa mediante análisis detallado y mejores prácticas tecnológicas. Incluye análisis de procesos actuales, diseño de flujos optimizados, documentación de procedimientos, implementación de mejores prácticas, capacitación del personal y monitoreo y mejora continua.",
   },
   {
-    title: "Bases de Datos y Backend",
-    details: "Diseño, implementación y mantenimiento de bases de datos seguras y escalables. Modelado de datos, bases SQL y NoSQL, desarrollo de APIs REST y GraphQL, migración y optimización de datos.",
+    title: "Desarrollo Web y Aplicaciones",
+    details: "Creamos páginas web, tiendas virtuales y aplicaciones web personalizadas con las últimas tecnologías. Incluye páginas web responsivas, tiendas virtuales e-commerce, aplicaciones web personalizadas, integración con APIs, optimización SEO y mantenimiento y soporte.",
   },
   {
-    title: "Ciberseguridad y Protección de Datos",
-    details: "Protegemos tus sistemas y datos con auditorías de seguridad, implementación de firewalls, backups, recuperación ante desastres y capacitación en buenas prácticas de seguridad digital.",
+    title: "Automatización de Procesos",
+    details: "Automatizamos tareas repetitivas y procesos complejos para aumentar la eficiencia y reducir costos. Incluye automatización de tareas repetitivas, workflows inteligentes, integración de sistemas, notificaciones automáticas, procesamiento de datos y reducción de errores humanos.",
   },
   {
-    title: "Consultoría y Transformación Digital",
-    details: "Te asesoramos en la adopción de nuevas tecnologías, automatización de procesos, migración a la nube y soporte técnico para impulsar la digitalización de tu empresa.",
+    title: "Bases de Datos Inteligentes",
+    details: "Diseñamos y optimizamos bases de datos robustas que garantizan integridad, seguridad y rendimiento. Incluye diseño de base de datos, optimización de consultas, backup y recuperación, seguridad de datos, migración de datos y monitoreo de rendimiento.",
+  },
+  {
+    title: "Consultoría Tecnológica",
+    details: "Asesoramiento especializado en transformación digital y estrategias de implementación tecnológica. Incluye auditoría tecnológica, estrategia de transformación digital, selección de tecnologías, plan de implementación, capacitación técnica y seguimiento y optimización.",
   }
 ];
 
@@ -30,29 +34,34 @@ const ServicesPage = () => {
 
   const services = [
     {
-      title: "Desarrollo de Páginas Web",
-      description: "Sitios corporativos, landing pages, e-commerce y optimización SEO.",
-      icon: "🌐"
+      title: "ERP Moderno y Personalizado",
+      description: "Sistemas ERP personalizados y modernos que integran todos los procesos de tu empresa.",
+      icon: "📊"
     },
     {
-      title: "Aplicaciones Web Personalizadas",
-      description: "Sistemas de gestión, portales, dashboards e integraciones a medida.",
-      icon: "🛠️"
+      title: "Estandarización de Procesos",
+      description: "Optimizamos y estandarizamos los procesos de tu empresa mediante análisis detallado.",
+      icon: "⚙️"
     },
     {
-      title: "Bases de Datos y Backend",
-      description: "Modelado, implementación y mantenimiento de bases de datos seguras.",
+      title: "Desarrollo Web y Aplicaciones",
+      description: "Creamos páginas web, tiendas virtuales y aplicaciones web personalizadas.",
+      icon: "💻"
+    },
+    {
+      title: "Automatización de Procesos",
+      description: "Automatizamos tareas repetitivas y procesos complejos para aumentar la eficiencia.",
+      icon: "🤖"
+    },
+    {
+      title: "Bases de Datos Inteligentes",
+      description: "Diseñamos y optimizamos bases de datos robustas que garantizan integridad y seguridad.",
       icon: "🗄️"
     },
     {
-      title: "Ciberseguridad y Protección de Datos",
-      description: "Auditoría, firewalls, backups y capacitación en seguridad digital.",
-      icon: "🛡️"
-    },
-    {
-      title: "Consultoría y Transformación Digital",
-      description: "Diagnóstico, automatización, migración a la nube y soporte.",
-      icon: "💡"
+      title: "Consultoría Tecnológica",
+      description: "Asesoramiento especializado en transformación digital y estrategias de implementación.",
+      icon: "🔍"
     }
   ];
 
@@ -86,11 +95,17 @@ const ServicesPage = () => {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
-              >
+            {services.map((service, index) => {
+              // Mapear índices a IDs de ancla
+              const anchorIds = ['erp', 'estandarizacion', 'desarrollo', 'automatizacion', 'bases-datos', 'consultoria'];
+              const anchorId = anchorIds[index] || '';
+              
+              return (
+                <div 
+                  key={index}
+                  id={anchorId}
+                  className="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 hover:shadow-xl scroll-mt-24"
+                >
                 <div className="text-4xl mb-4 text-center">
                   {service.icon}
                 </div>
@@ -112,7 +127,8 @@ const ServicesPage = () => {
                   </button>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Modal */}
