@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Imágenes del Carousel</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .image-test { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .image-test img { max-width: 300px; height: 200px; object-fit: cover; }
+        .status { font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test de Imágenes del Carousel - INGENIUM SOFT</h1>
+    <p>Verificando que las imágenes se carguen correctamente:</p>
+
+    <div class="image-test">
+        <h3>ERP-1.jpg</h3>
+        <img src="./images/ERP-1.jpg" alt="ERP-1" onload="showStatus(this, true)" onerror="showStatus(this, false)">
+        <div class="status" id="status-1">Cargando...</div>
+    </div>
+
+    <div class="image-test">
+        <h3>ERP-2.jpg</h3>
+        <img src="./images/ERP-2.jpg" alt="ERP-2" onload="showStatus(this, true)" onerror="showStatus(this, false)">
+        <div class="status" id="status-2">Cargando...</div>
+    </div>
+
+    <div class="image-test">
+        <h3>ERP-3.jpg</h3>
+        <img src="./images/ERP-3.jpg" alt="ERP-3" onload="showStatus(this, true)" onerror="showStatus(this, false)">
+        <div class="status" id="status-3">Cargando...</div>
+    </div>
+
+    <div class="image-test">
+        <h3>negocio_inteligente.jpg</h3>
+        <img src="./images/negocio_inteligente.jpg" alt="negocio_inteligente" onload="showStatus(this, true)" onerror="showStatus(this, false)">
+        <div class="status" id="status-4">Cargando...</div>
+    </div>
+
+    <div class="image-test">
+        <h3>DIGITAL-MARKETING.jpg</h3>
+        <img src="./images/DIGITAL-MARKETING.jpg" alt="DIGITAL-MARKETING" onload="showStatus(this, true)" onerror="showStatus(this, false)">
+        <div class="status" id="status-5">Cargando...</div>
+    </div>
+
+    <script>
+        let loadedCount = 0;
+        let errorCount = 0;
+
+        function showStatus(img, success) {
+            const index = Array.from(document.querySelectorAll('img')).indexOf(img) + 1;
+            const statusDiv = document.getElementById('status-' + index);
+            
+            if (success) {
+                statusDiv.innerHTML = '✅ Imagen cargada correctamente';
+                statusDiv.className = 'status success';
+                loadedCount++;
+            } else {
+                statusDiv.innerHTML = '❌ Error al cargar la imagen';
+                statusDiv.className = 'status error';
+                errorCount++;
+            }
+
+            // Actualizar resumen
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const total = 5;
+            if (loadedCount + errorCount === total) {
+                const summaryDiv = document.createElement('div');
+                summaryDiv.style.cssText = 'margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 5px;';
+                summaryDiv.innerHTML = `
+                    <h2>Resumen de Carga</h2>
+                    <p><strong>Total de imágenes:</strong> ${total}</p>
+                    <p><strong>Cargadas exitosamente:</strong> <span class="success">${loadedCount}</span></p>
+                    <p><strong>Errores:</strong> <span class="error">${errorCount}</span></p>
+                    ${loadedCount === total ? '<p style="color: green; font-weight: bold;">🎉 ¡Todas las imágenes se cargaron correctamente!</p>' : '<p style="color: red; font-weight: bold;">⚠️ Algunas imágenes tienen problemas de carga.</p>'}
+                `;
+                document.body.appendChild(summaryDiv);
+            }
+        }
+    </script>
+</body>
+</html>

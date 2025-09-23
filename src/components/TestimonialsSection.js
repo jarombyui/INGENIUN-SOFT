@@ -9,40 +9,48 @@ const TestimonialsSection = () => {
       name: "María González",
       position: "Directora de Operaciones",
       company: "Manufacturas del Norte S.A.",
-      content: "La implementación del ERP personalizado transformó completamente nuestros procesos. Ahora tenemos visibilidad total de nuestras operaciones y hemos reducido los tiempos de respuesta en un 60%.",
+      content: "La implementación del ERP con IA integrada transformó completamente nuestros procesos. Ahora tenemos visibilidad predictiva de nuestras operaciones y hemos reducido los tiempos de respuesta en un 60%, con análisis en tiempo real que nos permiten tomar decisiones estratégicas inmediatas.",
       rating: 5,
-      service: "Implementación de ERP",
-      image: "/images/testimonial-1.jpg"
+      service: "ERP + IA Analytics",
+      avatar: "MG",
+      color: "from-purple-400 to-purple-600",
+      metrics: { efficiency: "+60%", time: "24/7", roi: "300%" }
     },
     {
       id: 2,
       name: "Carlos Rodríguez",
       position: "Gerente General",
       company: "Distribuidora Central",
-      content: "La estandarización de procesos que realizó Ingenium Soft nos permitió optimizar nuestro flujo de trabajo y aumentar la productividad del equipo en un 45%. Excelente servicio profesional.",
+      content: "La estandarización de procesos con metodologías ágiles que realizó Ingenium Soft nos permitió optimizar nuestro flujo de trabajo y aumentar la productividad del equipo en un 45%. La implementación de microservicios revolucionó nuestra arquitectura tecnológica.",
       rating: 5,
-      service: "Estandarización de Procesos",
-      image: "/images/testimonial-2.jpg"
+      service: "DevOps & Automatización",
+      avatar: "CR",
+      color: "from-green-400 to-green-600",
+      metrics: { productivity: "+45%", deployment: "10x", downtime: "-90%" }
     },
     {
       id: 3,
       name: "Ana Martínez",
       position: "CEO",
       company: "TechStart Solutions",
-      content: "El desarrollo de nuestra aplicación web personalizada superó todas nuestras expectativas. La interfaz es intuitiva y el rendimiento es excepcional. Recomiendo totalmente sus servicios.",
+      content: "El desarrollo de nuestra PWA con arquitectura cloud-native superó todas nuestras expectativas. La aplicación es ultra-rápida, funciona offline y el rendimiento es excepcional. La escalabilidad automática nos permite crecer sin límites.",
       rating: 5,
-      service: "Desarrollo Web",
-      image: "/images/testimonial-3.jpg"
+      service: "PWA Cloud-Native",
+      avatar: "AM",
+      color: "from-blue-400 to-blue-600",
+      metrics: { speed: "300%", users: "10K+", uptime: "99.9%" }
     },
     {
       id: 4,
       name: "Roberto Silva",
       position: "Director de TI",
       company: "Grupo Empresarial del Sur",
-      content: "La automatización de nuestros procesos administrativos nos ha ahorrado más de 20 horas semanales. El equipo de Ingenium Soft es altamente profesional y conocedor.",
+      content: "La implementación de Machine Learning en nuestros procesos administrativos nos ha ahorrado más de 20 horas semanales. Los chatbots inteligentes y la automatización cognitiva han revolucionado nuestra operación. ROI del 400% en el primer año.",
       rating: 5,
-      service: "Automatización de Procesos",
-      image: "/images/testimonial-4.jpg"
+      service: "ML & Automatización Cognitiva",
+      avatar: "RS",
+      color: "from-orange-400 to-orange-600",
+      metrics: { automation: "85%", savings: "20h/sem", roi: "400%" }
     }
   ];
 
@@ -89,65 +97,103 @@ const TestimonialsSection = () => {
 
         <div className="relative">
           {/* Main Testimonial */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-corporate-xl p-8 md:p-12 shadow-corporate-2xl border border-white/20 max-w-4xl mx-auto">
-            <div className="text-center">
-              {/* Quote Icon */}
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-100 to-accent-200 text-accent-600 rounded-full mb-6">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+          <div className="bg-white/95 backdrop-blur-md rounded-corporate-xl p-8 md:p-12 shadow-corporate-2xl border border-white/30 max-w-5xl mx-auto relative overflow-hidden group">
+            {/* Background Gradient Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-transparent to-accent-50/50"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-400/10 to-purple-400/10 rounded-full -translate-y-16 translate-x-16 blur-xl"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-green-400/10 to-blue-400/10 rounded-full translate-y-12 -translate-x-12 blur-xl"></div>
+            
+            <div className="relative z-10">
+              {/* Quote Icon with Tech Style */}
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-accent-500 text-white rounded-full mb-6 shadow-lg animate-glow">
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                 </svg>
               </div>
 
-              {/* Rating */}
-              <div className="flex justify-center mb-4">
-                {renderStars(testimonials[currentTestimonial].rating)}
-              </div>
-
-              {/* Content */}
-              <blockquote className="text-xl md:text-2xl text-secondary-700 mb-8 font-body leading-relaxed">
-                "{testimonials[currentTestimonial].content}"
-              </blockquote>
-
-              {/* Service Badge */}
-              <div className="inline-block bg-gradient-to-r from-primary-100 to-primary-200 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                {testimonials[currentTestimonial].service}
-              </div>
-
-              {/* Author */}
-              <div className="flex items-center justify-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-200 to-primary-300 rounded-full flex items-center justify-center">
-                  <span className="text-primary-700 font-bold text-xl">
-                    {testimonials[currentTestimonial].name.split(' ').map(n => n[0]).join('')}
+              <div className="text-center">
+                {/* Service Badge with Tech Design */}
+                <div className={`inline-block bg-gradient-to-r ${testimonials[currentTestimonial].color} text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg animate-pulse-slow`}>
+                  <span className="flex items-center">
+                    <span className="w-2 h-2 bg-white rounded-full mr-2"></span>
+                    {testimonials[currentTestimonial].service}
                   </span>
                 </div>
-                <div className="text-left">
-                  <h4 className="text-lg font-semibold text-primary-800 font-display">
-                    {testimonials[currentTestimonial].name}
-                  </h4>
-                  <p className="text-secondary-600 font-body">
-                    {testimonials[currentTestimonial].position}
-                  </p>
-                  <p className="text-primary-600 font-body font-medium">
-                    {testimonials[currentTestimonial].company}
-                  </p>
+
+                {/* Rating with Modern Style */}
+                <div className="flex justify-center mb-6">
+                  {renderStars(testimonials[currentTestimonial].rating)}
+                </div>
+
+                {/* Content with Better Typography */}
+                <blockquote className="text-xl md:text-2xl text-secondary-700 mb-8 font-body leading-relaxed max-w-4xl mx-auto">
+                  "{testimonials[currentTestimonial].content}"
+                </blockquote>
+
+                {/* Metrics Cards */}
+                <div className="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
+                  {Object.entries(testimonials[currentTestimonial].metrics).map(([key, value], index) => (
+                    <div key={key} className="bg-white/80 backdrop-blur-sm rounded-corporate p-3 border border-white/30 shadow-corporate">
+                      <div className="text-lg font-bold text-primary-700">{value}</div>
+                      <div className="text-xs text-secondary-600 capitalize">{key}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Author with Modern Avatar */}
+                <div className="flex items-center justify-center space-x-6">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center shadow-lg ring-4 ring-white/50`}>
+                    <span className="text-white font-bold text-xl">
+                      {testimonials[currentTestimonial].avatar}
+                    </span>
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-xl font-bold text-primary-800 font-display mb-1">
+                      {testimonials[currentTestimonial].name}
+                    </h4>
+                    <p className="text-secondary-600 font-body mb-1">
+                      {testimonials[currentTestimonial].position}
+                    </p>
+                    <p className="text-primary-600 font-body font-semibold">
+                      {testimonials[currentTestimonial].company}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+            
+            {/* Animated Border */}
+            <div className="absolute inset-0 rounded-corporate-xl border-2 border-transparent group-hover:border-primary-300/30 transition-all duration-500"></div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
+          {/* Modern Navigation Dots */}
+          <div className="flex justify-center mt-12 space-x-4">
+            {testimonials.map((testimonial, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 ${
+                className={`group relative transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 ${
                   index === currentTestimonial
-                    ? 'bg-accent-500 scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
+                    ? 'scale-110'
+                    : 'hover:scale-105'
                 }`}
-                aria-label={`Ver testimonio ${index + 1}`}
-              />
+                aria-label={`Ver testimonio de ${testimonial.name}`}
+              >
+                <div className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                  index === currentTestimonial
+                    ? `bg-gradient-to-r ${testimonial.color} shadow-lg`
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}>
+                </div>
+                {index === currentTestimonial && (
+                  <div className={`absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r ${testimonial.color} animate-ping opacity-75`}></div>
+                )}
+                <div className="absolute top-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                    {testimonial.name}
+                  </div>
+                </div>
+              </button>
             ))}
           </div>
         </div>

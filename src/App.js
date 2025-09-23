@@ -7,6 +7,7 @@ import Services from './components/Services';
 import ModernCarousel from './components/ModernCarousel';
 import StatsSection from './components/StatsSection';
 import TestimonialsSection from './components/TestimonialsSection';
+import TechStack from './components/TechStack';
 import About from './pages/About';
 import Courses from './pages/Courses';
 import ServicesPage from './pages/ServicesPage';
@@ -28,6 +29,7 @@ function App() {
               <>
                 <Hero />
                 <Services />
+                <TechStack />
                 <ModernCarousel />
                 <StatsSection />
                 <TestimonialsSection />

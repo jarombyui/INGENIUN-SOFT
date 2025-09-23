@@ -5,32 +5,43 @@ const ModernCarousel = () => {
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [imagesLoaded, setImagesLoaded] = useState(new Set());
 
   const images = [
     {
+      src: '/images/ERP-1.jpg',
+      title: 'ERP de Nueva Generación',
+      description: 'Sistemas ERP inteligentes con IA integrada, análisis predictivo y automatización avanzada para la gestión empresarial del futuro',
+      category: 'ERP & Analytics',
+      tech: ['IA', 'Cloud', 'Real-time']
+    },
+    {
+      src: '/images/ERP-2.jpg',
+      title: 'Automatización Empresarial',
+      description: 'Machine Learning aplicado a procesos empresariales con capacidades de aprendizaje continuo y optimización automática',
+      category: 'Automatización IA',
+      tech: ['ML', 'NLP', 'Computer Vision']
+    },
+    {
+      src: '/images/ERP-3.jpg',
+      title: 'Desarrollo Web Cloud-Native',
+      description: 'Aplicaciones web progresivas con arquitectura de microservicios, contenedores y escalabilidad automática',
+      category: 'Desarrollo Web',
+      tech: ['PWA', 'React', 'Docker']
+    },
+    {
       src: '/images/negocio_inteligente.jpg',
-      title: 'ERP Moderno y Personalizado',
-      description: 'Sistemas de gestión empresarial que integran todos los procesos de tu empresa'
-    },
-    {
-      src: '/images/TECNICAS-VENTAS.jpg',
-      title: 'Estandarización de Procesos',
-      description: 'Optimizamos y estandarizamos tus procesos para máxima eficiencia operativa'
-    },
-    {
-      src: '/images/MAS-CLIENTES.jpg',
-      title: 'Desarrollo Web Avanzado',
-      description: 'Aplicaciones web modernas y escalables con las últimas tecnologías'
-    },
-    {
-      src: '/images/ABRIR-NEGOCIO.jpg',
-      title: 'Automatización Inteligente',
-      description: 'Automatizamos procesos complejos para reducir costos y aumentar productividad'
+      title: 'Consultoría Digital 360°',
+      description: 'Estrategias holísticas de digitalización con roadmaps personalizados y metodologías ágiles para empresas del futuro',
+      category: 'Consultoría Digital',
+      tech: ['DevOps', 'Agile', 'Strategy']
     },
     {
       src: '/images/DIGITAL-MARKETING.jpg',
-      title: 'Consultoría Tecnológica',
-      description: 'Asesoramiento especializado en transformación digital y modernización empresarial'
+      title: 'Marketing Digital & Analytics',
+      description: 'Arquitecturas de datos modernas con almacenamiento cloud, data lakes y herramientas de business intelligence avanzadas',
+      category: 'Data Science',
+      tech: ['Big Data', 'Analytics', 'BI']
     }
   ];
 
@@ -124,9 +135,35 @@ const ModernCarousel = () => {
                 }`}>
                   <img
                     src={image.src}
-                    alt={`Slide ${index + 1}`}
+                    alt={image.title}
                     className="w-full h-full object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
+                    onError={(e) => {
+                      console.warn(`⚠️ Error cargando imagen: ${image.src}`);
+                      e.target.style.display = 'none';
+                      // Mostrar placeholder si la imagen falla
+                      const placeholder = e.target.nextElementSibling;
+                      if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                        placeholder.style.display = 'flex';
+                      }
+                    }}
+                    onLoad={(e) => {
+                      console.log(`✅ Imagen cargada: ${image.src}`);
+                      setImagesLoaded(prev => new Set([...prev, image.src]));
+                      // Asegurar que el placeholder esté oculto
+                      const placeholder = e.target.nextElementSibling;
+                      if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                        placeholder.style.display = 'none';
+                      }
+                    }}
                   />
+                  {/* Placeholder para errores de carga */}
+                  <div className="image-placeholder absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 items-center justify-center text-white hidden">
+                    <div className="text-center">
+                      <div className="text-4xl mb-2">🖼️</div>
+                      <div className="font-semibold">{image.title}</div>
+                      <div className="text-sm opacity-80">{image.category}</div>
+                    </div>
+                  </div>
                   {/* Modern Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-900/30 to-transparent"></div>
@@ -135,16 +172,33 @@ const ModernCarousel = () => {
             </div>
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-12 text-center">
-              <div className={`transform transition-all duration-1000 delay-300 ${
-                currentImageIndex === 0 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-              }`}>
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-2xl font-['Montserrat'] tracking-wide">
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-12 text-center z-20">
+              <div className="transform transition-all duration-1000 delay-300 translate-y-0 opacity-100">
+                {/* Badge de categoría */}
+                <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-500/30 to-primary-500/30 backdrop-blur-md border border-white/30 rounded-full text-sm font-semibold text-white/95 mb-4 shadow-lg">
+                  <span className="w-2 h-2 bg-accent-400 rounded-full mr-2 animate-pulse"></span>
+                  {images[currentImageIndex].category}
+                </div>
+                
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-2xl font-['Montserrat'] tracking-wide leading-tight">
                   {images[currentImageIndex].title}
                 </h3>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 drop-shadow-lg max-w-4xl font-['Poppins'] leading-relaxed">
+                
+                <p className="text-lg sm:text-xl md:text-2xl text-white/95 drop-shadow-lg max-w-4xl font-['Poppins'] leading-relaxed mb-6">
                   {images[currentImageIndex].description}
                 </p>
+                
+                {/* Tecnologías destacadas */}
+                <div className="flex flex-wrap justify-center gap-3 mt-6">
+                  {images[currentImageIndex].tech.map((tech, index) => (
+                    <span 
+                      key={index}
+                      className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-medium text-white/90 shadow-lg hover:bg-white/20 transition-all duration-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -211,6 +265,16 @@ const ModernCarousel = () => {
               )}
             </button>
           </div>
+
+          {/* Loading Status */}
+          {imagesLoaded.size < images.length && (
+            <div className="text-center mt-8 text-secondary-600">
+              <div className="inline-flex items-center space-x-2">
+                <div className="w-4 h-4 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+                <span>Cargando imágenes... ({imagesLoaded.size}/{images.length})</span>
+              </div>
+            </div>
+          )}
 
           {/* Call to Action */}
           <div className="text-center mt-12">

@@ -91,17 +91,28 @@ const Navbar = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Logo Modernizado */}
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center group">
               <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400/20 to-accent-400/20 blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110"></div>
                 <img
                   src="/images/Ingeniumsoft_ultimo.png"
                   alt="Ingenium Soft Logo"
-                  className="h-20 w-20 object-cover drop-shadow-xl rounded-full border-4 border-white/20 shadow-corporate-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-corporate-xl group-hover:border-primary-300"
+                  className="h-16 w-16 object-cover drop-shadow-2xl rounded-full border-3 border-white/30 shadow-corporate-xl transition-all duration-500 group-hover:scale-110 group-hover:shadow-corporate-2xl group-hover:border-primary-400/50 relative z-10"
                 />
-                {/* Efecto de brillo circular */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Anillo animado */}
+                <div className="absolute inset-0 rounded-full border-2 border-accent-400/50 opacity-0 group-hover:opacity-100 animate-pulse-neon transition-all duration-500"></div>
+                {/* Efecto de brillo mejorado */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-primary-200/10 to-accent-200/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              <div className="ml-3 hidden sm:block">
+                <div className="font-bold text-lg bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent group-hover:from-primary-500 group-hover:to-accent-500 transition-all duration-300">
+                  INGENIUM
+                </div>
+                <div className="text-xs text-secondary-600 group-hover:text-cyber-600 transition-colors duration-300 font-medium tracking-wide">
+                  SOFTWARE
+                </div>
               </div>
             </Link>
           </div>
