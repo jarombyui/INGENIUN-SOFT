@@ -33,8 +33,8 @@ const ParticleBackground = () => {
     rendererRef.current = renderer;
     mountRef.current.appendChild(renderer.domElement);
 
-    // Crear partículas
-    const particleCount = 150;
+    // Crear partículas (reducido para mejor rendimiento)
+    const particleCount = 100;
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);

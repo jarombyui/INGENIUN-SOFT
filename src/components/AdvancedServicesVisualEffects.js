@@ -32,9 +32,9 @@ const AdvancedServicesVisualEffects = () => {
       silver: new THREE.Color(0xC0C0C0) // Plateado
     };
 
-    // Floating service orbs with impressive colors
+    // Floating service orbs with impressive colors (optimizado)
     const serviceOrbs = [];
-    const orbCount = 25;
+    const orbCount = 15;
     
     for (let i = 0; i < orbCount; i++) {
       const geometry = new THREE.SphereGeometry(2 + Math.random() * 3, 32, 32);
@@ -106,8 +106,8 @@ const AdvancedServicesVisualEffects = () => {
     const network = new THREE.LineSegments(networkGeometry, networkMaterial);
     scene.add(network);
 
-    // Impressive particle system
-    const particleCount = 1500;
+    // Impressive particle system (optimizado)
+    const particleCount = 600;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);

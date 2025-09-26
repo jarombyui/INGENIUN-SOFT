@@ -1,8 +1,11 @@
-import React, { useState, useRef } from 'react';
-import ScrollEffects from './ScrollEffects';
-import AdvancedServicesEffects from './AdvancedServicesEffects';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import { motion, useInView } from 'framer-motion';
 import AnimatedCard from './AnimatedCard';
+import LazyEffects from './LazyEffects';
+
+// Lazy loading para efectos especiales
+const ScrollEffects = lazy(() => import('./ScrollEffects'));
+const AdvancedServicesEffects = lazy(() => import('./AdvancedServicesEffects'));
 
 const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor, onClick }) => {
   const [showVideo, setShowVideo] = useState(false);
@@ -224,11 +227,19 @@ const Services = () => {
         }}></div>
       </div>
 
-      {/* Three.js Scroll Effects */}
-      <ScrollEffects />
+      {/* Three.js Scroll Effects - Lazy Loading */}
+      <LazyEffects delay={150}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/15 to-secondary-900/15" />}>
+          <ScrollEffects />
+        </Suspense>
+      </LazyEffects>
       
-      {/* Advanced Services Effects */}
-      <AdvancedServicesEffects />
+      {/* Advanced Services Effects - Lazy Loading */}
+      <LazyEffects delay={300}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-secondary-900/10" />}>
+          <AdvancedServicesEffects />
+        </Suspense>
+      </LazyEffects>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div 

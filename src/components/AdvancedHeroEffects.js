@@ -18,8 +18,8 @@ const AdvancedHeroEffects = () => {
     renderer.setClearColor(0x000000, 0);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Advanced particle system
-    const particleCount = 2000;
+    // Advanced particle system (optimizado para mejor rendimiento)
+    const particleCount = 800;
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);

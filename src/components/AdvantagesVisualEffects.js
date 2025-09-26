@@ -30,9 +30,9 @@ const AdvantagesVisualEffects = () => {
       innovation: new THREE.Color(0x673AB7) // Índigo para innovación
     };
 
-    // Partículas de ventajas
+    // Partículas de ventajas (optimizado)
     const advantageParticles = [];
-    const particleCount = 200;
+    const particleCount = 100;
     
     for (let i = 0; i < particleCount; i++) {
       const geometry = new THREE.SphereGeometry(0.5 + Math.random() * 1.5, 16, 16);

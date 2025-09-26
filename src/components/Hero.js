@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ParticleBackground from './ParticleBackground';
-import AdvancedHeroEffects from './AdvancedHeroEffects';
 import { motion } from 'framer-motion';
 import AnimatedButton from './AnimatedButton';
+import LazyEffects from './LazyEffects';
+
+// Lazy loading para efectos especiales
+const ParticleBackground = lazy(() => import('./ParticleBackground'));
+const AdvancedHeroEffects = lazy(() => import('./AdvancedHeroEffects'));
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -52,11 +55,19 @@ const Hero = () => {
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Three.js Particle System */}
-      <ParticleBackground />
+      {/* Three.js Particle System - Lazy Loading */}
+      <LazyEffects delay={100}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-secondary-900/20" />}>
+          <ParticleBackground />
+        </Suspense>
+      </LazyEffects>
       
-      {/* Advanced Hero Effects */}
-      <AdvancedHeroEffects />
+      {/* Advanced Hero Effects - Lazy Loading */}
+      <LazyEffects delay={200}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-secondary-900/10" />}>
+          <AdvancedHeroEffects />
+        </Suspense>
+      </LazyEffects>
       
       {/* Glass Morphism Pattern */}
       <div className="absolute inset-0 opacity-20">

@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import * as THREE from 'three';
-import AdvantagesVisualEffects from './AdvantagesVisualEffects';
-import AdvantagesInteractiveEffects from './AdvantagesInteractiveEffects';
+import LazyEffects from './LazyEffects';
+
+// Lazy loading para efectos especiales
+const AdvantagesVisualEffects = lazy(() => import('./AdvantagesVisualEffects'));
+const AdvantagesInteractiveEffects = lazy(() => import('./AdvantagesInteractiveEffects'));
 
 const ServiceAdvantages = () => {
   const [hoveredAdvantage, setHoveredAdvantage] = useState(null);
@@ -280,11 +283,19 @@ const ServiceAdvantages = () => {
       {/* Efectos 3D de fondo */}
       <div ref={mountRef} className="absolute inset-0 pointer-events-none" />
       
-      {/* Efectos visuales específicos para ventajas */}
-      <AdvantagesVisualEffects />
+      {/* Efectos visuales específicos para ventajas - Lazy Loading */}
+      <LazyEffects delay={200}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/15 to-secondary-900/15" />}>
+          <AdvantagesVisualEffects />
+        </Suspense>
+      </LazyEffects>
       
-      {/* Efectos interactivos de ventajas */}
-      <AdvantagesInteractiveEffects />
+      {/* Efectos interactivos de ventajas - Lazy Loading */}
+      <LazyEffects delay={400}>
+        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-secondary-900/10" />}>
+          <AdvantagesInteractiveEffects />
+        </Suspense>
+      </LazyEffects>
       
       {/* Elementos de fondo animados */}
       <div className="absolute inset-0 opacity-20">
