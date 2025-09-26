@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import SEO from '../components/SEO';
+import ContactParticles from '../components/ContactParticles';
+import AdvancedContactEffects from '../components/AdvancedContactEffects';
+import ScrollAnimation from '../components/ScrollAnimation';
 
 const Contact = () => {
   const form = useRef();
@@ -59,8 +62,13 @@ Espero su respuesta. ¡Gracias!`;
         keywords="contacto ingenium soft, desarrollo de software lima, consultoría tecnológica perú, soporte técnico software"
         ogUrl="https://software-ingeniun.netlify.app/contacto"
       />
-      <div className="min-h-screen bg-gradient-to-br from-light via-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-light via-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Three.js Particles for Contact */}
+      <ContactParticles />
+      
+      {/* Advanced Contact Effects */}
+      <AdvancedContactEffects />
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
             <h2 className="text-5xl font-extrabold text-primary-500-800 mb-4 font-display tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
               Contáctanos
@@ -72,8 +80,8 @@ Espero su respuesta. ¡Gracias!`;
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {/* Contact Information */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-corporate shadow-corporate p-6 border border-white/20">
-              <h3 className="text-xl font-bold text-primary-500-800 mb-4 font-display">Información de Contacto</h3>
+            <div className="bg-primary-900/10 backdrop-blur-xl rounded-corporate shadow-corporate p-6 border border-primary-700/20">
+              <h3 className="text-xl font-bold text-white mb-4 font-display">Información de Contacto</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start">
@@ -121,10 +129,10 @@ Espero su respuesta. ¡Gracias!`;
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-corporate shadow-corporate p-6 border border-white/20">
+            <div className="bg-primary-900/10 backdrop-blur-xl rounded-corporate shadow-corporate p-6 border border-primary-700/20">
               <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="user_name" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="user_name" className="block text-sm font-medium text-white/90">
                     Nombre Completo
                   </label>
                   <input
@@ -134,12 +142,12 @@ Espero su respuesta. ¡Gracias!`;
                     value={formData.user_name}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="user_email" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="user_email" className="block text-sm font-medium text-white/90">
                     Correo Electrónico
                   </label>
                   <input
@@ -149,12 +157,12 @@ Espero su respuesta. ¡Gracias!`;
                     value={formData.user_email}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="user_phone" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="user_phone" className="block text-sm font-medium text-white/90">
                     Teléfono
                   </label>
                   <input
@@ -163,12 +171,12 @@ Espero su respuesta. ¡Gracias!`;
                     name="user_phone"
                     value={formData.user_phone}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="subject" className="block text-sm font-medium text-white/90">
                     Asunto
                   </label>
                   <input
@@ -178,12 +186,12 @@ Espero su respuesta. ¡Gracias!`;
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="service" className="block text-sm font-medium text-white/90">
                     Servicio de Interés
                   </label>
                   <select
@@ -191,7 +199,7 @@ Espero su respuesta. ¡Gracias!`;
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   >
                     <option value="">Selecciona un servicio</option>
                     <option value="Implementación de ERP Moderno">Implementación de ERP Moderno</option>
@@ -205,7 +213,7 @@ Espero su respuesta. ¡Gracias!`;
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="message" className="block text-sm font-medium text-white/90">
                     Mensaje
                   </label>
                   <textarea
@@ -215,7 +223,7 @@ Espero su respuesta. ¡Gracias!`;
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="mt-1 block w-full rounded-md border-primary-700/30 shadow-sm focus:border-accent-400 focus:ring-accent-400 bg-primary-900/20 text-white placeholder-white/70"
                   />
                 </div>
 

@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ParticleBackground from './ParticleBackground';
+import AdvancedHeroEffects from './AdvancedHeroEffects';
+import { motion } from 'framer-motion';
+import AnimatedButton from './AnimatedButton';
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [inputCode, setInputCode] = useState('');
   const [result, setResult] = useState(null);
@@ -16,6 +22,14 @@ const Hero = () => {
       }
     }
     setResult({ valid: false, message: 'Certificado no válido o código incorrecto.' });
+  };
+
+  const handleExploreServices = () => {
+    navigate('/servicios');
+  };
+
+  const handleStartProject = () => {
+    navigate('/servicios');
   };
 
   return (
@@ -37,6 +51,12 @@ const Hero = () => {
         <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
+
+      {/* Three.js Particle System */}
+      <ParticleBackground />
+      
+      {/* Advanced Hero Effects */}
+      <AdvancedHeroEffects />
       
       {/* Glass Morphism Pattern */}
       <div className="absolute inset-0 opacity-20">
@@ -50,35 +70,72 @@ const Hero = () => {
         <div className="backdrop-blur-sm bg-white/5 rounded-corporate-xl p-8 md:p-12 border border-white/10 shadow-corporate-2xl max-w-5xl mx-auto">
           <div className="text-center">
             {/* Badge de tecnología */}
-            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white/90 mb-6 animate-fade-in">
+            <motion.div 
+              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white/90 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <span className="w-2 h-2 bg-accent-400 rounded-full mr-2 animate-pulse"></span>
-              Tecnología de Vanguardia 2025
-            </div>
+               • Análisis • Estandarización • Automatización
+            </motion.div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 font-['Montserrat'] tracking-tight leading-tight">
+            <motion.h1 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 font-['Montserrat'] tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                Transformación Digital
+                Entendemos tu Negocio
               </span>
               <br />
-              <span className="text-accent-400">de Vanguardia</span>
-            </h1>
+              <span className="text-accent-400">Lo Estandarizamos y Automatizamos</span>
+            </motion.h1>
             
-            <div className="w-32 h-1 bg-gradient-to-r from-accent-400 via-white to-accent-600 mx-auto mb-8 rounded-full shadow-lg"></div>
+            <motion.div 
+              className="w-32 h-1 bg-gradient-to-r from-accent-400 via-white to-accent-600 mx-auto mb-8 rounded-full shadow-lg"
+              initial={{ width: 0 }}
+              animate={{ width: "8rem" }}
+              transition={{ duration: 1, delay: 0.8 }}
+            ></motion.div>
             
-            <p className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-['Poppins'] leading-relaxed mb-6 font-light">
-              ERP de última generación • Automatización IA • Desarrollo Cloud • Procesos Inteligentes
-            </p>
+            <motion.p 
+              className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-['Poppins'] leading-relaxed mb-6 font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <span className="text-accent-300">🔍 Análisis</span> → <span className="text-purple-300">⚙️ Estandarización</span> → <span className="text-green-300">🚀 Automatización</span>
+            </motion.p>
             
-            <p className="text-lg md:text-xl text-white/85 mb-10 font-['Poppins'] max-w-3xl mx-auto">
-              Ingenium Soft: Donde la innovación tecnológica impulsa el futuro de tu empresa
-            </p>
-          </div>
+            <motion.p 
+              className="text-lg md:text-xl text-white/85 mb-10 font-['Poppins'] max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              Un enfoque metodológico comprobado que transforma tu empresa paso a paso con tecnología que se adapta a tus procesos
+            </motion.p>
+                  </div>
           
           {/* Botones con diseño moderno */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 w-full max-w-2xl mx-auto mt-8">
-            <a 
-              href="/servicios"
-              className="group relative overflow-hidden bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white font-bold py-5 px-10 rounded-corporate transition-all duration-500 transform hover:scale-105 hover:shadow-corporate-xl font-display tracking-wide text-center shadow-corporate-lg focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 min-w-[200px]"
+          <motion.div 
+            className="flex flex-col sm:flex-row justify-center items-center gap-6 w-full max-w-2xl mx-auto mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+          >
+            <AnimatedButton
+              as="button"
+              onClick={handleExploreServices}
+              variant="secondary"
+              type="magnetic"
+              size="large"
+              className="group relative overflow-hidden py-5 px-10 rounded-corporate font-display tracking-wide text-center min-w-[200px]"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
             >
               <span className="relative z-10 flex items-center justify-center">
                 <span>Explorar Servicios</span>
@@ -87,11 +144,18 @@ const Hero = () => {
                 </svg>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            </a>
+            </AnimatedButton>
             
-            <a
-              href="/contacto"
-              className="group relative overflow-hidden bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold py-5 px-10 rounded-corporate transition-all duration-500 transform hover:scale-105 hover:shadow-corporate-xl text-center font-display tracking-wide shadow-corporate-lg border border-white/30 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 min-w-[200px]"
+            <AnimatedButton
+              as="button"
+              onClick={handleStartProject}
+              variant="glass"
+              type="glow"
+              size="large"
+              className="group relative overflow-hidden py-5 px-10 rounded-corporate font-display tracking-wide text-center min-w-[200px]"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
             >
               <span className="relative z-10 flex items-center justify-center">
                 <svg className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,8 +164,8 @@ const Hero = () => {
                 <span>Iniciar Proyecto</span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-            </a>
-          </div>
+            </AnimatedButton>
+          </motion.div>
           
           {/* Indicadores de confianza */}
           <div className="flex justify-center items-center gap-8 mt-12 text-white/70 text-sm">
@@ -110,13 +174,13 @@ const Hero = () => {
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span>41+ Proyectos</span>
-            </div>
+                </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5 text-success-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span>95% Satisfacción</span>
-            </div>
+              </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5 text-success-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

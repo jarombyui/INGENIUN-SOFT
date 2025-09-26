@@ -29,24 +29,57 @@ const Navbar = () => {
   }, [dropdownTimeout]);
 
   const handleDropdownMouseLeave = useCallback(() => {
-    const timeout = setTimeout(() => {
-      setDropdownOpen(false);
-    }, 1000); // Delay de 1000ms antes de cerrar
-    setDropdownTimeout(timeout);
+    // Solo cerrar si el cursor sale completamente del área del dropdown
+    // No cerrar automáticamente por timeout
+    // El dropdown solo se cerrará por click fuera o selección de opción
   }, []);
 
   // Función para manejar click en el botón de servicios
   const handleServicesClick = useCallback((e) => {
     e.preventDefault();
-    setDropdownOpen(!dropdownOpen);
-  }, [dropdownOpen]);
+    e.stopPropagation();
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    // Si está cerrado, abrirlo inmediatamente
+    if (!dropdownOpen) {
+      setDropdownOpen(true);
+    } else {
+      // Si está abierto, cerrarlo con un pequeño delay
+      setTimeout(() => {
+        setDropdownOpen(false);
+      }, 100);
+    }
+  }, [dropdownOpen, dropdownTimeout]);
 
   // Función para cerrar dropdown al hacer click fuera
   const handleClickOutside = useCallback((e) => {
     if (dropdownOpen && !e.target.closest('.dropdown-container')) {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout);
+        setDropdownTimeout(null);
+      }
+      // Cerrar inmediatamente al hacer click fuera
       setDropdownOpen(false);
     }
-  }, [dropdownOpen]);
+  }, [dropdownOpen, dropdownTimeout]);
+
+  // Función para detectar cuando el cursor sale del área del dropdown
+  const handleDropdownAreaLeave = useCallback((e) => {
+    // Verificar si el cursor está realmente fuera del área del dropdown
+    const dropdownElement = e.currentTarget;
+    const relatedTarget = e.relatedTarget;
+    
+    // Solo cerrar si el cursor sale completamente del área del dropdown
+    if (relatedTarget && !dropdownElement.contains(relatedTarget)) {
+      // Verificar que no esté moviéndose a otro elemento del dropdown
+      const isMovingToDropdown = relatedTarget.closest('.dropdown-container');
+      if (!isMovingToDropdown) {
+        setDropdownOpen(false);
+      }
+    }
+  }, []);
 
   // Agregar event listener para clicks fuera del dropdown
   useEffect(() => {
@@ -69,24 +102,23 @@ const Navbar = () => {
     { name: 'INICIO', path: '/' },
     { name: '¿QUIÉNES SOMOS?', path: '/about' },
     { name: 'SERVICIOS', path: '/servicios', hasDropdown: true },
-    { name: 'CURSOS', path: '/cursos' },
     { name: 'BLOG', path: '/blog' },
     { name: 'CONTÁCTANOS', path: '/contacto' },
   ];
 
   const serviceItems = [
-    { name: 'ERP Moderno', path: '/servicios#erp' },
-    { name: 'Estandarización', path: '/servicios#estandarizacion' },
-    { name: 'Desarrollo Web', path: '/servicios#desarrollo' },
-    { name: 'Automatización', path: '/servicios#automatizacion' },
-    { name: 'Bases de Datos', path: '/servicios#bases-datos' },
-    { name: 'Consultoría', path: '/servicios#consultoria' },
+    { name: 'ERP Moderno y Personalizado', path: '/servicios#erp' },
+    { name: 'Estandarización de Procesos', path: '/servicios#estandarizacion' },
+    { name: 'Desarrollo Web Personalizado', path: '/servicios#desarrollo' },
+    { name: 'Automatización de Procesos', path: '/servicios#automatizacion' },
+    { name: 'Bases de Datos Inteligentes', path: '/servicios#bases-datos' },
+    { name: 'Consultoría Tecnológica', path: '/servicios#consultoria' },
   ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
       scrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-corporate-lg border-b border-white/20' 
+        ? 'bg-primary-900/95 backdrop-blur-md shadow-corporate-lg border-b border-primary-700/20' 
         : 'bg-gradient-to-r from-primary-900 via-primary-800 to-secondary-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,7 +156,7 @@ const Navbar = () => {
                 {item.hasDropdown ? (
                   <div
                     className={`${
-                      scrolled ? 'text-gray-800 hover:text-primary-600' : 'text-white hover:text-accent-400'
+                      scrolled ? 'text-white hover:text-accent-400' : 'text-white hover:text-accent-400'
                     } px-3 py-2 text-sm lg:text-base font-semibold transition-all duration-300 tracking-wide cursor-pointer flex items-center space-x-1 relative`}
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
@@ -139,7 +171,7 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     className={`${
-                      scrolled ? 'text-gray-800 hover:text-primary-600' : 'text-white hover:text-accent-400'
+                      scrolled ? 'text-white hover:text-accent-400' : 'text-white hover:text-accent-400'
                     } px-3 py-2 text-sm lg:text-base font-semibold transition-all duration-300 tracking-wide relative group`}
                   >
                     {item.name}
@@ -149,28 +181,28 @@ const Navbar = () => {
                 
                 {/* Dropdown Menu */}
                 {item.hasDropdown && dropdownOpen && (
-                  <>
-                    {/* Área invisible de conexión más grande */}
-                    <div 
-                      className="absolute top-full left-0 w-80 h-6 bg-transparent z-40"
-                      onMouseEnter={handleDropdownMouseEnter}
-                      onMouseLeave={handleDropdownMouseLeave}
-                    ></div>
-                    <div 
-                      className="absolute top-full left-0 mt-6 w-80 bg-white/95 backdrop-blur-xl rounded-corporate shadow-corporate-2xl border border-white/40 py-4 z-50 animate-fade-in"
-                      onMouseEnter={handleDropdownMouseEnter}
-                      onMouseLeave={handleDropdownMouseLeave}
-                    >
+                  <div 
+                    className="absolute top-full left-0 w-80 bg-primary-900/95 backdrop-blur-xl rounded-corporate shadow-corporate-2xl border border-primary-700/40 py-4 z-50 animate-fade-in"
+                    onMouseEnter={handleDropdownMouseEnter}
+                    onMouseLeave={handleDropdownAreaLeave}
+                  >
                     <div className="px-3">
-                      <div className="text-sm font-bold text-primary-800 uppercase tracking-wider mb-3 px-3 border-b border-primary-200 pb-2">
+                      <div className="text-sm font-bold text-accent-400 uppercase tracking-wider mb-3 px-3 border-b border-primary-700/30 pb-2">
                         Nuestros Servicios
                       </div>
                       {serviceItems.map((service, index) => (
                         <Link
                           key={service.name}
                           to={service.path}
-                          className="block px-6 py-5 text-base text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-primary-600 hover:to-primary-700 transition-all duration-300 font-semibold hover:translate-x-3 rounded-corporate group shadow-sm hover:shadow-lg min-h-[60px] flex items-center"
-                          onClick={() => setDropdownOpen(false)}
+                          className="block px-6 py-5 text-base text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-accent-600 hover:to-accent-700 transition-all duration-300 font-semibold hover:translate-x-3 rounded-corporate group shadow-sm hover:shadow-lg min-h-[60px] flex items-center"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Cerrar dropdown al seleccionar una opción
+                            setDropdownOpen(false);
+                            // Navegar inmediatamente
+                            window.location.href = service.path;
+                          }}
                         >
                           <div className="flex items-center space-x-4 w-full">
                             <div className="w-4 h-4 bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-125 flex-shrink-0"></div>
@@ -182,17 +214,21 @@ const Navbar = () => {
                         </Link>
                       ))}
                     </div>
-                    <div className="border-t border-primary-200 mt-3 pt-3 mx-3">
+                    <div className="border-t border-primary-700/30 mt-3 pt-3 mx-3">
                       <Link
                         to="/servicios"
-                        className="block px-6 py-4 text-sm font-bold text-primary-700 hover:text-white hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-600 transition-all duration-300 rounded-corporate text-center shadow-sm hover:shadow-lg min-h-[50px] flex items-center justify-center"
-                        onClick={() => setDropdownOpen(false)}
+                        className="block px-6 py-4 text-sm font-bold text-accent-400 hover:text-white hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-600 transition-all duration-300 rounded-corporate text-center shadow-sm hover:shadow-lg min-h-[50px] flex items-center justify-center"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setDropdownOpen(false);
+                          window.location.href = '/servicios';
+                        }}
                       >
                         Ver todos los servicios →
                       </Link>
                     </div>
-                    </div>
-                  </>
+                  </div>
                 )}
               </div>
             ))}
@@ -203,7 +239,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`${
-                scrolled ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+                scrolled ? 'text-white hover:bg-primary-800/20' : 'text-white hover:bg-white/10'
               } p-2 rounded-corporate transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500`}
               aria-label="Toggle menu"
             >
@@ -237,26 +273,26 @@ const Navbar = () => {
         <div className={`md:hidden transition-all duration-500 ease-in-out ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md shadow-corporate-lg rounded-b-corporate border border-white/20">
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-primary-900/95 backdrop-blur-md shadow-corporate-lg rounded-b-corporate border border-primary-700/20">
             {menuItems.map((item) => (
               <div key={item.name}>
                 <Link
                   to={item.path}
-                  className="block text-secondary-700 hover:text-primary-600 hover:bg-primary-50 px-3 py-3 text-base font-medium transition-all duration-200 rounded-corporate hover:translate-x-1"
+                  className="block text-white/90 hover:text-accent-400 hover:bg-primary-800/20 px-3 py-3 text-base font-medium transition-all duration-200 rounded-corporate hover:translate-x-1"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
                 {item.hasDropdown && (
-                  <div className="ml-4 space-y-1 bg-primary-50 rounded-corporate p-3 border border-primary-200">
-                    <div className="text-sm font-bold text-primary-800 uppercase tracking-wider mb-3 px-2 border-b border-primary-300 pb-2">
+                  <div className="ml-4 space-y-1 bg-primary-800/20 rounded-corporate p-3 border border-primary-700/30">
+                    <div className="text-sm font-bold text-accent-400 uppercase tracking-wider mb-3 px-2 border-b border-primary-700/30 pb-2">
                       Servicios
                     </div>
                     {serviceItems.map((service) => (
                       <Link
                         key={service.name}
                         to={service.path}
-                        className="block text-gray-800 hover:text-white hover:bg-gradient-to-r hover:from-primary-600 hover:to-primary-700 px-4 py-3 text-base font-semibold transition-all duration-300 rounded-corporate hover:translate-x-2 flex items-center space-x-3 shadow-sm hover:shadow-md"
+                        className="block text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-accent-600 hover:to-accent-700 px-4 py-3 text-base font-semibold transition-all duration-300 rounded-corporate hover:translate-x-2 flex items-center space-x-3 shadow-sm hover:shadow-md"
                         onClick={() => setIsOpen(false)}
                       >
                         <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
@@ -265,7 +301,7 @@ const Navbar = () => {
                     ))}
                     <Link
                       to="/servicios"
-                      className="block text-primary-700 hover:text-white hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-600 px-4 py-3 text-sm font-bold transition-all duration-300 rounded-corporate hover:translate-x-2 text-center shadow-sm hover:shadow-md"
+                      className="block text-accent-400 hover:text-white hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-600 px-4 py-3 text-sm font-bold transition-all duration-300 rounded-corporate hover:translate-x-2 text-center shadow-sm hover:shadow-md"
                       onClick={() => setIsOpen(false)}
                     >
                       Ver todos los servicios →

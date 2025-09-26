@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
+import AboutParticles from '../components/AboutParticles';
 
 const SuggestionBox = () => {
   const [formData, setFormData] = useState({
@@ -38,8 +39,10 @@ const SuggestionBox = () => {
         keywords="sugerencias ingenium soft, feedback, opiniones, mejora continua, atención al cliente"
         ogUrl="https://software-ingeniun.netlify.app/sugerencias"
       />
-      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
+      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Three.js Particles for Suggestions */}
+        <AboutParticles />
+        <div className="max-w-3xl mx-auto relative z-10">
           <div className="text-center">
             <h2 className="text-5xl font-extrabold text-primary mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
               Buzón de Sugerencias
@@ -49,10 +52,10 @@ const SuggestionBox = () => {
             </p>
           </div>
 
-          <div className="mt-12 bg-white rounded-lg shadow-lg p-6">
+          <div className="mt-12 bg-primary-900/10 backdrop-blur-xl rounded-lg shadow-lg p-6 border border-primary-700/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name" className="block text-sm font-medium text-white/90">
                   Nombre
                 </label>
                 <input
@@ -67,7 +70,7 @@ const SuggestionBox = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium text-white/90">
                   Correo Electrónico
                 </label>
                 <input
@@ -82,7 +85,7 @@ const SuggestionBox = () => {
               </div>
 
               <div>
-                <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="category" className="block text-sm font-medium text-white/90">
                   Categoría
                 </label>
                 <select
@@ -93,14 +96,13 @@ const SuggestionBox = () => {
                   className="mt-1 block w-full rounded-md border-2 border-primary/30 shadow-sm focus:border-primary focus:ring-primary px-4 py-2"
                 >
                   <option value="general">General</option>
-                  <option value="cursos">Cursos</option>
                   <option value="servicios">Servicios</option>
                   <option value="soporte">Soporte Técnico</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="suggestion" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="suggestion" className="block text-sm font-medium text-white/90">
                   Tu Sugerencia
                 </label>
                 <textarea

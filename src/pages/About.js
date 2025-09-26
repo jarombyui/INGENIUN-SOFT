@@ -1,5 +1,8 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import AboutParticles from '../components/AboutParticles';
+import AdvancedAboutEffects from '../components/AdvancedAboutEffects';
+import ScrollAnimation from '../components/ScrollAnimation';
 
 const About = () => {
   return (
@@ -10,19 +13,40 @@ const About = () => {
         keywords="ingenium soft, sobre nosotros, misión, visión, valores, empresa de software, desarrollo web, software a medida"
         ogUrl="https://software-ingeniun.netlify.app/about"
       />
-      <div className="min-h-screen bg-gradient-to-br from-light via-primary-50 to-secondary-50 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+             <div className="min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+               {/* Background Elements */}
+               <div className="absolute inset-0 opacity-10">
+                 <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full blur-xl animate-pulse-slow"></div>
+                 <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+                 <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+               </div>
+
+               {/* Glass Morphism Pattern */}
+               <div className="absolute inset-0 opacity-20">
+                 <div className="absolute inset-0" style={{
+                   backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                   backgroundRepeat: 'repeat'
+                 }}></div>
+               </div>
+
+      {/* Three.js Particles for About */}
+      <AboutParticles />
+      
+      {/* Advanced About Effects */}
+      <AdvancedAboutEffects />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-extrabold text-primary-800 mb-4 font-display tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+            <h2 className="text-5xl font-extrabold text-white mb-4 font-display tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
               ¿Quiénes Somos?
             </h2>
-            <p className="mt-4 text-2xl text-secondary-700 max-w-3xl mx-auto font-body">
+            <p className="mt-4 text-2xl text-white/90 max-w-3xl mx-auto font-body">
               Ingenium Soft: Especialistas en transformación digital, implementación de ERP, estandarización de procesos y desarrollo de software empresarial de vanguardia.
             </p>
           </div>
 
           <div className="grid gap-10 md:grid-cols-2 mb-16">
-            <div className="bg-white/90 backdrop-blur-lg rounded-corporate-xl shadow-corporate-2xl p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
+            <div className="bg-white/10 backdrop-blur-xl rounded-corporate-xl shadow-corporate-2xl p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
               <div className="bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 rounded-full p-4 mb-4 shadow-corporate group-hover:from-primary-200 group-hover:to-primary-300 transition-all duration-300">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" /></svg>
               </div>
@@ -30,7 +54,7 @@ const About = () => {
               <p className="text-secondary-700 font-body text-lg group-hover:text-secondary-800 transition-colors duration-300">Transformar empresas mediante soluciones tecnológicas integrales, implementando ERP modernos, estandarizando procesos y desarrollando software que impulse el crecimiento empresarial.</p>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-lg rounded-corporate-xl shadow-corporate-2xl p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
+            <div className="bg-white/10 backdrop-blur-xl rounded-corporate-xl shadow-corporate-2xl p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
               <div className="bg-gradient-to-br from-accent-100 to-accent-200 text-accent-600 rounded-full p-4 mb-4 shadow-corporate group-hover:from-accent-200 group-hover:to-accent-300 transition-all duration-300">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7" /></svg>
               </div>

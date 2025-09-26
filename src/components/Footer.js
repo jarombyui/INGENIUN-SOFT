@@ -14,18 +14,17 @@ const Footer = () => {
     { name: 'Inicio', path: '/' },
     { name: '¿Quiénes Somos?', path: '/about' },
     { name: 'Servicios', path: '/servicios' },
-    { name: 'Cursos', path: '/cursos' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contáctanos', path: '/contacto' },
   ];
 
   const serviceLinks = [
-    { name: 'ERP Moderno', path: '/servicios#erp' },
-    { name: 'Estandarización', path: '/servicios#estandarizacion' },
-    { name: 'Desarrollo Web', path: '/servicios#desarrollo' },
-    { name: 'Automatización', path: '/servicios#automatizacion' },
-    { name: 'Bases de Datos', path: '/servicios#bases-datos' },
-    { name: 'Consultoría', path: '/servicios#consultoria' },
+    { name: 'ERP Moderno y Personalizado', path: '/servicios#erp' },
+    { name: 'Estandarización de Procesos', path: '/servicios#estandarizacion' },
+    { name: 'Desarrollo Web Personalizado', path: '/servicios#desarrollo' },
+    { name: 'Automatización de Procesos', path: '/servicios#automatizacion' },
+    { name: 'Bases de Datos Inteligentes', path: '/servicios#bases-datos' },
+    { name: 'Consultoría Tecnológica', path: '/servicios#consultoria' },
   ];
 
   return (

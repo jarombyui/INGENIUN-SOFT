@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 const ModernCarousel = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -6,24 +6,25 @@ const ModernCarousel = () => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [imagesLoaded, setImagesLoaded] = useState(new Set());
+  const [loadingErrors, setLoadingErrors] = useState(new Set());
 
-  const images = [
+  const images = useMemo(() => [
     {
-      src: '/images/ERP-1.jpg',
+      src: '/images/ERP/erp-login.jpeg',
       title: 'ERP de Nueva Generación',
       description: 'Sistemas ERP inteligentes con IA integrada, análisis predictivo y automatización avanzada para la gestión empresarial del futuro',
       category: 'ERP & Analytics',
       tech: ['IA', 'Cloud', 'Real-time']
     },
     {
-      src: '/images/ERP-2.jpg',
+      src: '/images/automatizacion/automatizacion-3.jpeg',
       title: 'Automatización Empresarial',
       description: 'Machine Learning aplicado a procesos empresariales con capacidades de aprendizaje continuo y optimización automática',
       category: 'Automatización IA',
       tech: ['ML', 'NLP', 'Computer Vision']
     },
     {
-      src: '/images/ERP-3.jpg',
+      src: '/images/desarrollo-web.jpeg',
       title: 'Desarrollo Web Cloud-Native',
       description: 'Aplicaciones web progresivas con arquitectura de microservicios, contenedores y escalabilidad automática',
       category: 'Desarrollo Web',
@@ -43,7 +44,7 @@ const ModernCarousel = () => {
       category: 'Data Science',
       tech: ['Big Data', 'Analytics', 'BI']
     }
-  ];
+  ], []);
 
   useEffect(() => {
     if (!isAutoPlay) return;
@@ -54,6 +55,22 @@ const ModernCarousel = () => {
 
     return () => clearInterval(interval);
   }, [images.length, isAutoPlay]);
+
+  // Preload images
+  useEffect(() => {
+    images.forEach((image) => {
+      const img = new Image();
+      img.onload = () => {
+        console.log(`✅ Preload exitoso: ${image.src}`);
+        setImagesLoaded(prev => new Set([...prev, image.src]));
+      };
+      img.onerror = () => {
+        console.error(`❌ Error en preload: ${image.src}`);
+        setLoadingErrors(prev => new Set([...prev, image.src]));
+      };
+      img.src = image.src;
+    });
+  }, [images]);
 
   // Funciones para navegación manual
   const goToNext = () => {
@@ -138,7 +155,9 @@ const ModernCarousel = () => {
                     alt={image.title}
                     className="w-full h-full object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
                     onError={(e) => {
-                      console.warn(`⚠️ Error cargando imagen: ${image.src}`);
+                      console.error(`❌ Error cargando imagen: ${image.src}`);
+                      console.error('Error details:', e);
+                      setLoadingErrors(prev => new Set([...prev, image.src]));
                       e.target.style.display = 'none';
                       // Mostrar placeholder si la imagen falla
                       const placeholder = e.target.nextElementSibling;
@@ -147,7 +166,8 @@ const ModernCarousel = () => {
                       }
                     }}
                     onLoad={(e) => {
-                      console.log(`✅ Imagen cargada: ${image.src}`);
+                      console.log(`✅ Imagen cargada exitosamente: ${image.src}`);
+                      console.log('Image dimensions:', e.target.naturalWidth, 'x', e.target.naturalHeight);
                       setImagesLoaded(prev => new Set([...prev, image.src]));
                       // Asegurar que el placeholder esté oculto
                       const placeholder = e.target.nextElementSibling;
@@ -267,14 +287,21 @@ const ModernCarousel = () => {
           </div>
 
           {/* Loading Status */}
-          {imagesLoaded.size < images.length && (
+          {(imagesLoaded.size < images.length || loadingErrors.size > 0) && (
             <div className="text-center mt-8 text-secondary-600">
               <div className="inline-flex items-center space-x-2">
                 <div className="w-4 h-4 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
                 <span>Cargando imágenes... ({imagesLoaded.size}/{images.length})</span>
               </div>
+              {loadingErrors.size > 0 && (
+                <div className="mt-2 text-red-600">
+                  <p>Errores de carga: {loadingErrors.size}</p>
+                  <p className="text-sm">Verifica la consola para más detalles</p>
+                </div>
+              )}
             </div>
           )}
+
 
           {/* Call to Action */}
           <div className="text-center mt-12">
