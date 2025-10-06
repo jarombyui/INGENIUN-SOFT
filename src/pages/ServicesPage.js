@@ -5,6 +5,7 @@ import AdvancedServicesEffects from '../components/AdvancedServicesEffects';
 import AdvancedServicesVisualEffects from '../components/AdvancedServicesVisualEffects';
 import InteractiveServiceElements from '../components/InteractiveServiceElements';
 import ScrollAnimation from '../components/ScrollAnimation';
+import UniversalEffects from '../components/UniversalEffects';
 import { motion } from 'framer-motion';
 
 const serviceDetails = [
@@ -99,6 +100,9 @@ const ServicesPage = () => {
           <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-rose-400 to-red-600 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
         </div>
 
+      {/* Universal Effects - Garantiza cobertura completa */}
+      <UniversalEffects intensity={1.2} particleCount={250} colorScheme="corporate" />
+      
       {/* Three.js Particles for Services */}
       <ServicesParticles />
       

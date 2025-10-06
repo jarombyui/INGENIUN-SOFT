@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import ContactParticles from '../components/ContactParticles';
 import AdvancedContactEffects from '../components/AdvancedContactEffects';
 import ScrollAnimation from '../components/ScrollAnimation';
+import UniversalEffects from '../components/UniversalEffects';
 
 const Contact = () => {
   const form = useRef();
@@ -64,16 +65,20 @@ Espero su respuesta. ¡Gracias!`;
       />
       <div className="min-h-screen bg-gradient-to-br from-light via-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Three.js Particles for Contact */}
+      {/* Universal Effects - Garantiza cobertura completa */}
+      <UniversalEffects intensity={0.8} particleCount={150} colorScheme="blue" />
+      
+      {/* Three.js Particles for Contact */}
       <ContactParticles />
       
       {/* Advanced Contact Effects */}
       <AdvancedContactEffects />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center">
-            <h2 className="text-5xl font-extrabold text-primary-500-800 mb-4 font-display tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+          <div className="text-center px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-500-800 mb-4 font-display tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Contáctanos
             </h2>
-            <p className="mt-4 text-2xl text-secondary-700 max-w-3xl mx-auto font-body">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-700 max-w-3xl mx-auto font-body px-4">
               Estamos aquí para ayudarte con tu transformación digital. Envíanos un mensaje y te responderemos lo antes posible.
             </p>
           </div>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import SEO from '../components/SEO';
 import AboutParticles from '../components/AboutParticles';
 import AdvancedBlogEffects from '../components/AdvancedBlogEffects';
+import UniversalEffects from '../components/UniversalEffects';
 import { motion } from 'framer-motion';
 
 const initialBlogPosts = [
@@ -215,6 +216,10 @@ const Blog = () => {
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Three.js Particles for Blog */}
+      {/* Universal Effects - Garantiza cobertura completa */}
+      <UniversalEffects intensity={0.9} particleCount={180} colorScheme="purple" />
+      
+      {/* Three.js Particles for Blog */}
       <AboutParticles />
       
       {/* Advanced Blog Effects */}
@@ -239,22 +244,22 @@ const Blog = () => {
       
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16 px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Blog INGENIUM SOFT
             </h2>
-            <p className="mt-4 text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins']">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] px-4">
               Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-6 shadow-lg"></div>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
           </motion.div>
 
           <motion.div 
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -303,7 +308,7 @@ const Blog = () => {
                         {post.readTime}
                       </span>
                     </div>
-                  </div>
+                    </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-3 whitespace-normal break-words font-['Montserrat'] group-hover:text-cyan-400 transition-colors duration-300">{post.title}</h3>
                     <p className="text-white/90 mb-4 font-['Poppins'] leading-relaxed">{post.excerpt}</p>
@@ -414,9 +419,9 @@ const Blog = () => {
                     <span className="px-2 py-1 text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full">
                       {selectedPost.category}
                     </span>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
               <button 
                 onClick={handleCloseModal}
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all duration-300 hover:scale-110"

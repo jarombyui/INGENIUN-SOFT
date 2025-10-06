@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import AboutParticles from '../components/AboutParticles';
 import AdvancedAboutEffects from '../components/AdvancedAboutEffects';
 import ScrollAnimation from '../components/ScrollAnimation';
+import UniversalEffects from '../components/UniversalEffects';
 
 const About = () => {
   return (
@@ -29,6 +30,9 @@ const About = () => {
                  }}></div>
                </div>
 
+      {/* Universal Effects - Garantiza cobertura completa */}
+      <UniversalEffects intensity={1.0} particleCount={200} colorScheme="corporate" />
+      
       {/* Three.js Particles for About */}
       <AboutParticles />
       
@@ -36,17 +40,17 @@ const About = () => {
       <AdvancedAboutEffects />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-extrabold text-white mb-4 font-display tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+          <div className="text-center mb-12 sm:mb-16 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-display tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               ¿Quiénes Somos?
             </h2>
-            <p className="mt-4 text-2xl text-white/90 max-w-3xl mx-auto font-body">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-body px-4">
               Ingenium Soft: Especialistas en transformación digital, implementación de ERP, estandarización de procesos y desarrollo de software empresarial de vanguardia.
             </p>
           </div>
 
-          <div className="grid gap-10 md:grid-cols-2 mb-16">
-            <div className="bg-white/10 backdrop-blur-xl rounded-corporate-xl shadow-corporate-2xl p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
+          <div className="grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-2 mb-12 sm:mb-16 px-4">
+            <div className="bg-white/10 backdrop-blur-xl rounded-corporate-xl shadow-corporate-2xl p-6 sm:p-8 md:p-10 flex flex-col items-center hover:scale-105 transition-all duration-300 border border-white/20 group">
               <div className="bg-gradient-to-br from-primary-100 to-primary-200 text-primary-600 rounded-full p-4 mb-4 shadow-corporate group-hover:from-primary-200 group-hover:to-primary-300 transition-all duration-300">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" /></svg>
               </div>

@@ -1,12 +1,9 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ParticleBackground from './ParticleBackground';
+import AdvancedHeroEffects from './AdvancedHeroEffects';
 import { motion } from 'framer-motion';
 import AnimatedButton from './AnimatedButton';
-import LazyEffects from './LazyEffects';
-
-// Lazy loading para efectos especiales
-const ParticleBackground = lazy(() => import('./ParticleBackground'));
-const AdvancedHeroEffects = lazy(() => import('./AdvancedHeroEffects'));
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -55,19 +52,11 @@ const Hero = () => {
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Three.js Particle System - Lazy Loading */}
-      <LazyEffects delay={100}>
-        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-secondary-900/20" />}>
-          <ParticleBackground />
-        </Suspense>
-      </LazyEffects>
+      {/* Three.js Particle System */}
+      <ParticleBackground />
       
-      {/* Advanced Hero Effects - Lazy Loading */}
-      <LazyEffects delay={200}>
-        <Suspense fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 to-secondary-900/10" />}>
-          <AdvancedHeroEffects />
-        </Suspense>
-      </LazyEffects>
+      {/* Advanced Hero Effects */}
+      <AdvancedHeroEffects />
       
       {/* Glass Morphism Pattern */}
       <div className="absolute inset-0 opacity-20">
@@ -78,41 +67,41 @@ const Hero = () => {
       </div>
       <div className="relative flex flex-col items-center justify-center h-full text-white text-center px-4 sm:px-6 lg:px-8">
         {/* Glass morphism container */}
-        <div className="backdrop-blur-sm bg-white/5 rounded-corporate-xl p-8 md:p-12 border border-white/10 shadow-corporate-2xl max-w-5xl mx-auto">
+        <div className="backdrop-blur-sm bg-white/5 rounded-corporate-xl p-4 sm:p-6 md:p-8 lg:p-12 border border-white/10 shadow-corporate-2xl max-w-5xl mx-auto">
           <div className="text-center">
             {/* Badge de tecnología */}
             <motion.div 
-              className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white/90 mb-6"
+              className="inline-flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm border border-white/20 rounded-full text-xs sm:text-sm font-semibold text-white/90 mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <span className="w-2 h-2 bg-accent-400 rounded-full mr-2 animate-pulse"></span>
-               • Análisis • Estandarización • Automatización
+              <span className="hidden sm:inline">• Análisis • Estandarización • Automatización</span>
+              <span className="sm:hidden">Análisis • Estandarización • Automatización</span>
             </motion.div>
             
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 font-['Montserrat'] tracking-tight leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 sm:mb-6 font-['Montserrat'] tracking-tight leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent block">
                 Entendemos tu Negocio
               </span>
-              <br />
-              <span className="text-accent-400">Lo Estandarizamos y Automatizamos</span>
+              <span className="text-accent-400 block mt-2">Lo Estandarizamos y Automatizamos</span>
             </motion.h1>
             
             <motion.div 
-              className="w-32 h-1 bg-gradient-to-r from-accent-400 via-white to-accent-600 mx-auto mb-8 rounded-full shadow-lg"
+              className="w-24 sm:w-32 h-1 bg-gradient-to-r from-accent-400 via-white to-accent-600 mx-auto mb-6 sm:mb-8 rounded-full shadow-lg"
               initial={{ width: 0 }}
-              animate={{ width: "8rem" }}
+              animate={{ width: "6rem" }}
               transition={{ duration: 1, delay: 0.8 }}
             ></motion.div>
             
             <motion.p 
-              className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-['Poppins'] leading-relaxed mb-6 font-light"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-['Poppins'] leading-relaxed mb-4 sm:mb-6 font-light"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
@@ -121,7 +110,7 @@ const Hero = () => {
             </motion.p>
             
             <motion.p 
-              className="text-lg md:text-xl text-white/85 mb-10 font-['Poppins'] max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-white/85 mb-8 sm:mb-10 font-['Poppins'] max-w-3xl mx-auto px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
@@ -130,9 +119,9 @@ const Hero = () => {
             </motion.p>
                   </div>
           
-          {/* Botones con diseño moderno */}
+          {/* Botones con diseño moderno - Responsive */}
           <motion.div 
-            className="flex flex-col sm:flex-row justify-center items-center gap-6 w-full max-w-2xl mx-auto mt-8"
+            className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-2xl mx-auto mt-6 sm:mt-8 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.4 }}
@@ -143,7 +132,7 @@ const Hero = () => {
               variant="secondary"
               type="magnetic"
               size="large"
-              className="group relative overflow-hidden py-5 px-10 rounded-corporate font-display tracking-wide text-center min-w-[200px]"
+              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-corporate font-display tracking-wide text-center w-full sm:min-w-[200px]"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.6 }}
@@ -163,7 +152,7 @@ const Hero = () => {
               variant="glass"
               type="glow"
               size="large"
-              className="group relative overflow-hidden py-5 px-10 rounded-corporate font-display tracking-wide text-center min-w-[200px]"
+              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-corporate font-display tracking-wide text-center w-full sm:min-w-[200px]"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.8 }}
