@@ -269,23 +269,24 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu - Optimizado */}
-        <div className={`md:hidden transition-all duration-500 ease-in-out ${
+        {/* Mobile Menu - Corregido */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-primary-900/95 backdrop-blur-md shadow-corporate-lg rounded-b-corporate border border-primary-700/20">
+          <div className="px-3 pt-3 pb-4 space-y-2 bg-primary-900/95 backdrop-blur-md shadow-corporate-lg rounded-b-corporate border border-primary-700/20">
             {menuItems.map((item) => (
               <div key={item.name}>
                 {item.hasDropdown ? (
-                  <div className="space-y-1">
-                    {/* Botón principal de servicios */}
+                  <div className="space-y-2">
+                    {/* Botón principal de servicios - Mejorado para touch */}
                     <button
                       onClick={() => setDropdownOpen(!dropdownOpen)}
-                      className="w-full text-left text-white/90 hover:text-accent-400 hover:bg-primary-800/20 px-3 py-3 text-base font-medium transition-all duration-200 rounded-corporate hover:translate-x-1 flex items-center justify-between"
+                      className="w-full text-left text-white/90 active:text-accent-400 active:bg-primary-800/30 px-4 py-4 text-base font-medium transition-all duration-200 rounded-lg active:scale-95 flex items-center justify-between touch-manipulation"
+                      style={{ minHeight: '48px' }}
                     >
-                      <span>{item.name}</span>
+                      <span className="font-semibold">{item.name}</span>
                       <svg 
-                        className={`w-4 h-4 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} 
+                        className={`w-5 h-5 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} 
                         fill="none" 
                         stroke="currentColor" 
                         viewBox="0 0 24 24"
@@ -294,11 +295,11 @@ const Navbar = () => {
                       </svg>
                     </button>
                     
-                    {/* Submenu de servicios */}
+                    {/* Submenu de servicios - Mejorado */}
                     <div className={`transition-all duration-300 ease-in-out ${
                       dropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
-                      <div className="ml-4 space-y-1 bg-primary-800/20 rounded-corporate p-3 border border-primary-700/30">
+                      <div className="ml-2 space-y-1 bg-primary-800/20 rounded-lg p-3 border border-primary-700/30">
                         <div className="text-sm font-bold text-accent-400 uppercase tracking-wider mb-3 px-2 border-b border-primary-700/30 pb-2">
                           Servicios
                         </div>
@@ -306,19 +307,21 @@ const Navbar = () => {
                           <Link
                             key={service.name}
                             to={service.path}
-                            className="block text-white/90 hover:text-white hover:bg-gradient-to-r hover:from-accent-600 hover:to-accent-700 px-4 py-3 text-sm font-semibold transition-all duration-300 rounded-corporate hover:translate-x-2 flex items-center space-x-3 shadow-sm hover:shadow-md"
+                            className="block text-white/90 active:text-white active:bg-gradient-to-r active:from-accent-600 active:to-accent-700 px-4 py-3 text-sm font-semibold transition-all duration-200 rounded-lg active:scale-95 flex items-center space-x-3 touch-manipulation"
+                            style={{ minHeight: '44px' }}
                             onClick={() => {
                               setIsOpen(false);
                               setDropdownOpen(false);
                             }}
                           >
-                            <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
-                            <span className="font-semibold tracking-wide text-sm">{service.name}</span>
+                            <div className="w-2 h-2 bg-primary-500 rounded-full flex-shrink-0"></div>
+                            <span className="font-medium tracking-wide">{service.name}</span>
                           </Link>
                         ))}
                         <Link
                           to="/servicios"
-                          className="block text-accent-400 hover:text-white hover:bg-gradient-to-r hover:from-accent-500 hover:to-accent-600 px-4 py-3 text-sm font-bold transition-all duration-300 rounded-corporate hover:translate-x-2 text-center shadow-sm hover:shadow-md"
+                          className="block text-accent-400 active:text-white active:bg-gradient-to-r active:from-accent-500 active:to-accent-600 px-4 py-3 text-sm font-bold transition-all duration-200 rounded-lg active:scale-95 text-center touch-manipulation"
+                          style={{ minHeight: '44px' }}
                           onClick={() => {
                             setIsOpen(false);
                             setDropdownOpen(false);
@@ -332,7 +335,8 @@ const Navbar = () => {
                 ) : (
                   <Link
                     to={item.path}
-                    className="block text-white/90 hover:text-accent-400 hover:bg-primary-800/20 px-3 py-3 text-base font-medium transition-all duration-200 rounded-corporate hover:translate-x-1"
+                    className="block text-white/90 active:text-accent-400 active:bg-primary-800/30 px-4 py-4 text-base font-semibold transition-all duration-200 rounded-lg active:scale-95 touch-manipulation"
+                    style={{ minHeight: '48px' }}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
@@ -341,11 +345,12 @@ const Navbar = () => {
               </div>
             ))}
             
-            {/* Botón de contacto rápido en móvil */}
-            <div className="pt-3 border-t border-primary-700/30">
+            {/* Botón de contacto rápido en móvil - Mejorado */}
+            <div className="pt-4 border-t border-primary-700/30">
               <Link
                 to="/contacto"
-                className="block w-full bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold py-4 px-6 text-center rounded-corporate transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="block w-full bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold py-4 px-6 text-center rounded-lg transition-all duration-200 active:scale-95 shadow-lg touch-manipulation"
+                style={{ minHeight: '56px' }}
                 onClick={() => setIsOpen(false)}
               >
                 📱 Contactar Ahora

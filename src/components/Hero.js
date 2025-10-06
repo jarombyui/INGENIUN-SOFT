@@ -119,9 +119,9 @@ const Hero = () => {
             </motion.p>
                   </div>
           
-          {/* Botones con diseño moderno - Responsive */}
+          {/* Botones con diseño moderno - Optimizado para móvil */}
           <motion.div 
-            className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-2xl mx-auto mt-6 sm:mt-8 px-4"
+            className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-6 w-full max-w-2xl mx-auto mt-6 sm:mt-8 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.4 }}
@@ -132,18 +132,19 @@ const Hero = () => {
               variant="secondary"
               type="magnetic"
               size="large"
-              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-corporate font-display tracking-wide text-center w-full sm:min-w-[200px]"
+              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-lg font-display tracking-wide text-center w-full sm:min-w-[200px] touch-manipulation"
+              style={{ minHeight: '56px' }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.6 }}
             >
               <span className="relative z-10 flex items-center justify-center">
-                <span>Explorar Servicios</span>
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="font-semibold">Explorar Servicios</span>
+                <svg className="w-5 h-5 ml-2 group-active:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-active:translate-x-full transition-transform duration-300"></div>
             </AnimatedButton>
             
             <AnimatedButton
@@ -152,18 +153,19 @@ const Hero = () => {
               variant="glass"
               type="glow"
               size="large"
-              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-corporate font-display tracking-wide text-center w-full sm:min-w-[200px]"
+              className="group relative overflow-hidden py-4 sm:py-5 px-6 sm:px-10 rounded-lg font-display tracking-wide text-center w-full sm:min-w-[200px] touch-manipulation"
+              style={{ minHeight: '56px' }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.8 }}
             >
               <span className="relative z-10 flex items-center justify-center">
-                <svg className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 mr-2 group-active:rotate-12 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                <span>Iniciar Proyecto</span>
+                <span className="font-semibold">Iniciar Proyecto</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent transform -skew-x-12 -translate-x-full group-active:translate-x-full transition-transform duration-300"></div>
             </AnimatedButton>
           </motion.div>
           

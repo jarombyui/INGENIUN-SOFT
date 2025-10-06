@@ -295,26 +295,26 @@ const ServiceAdvantages = () => {
         <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-rose-400 to-red-600 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 px-4">
         {/* Título principal */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl font-extrabold text-white mb-6 font-display tracking-tight drop-shadow-lg">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 sm:mb-6 font-display tracking-tight drop-shadow-lg">
             Ventajas de Nuestros Servicios
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto font-body">
+          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto font-body px-4">
             Descubre todas las ventajas que obtienes al trabajar con INGENIUM SOFT
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-6 shadow-lg"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
         </motion.div>
 
         {/* Grid de ventajas */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -328,34 +328,35 @@ const ServiceAdvantages = () => {
               onHoverEnd={() => setHoveredAdvantage(null)}
             >
               <motion.div
-                className={`relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-corporate-lg p-8 shadow-corporate-xl border border-white/20 cursor-pointer overflow-hidden`}
+                className={`relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-lg p-6 sm:p-8 shadow-corporate-xl border border-white/20 cursor-pointer overflow-hidden touch-manipulation`}
+                whileTap={{ scale: 0.95 }}
                 whileHover={{ 
-                  scale: 1.05,
-                  y: -10,
+                  scale: 1.02,
+                  y: -5,
                   boxShadow: `0 25px 50px -12px ${advantage.glowColor}`,
                   borderColor: "rgba(255, 255, 255, 0.4)"
                 }}
                 animate={{
-                  y: mousePosition.y * 10,
-                  x: mousePosition.x * 5
+                  y: mousePosition.y * 5,
+                  x: mousePosition.x * 2
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
               >
                 {/* Efecto de brillo animado */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
                 {/* Icono */}
-                <div className={`w-16 h-16 bg-gradient-to-r ${advantage.color} rounded-corporate-lg flex items-center justify-center text-3xl mb-6 shadow-lg`}>
+                <div className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r ${advantage.color} rounded-lg flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-lg`}>
                   {advantage.icon}
                 </div>
                 
                 {/* Título */}
-                <h3 className="text-xl font-bold text-white mb-4 font-display">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-display">
                   {advantage.title}
                 </h3>
                 
                 {/* Descripción */}
-                <p className="text-white/90 text-sm font-body leading-relaxed mb-4">
+                <p className="text-white/90 text-sm font-body leading-relaxed mb-3 sm:mb-4">
                   {advantage.description}
                 </p>
                 

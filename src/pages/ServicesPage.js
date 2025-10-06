@@ -124,16 +124,16 @@ const ServicesPage = () => {
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-24 scroll-mt-32">
+          <div className="text-center mb-12 sm:mb-16 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Nuestros Servicios
             </h2>
-            <p className="mt-4 text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins']">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] px-4">
               Soluciones modernas en desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad y consultoría tecnológica
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-8 sm:space-y-12 md:space-y-16 px-4">
             {services.map((service, index) => {
               // Mapear índices a IDs de ancla
               const anchorIds = ['erp', 'estandarizacion', 'desarrollo', 'automatizacion', 'bases-datos', 'consultoria'];
@@ -155,47 +155,44 @@ const ServicesPage = () => {
               <motion.div 
                 key={index}
                 id={anchorId}
-                className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-corporate-lg shadow-corporate-xl p-12 transform hover:scale-[1.02] transition-all duration-500 hover:shadow-corporate-2xl scroll-mt-24 border border-white/20 relative overflow-hidden"
+                className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-lg shadow-corporate-xl p-6 sm:p-8 md:p-12 transform active:scale-[0.98] transition-all duration-200 hover:shadow-corporate-2xl scroll-mt-24 border border-white/20 relative overflow-hidden touch-manipulation"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                  borderColor: "rgba(255, 255, 255, 0.4)"
-                }}
+                whileTap={{ scale: 0.98 }}
               >
                 {/* Efecto de brillo animado */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
-                <div className="flex flex-col lg:flex-row items-center gap-8">
+                <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
                     {/* Contenido Principal */}
                     <div className="flex-1 lg:max-w-2xl">
                       {/* Badge del paso */}
-                      <div className={`inline-block bg-gradient-to-r ${stepColors[index]} text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg mb-6`}>
+                      <div className={`inline-block bg-gradient-to-r ${stepColors[index]} text-white text-sm font-bold px-3 sm:px-4 py-2 rounded-full shadow-lg mb-4 sm:mb-6`}>
                         {stepBadges[index]}
                       </div>
                       
                       {/* Icono grande */}
-                      <div className="w-20 h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-corporate-lg flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm">
-                        <div className="text-4xl text-white">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-lg flex items-center justify-center mb-4 sm:mb-6 shadow-lg backdrop-blur-sm">
+                        <div className="text-3xl sm:text-4xl text-white">
                   {service.icon}
                 </div>
                       </div>
                       
                       {/* Título */}
-                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6 font-display leading-tight">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 font-display leading-tight">
                   {service.title}
                 </h3>
                       
                       {/* Descripción */}
-                      <p className="text-lg text-white/90 mb-8 font-body leading-relaxed">
+                      <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 font-body leading-relaxed">
                   {service.description}
                 </p>
                       
                       {/* Botón de acción */}
                   <button
-                        className={`inline-flex items-center bg-gradient-to-r ${stepColors[index]} hover:shadow-lg text-white font-bold py-4 px-8 rounded-corporate transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                        className={`inline-flex items-center bg-gradient-to-r ${stepColors[index]} active:shadow-lg text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-200 transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 touch-manipulation`}
+                        style={{ minHeight: '48px' }}
                     onClick={() => handleOpenModal(index)}
                   >
                         Conocer más detalles
