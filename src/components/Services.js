@@ -9,7 +9,7 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
 
   return (
     <AnimatedCard
-      className="relative bg-white/10 backdrop-blur-xl rounded-corporate-lg shadow-corporate p-6 hover:shadow-corporate-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden border border-white/20 group"
+      className="relative bg-white/10 backdrop-blur-xl rounded-lg shadow-corporate p-4 sm:p-6 active:shadow-corporate-2xl transition-all duration-200 cursor-pointer transform active:scale-95 overflow-hidden border border-white/20 group touch-manipulation"
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -23,7 +23,7 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
       )}
       
       {/* Espacio para imagen o video con efectos modernos */}
-      <div className="relative mb-6 h-48 bg-gradient-to-br from-white/20 to-white/10 rounded-corporate-lg overflow-hidden border border-white/20 shadow-inner group-hover:shadow-corporate-lg transition-all duration-500">
+      <div className="relative mb-4 sm:mb-6 h-40 sm:h-48 bg-gradient-to-br from-white/20 to-white/10 rounded-lg overflow-hidden border border-white/20 shadow-inner group-active:shadow-corporate-lg transition-all duration-200">
         {/* Overlay con gradiente sutil */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-10"></div>
         
@@ -86,27 +86,27 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
       </div>
       
       {/* Icono principal mejorado */}
-      <div className="flex justify-center mb-4">
-        <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center text-white group-hover:from-white/30 group-hover:to-white/20 group-hover:text-accent-400 group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-sm">{icon}</div>
+      <div className="flex justify-center mb-3 sm:mb-4">
+        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center text-white group-active:from-white/30 group-active:to-white/20 group-active:text-accent-400 group-active:scale-110 transition-all duration-200 shadow-lg backdrop-blur-sm">{icon}</div>
       </div>
       
       {/* Contenido del texto */}
       <div className="text-center">
-        <h3 className="text-xl font-bold text-white mb-3 font-display group-hover:text-accent-400 transition-colors duration-300 leading-tight">{title}</h3>
-        <p className="text-base text-white/90 font-body leading-relaxed group-hover:text-white transition-colors duration-300">{description}</p>
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 font-display group-active:text-accent-400 transition-colors duration-200 leading-tight">{title}</h3>
+        <p className="text-sm sm:text-base text-white/90 font-body leading-relaxed group-active:text-white transition-colors duration-200">{description}</p>
       </div>
       
       {/* Indicador de interacción */}
-      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="w-8 h-8 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center text-white shadow-lg">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 opacity-0 group-active:opacity-100 transition-opacity duration-200">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center text-white shadow-lg">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </div>
       
       {/* Borde animado */}
-      <div className="absolute inset-0 rounded-corporate-lg border-2 border-transparent group-hover:border-primary-300/50 transition-all duration-300"></div>
+      <div className="absolute inset-0 rounded-lg border-2 border-transparent group-active:border-primary-300/50 transition-all duration-200"></div>
     </AnimatedCard>
   );
 };
@@ -208,7 +208,7 @@ const Services = () => {
   };
 
   return (
-    <div ref={sectionRef} className="py-12 sm:py-16 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 relative overflow-hidden">
+    <div ref={sectionRef} className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full blur-xl animate-pulse-slow"></div>
@@ -230,15 +230,15 @@ const Services = () => {
       {/* Advanced Services Effects */}
       <AdvancedServicesEffects />
       
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 px-4">
         <motion.div 
-          className="flex flex-col items-center justify-center text-center mb-12 gap-4"
+          className="flex flex-col items-center justify-center text-center mb-8 sm:mb-12 gap-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h2 
-            className="text-5xl font-extrabold text-white font-display tracking-tight pt-24 scroll-mt-32"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight pt-16 sm:pt-20 md:pt-24 scroll-mt-32"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -253,7 +253,7 @@ const Services = () => {
           ></motion.div>
         </motion.div>
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={{

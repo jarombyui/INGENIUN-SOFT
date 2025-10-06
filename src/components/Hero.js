@@ -33,7 +33,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero-section min-h-[600px] md:h-[800px] relative pt-24 overflow-hidden">
+    <div className="hero-section min-h-screen relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
