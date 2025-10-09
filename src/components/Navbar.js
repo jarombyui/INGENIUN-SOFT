@@ -5,6 +5,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
 
   useEffect(() => {
@@ -97,6 +98,13 @@ const Navbar = () => {
       }
     };
   }, [dropdownTimeout]);
+
+  // Cerrar dropdown móvil cuando se cierra el menú principal
+  useEffect(() => {
+    if (!isOpen) {
+      setMobileDropdownOpen(false);
+    }
+  }, [isOpen]);
 
   const menuItems = [
     { name: 'INICIO', path: '/' },
@@ -275,7 +283,7 @@ const Navbar = () => {
 
         {/* Mobile Menu - Corregido */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          isOpen ? (mobileDropdownOpen ? 'max-h-[800px] opacity-100' : 'max-h-screen opacity-100') : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="px-3 pt-3 pb-4 space-y-2 bg-primary-900/95 backdrop-blur-md shadow-corporate-lg rounded-b-corporate border border-primary-700/20">
             {menuItems.map((item) => (
@@ -284,13 +292,13 @@ const Navbar = () => {
                   <div className="space-y-2">
                     {/* Botón principal de servicios - Mejorado para touch */}
                     <button
-                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
                       className="w-full text-left text-white/90 active:text-accent-400 active:bg-primary-800/30 px-4 py-4 text-base font-medium transition-all duration-200 rounded-lg active:scale-95 flex items-center justify-between touch-manipulation"
                       style={{ minHeight: '48px' }}
                     >
                       <span className="font-semibold">{item.name}</span>
                       <svg 
-                        className={`w-5 h-5 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} 
+                        className={`w-5 h-5 transition-transform duration-300 ${mobileDropdownOpen ? 'rotate-180' : ''}`} 
                         fill="none" 
                         stroke="currentColor" 
                         viewBox="0 0 24 24"
@@ -301,7 +309,7 @@ const Navbar = () => {
                     
                     {/* Submenu de servicios - Mejorado */}
                     <div className={`transition-all duration-300 ease-in-out ${
-                      dropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      mobileDropdownOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                       <div className="ml-2 space-y-1 bg-primary-800/20 rounded-lg p-3 border border-primary-700/30">
                         <div className="text-sm font-bold text-accent-400 uppercase tracking-wider mb-3 px-2 border-b border-primary-700/30 pb-2">
@@ -315,7 +323,7 @@ const Navbar = () => {
                             style={{ minHeight: '44px' }}
                             onClick={() => {
                               setIsOpen(false);
-                              setDropdownOpen(false);
+                              setMobileDropdownOpen(false);
                             }}
                           >
                             <div className="w-2 h-2 bg-primary-500 rounded-full flex-shrink-0"></div>
@@ -328,7 +336,7 @@ const Navbar = () => {
                           style={{ minHeight: '44px' }}
                           onClick={() => {
                             setIsOpen(false);
-                            setDropdownOpen(false);
+                            setMobileDropdownOpen(false);
                           }}
                         >
                           Ver todos los servicios →
