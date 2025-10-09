@@ -159,6 +159,9 @@ const fallbackPosts = [
 const NEWS_API_URL = 'https://newsdata.io/api/1/news?apikey=pub_42094e7e2e2e4b6b8e7e7e7e7e7e7e7e7e7e7&q=mining%20accident%20accidente%20mina%20safety%20seguridad&language=es,en';
 
 const Blog = () => {
+  // Detectar si es móvil
+  const isMobile = window.innerWidth < 768;
+  
   const [blogPosts, setBlogPosts] = useState(initialBlogPosts);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -214,24 +217,24 @@ const Blog = () => {
         keywords="blog ingenium soft, desarrollo de software, tendencias tecnológicas, inteligencia artificial, bases de datos, seguridad informática"
         ogUrl="https://software-ingeniun.netlify.app/blog"
       />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Three.js Particles for Blog */}
-      {/* Universal Effects - Garantiza cobertura completa */}
-      <UniversalEffects intensity={0.9} particleCount={180} colorScheme="purple" />
+      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Three.js Particles for Blog - Solo en desktop */}
+      {/* Universal Effects - Solo en desktop */}
+      {!isMobile && <UniversalEffects intensity={0.9} particleCount={180} colorScheme="blue" />}
       
-      {/* Three.js Particles for Blog */}
-      <AboutParticles />
+      {/* Three.js Particles for Blog - Solo en desktop */}
+      {!isMobile && <AboutParticles />}
       
-      {/* Advanced Blog Effects */}
-      <AdvancedBlogEffects />
+      {/* Advanced Blog Effects - Solo en desktop */}
+      {!isMobile && <AdvancedBlogEffects />}
       
       {/* Elementos de fondo animados */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
-        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-rose-400 to-red-600 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-500 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-accent-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-darkBlue-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-accent-500 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
       </div>
       
       {/* Glass Morphism Pattern */}
@@ -249,13 +252,13 @@ const Blog = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Blog INGENIUM SOFT
             </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] px-4">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-['Poppins'] px-4">
               Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
             </p>
-            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
+            <div className="w-20 sm:w-24 h-1 bg-primary-500 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
           </motion.div>
 
           <motion.div 
@@ -269,7 +272,7 @@ const Blog = () => {
               return (
                 <motion.div 
                   key={key} 
-                  className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-corporate-lg shadow-corporate-xl overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-corporate-2xl border border-white/20 relative group"
+                  className="bg-white backdrop-blur-xl rounded-corporate-lg shadow-corporate-xl overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-corporate-2xl border border-primary-200 relative group"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -280,7 +283,7 @@ const Blog = () => {
                   }}
                 >
                   {/* Efecto de brillo animado */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   
                   <div className="relative h-48 bg-gray-200">
                     <img
@@ -294,38 +297,37 @@ const Blog = () => {
                         }
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/10 rounded-t-corporate-lg"></div>
+                    <div className="absolute inset-0 bg-primary-500/10 rounded-t-corporate-lg"></div>
                     
                     {/* Overlay con información */}
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg">
+                      <span className="px-3 py-1 text-xs font-bold text-white bg-primary-500 rounded-full shadow-lg">
                         {post.category}
                       </span>
                     </div>
                     
                     <div className="absolute bottom-4 right-4">
-                      <span className="px-3 py-1 text-xs font-bold text-white bg-gradient-to-r from-purple-500 to-pink-600 rounded-full shadow-lg">
+                      <span className="px-3 py-1 text-xs font-bold text-white bg-accent-500 rounded-full shadow-lg">
                         {post.readTime}
                       </span>
                     </div>
                     </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 whitespace-normal break-words font-['Montserrat'] group-hover:text-cyan-400 transition-colors duration-300">{post.title}</h3>
-                    <p className="text-white/90 mb-4 font-['Poppins'] leading-relaxed">{post.excerpt}</p>
+                    <h3 className="text-xl font-bold text-darkBlue-900 mb-3 whitespace-normal break-words font-['Montserrat'] group-hover:text-primary-600 transition-colors duration-300">{post.title}</h3>
+                    <p className="text-secondary-600 mb-4 font-['Poppins'] leading-relaxed">{post.excerpt}</p>
                     
-                    {/* Tags con colores impresionantes */}
+                    {/* Tags con colores sólidos */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {post.tags && post.tags.map((tag, index) => {
                         const tagColors = [
-                          'from-cyan-500 to-blue-600',
-                          'from-purple-500 to-pink-600',
-                          'from-emerald-500 to-teal-600',
-                          'from-orange-500 to-red-600',
-                          'from-yellow-500 to-orange-600'
+                          'bg-primary-500',
+                          'bg-accent-500',
+                          'bg-darkBlue-500',
+                          'bg-secondary-500'
                         ];
                         const colorClass = tagColors[index % tagColors.length];
                         return (
-                          <span key={index} className={`px-3 py-1 text-xs font-bold text-white bg-gradient-to-r ${colorClass} rounded-full shadow-lg`}>
+                          <span key={index} className={`px-3 py-1 text-xs font-bold text-white ${colorClass} rounded-full shadow-lg`}>
                           #{tag}
                         </span>
                         );
@@ -334,17 +336,17 @@ const Blog = () => {
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center mr-3 shadow-lg">
+                        <div className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center mr-3 shadow-lg">
                           <span className="text-white text-lg">👤</span>
                         </div>
                         <div>
-                          <p className="text-sm font-bold text-white font-['Poppins']">{post.author}</p>
-                          <p className="text-xs text-white/70 font-['Poppins']">{post.date}</p>
+                          <p className="text-sm font-bold text-darkBlue-900 font-['Poppins']">{post.author}</p>
+                          <p className="text-xs text-secondary-500 font-['Poppins']">{post.date}</p>
                         </div>
                       </div>
                       <button 
                         onClick={() => handleReadMore(post)}
-                        className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 px-4 rounded-full hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 font-['Montserrat']"
+                        className="bg-primary-500 text-white py-2 px-4 rounded-full hover:bg-primary-600 transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 font-['Montserrat']"
                       >
                         Leer más →
                       </button>

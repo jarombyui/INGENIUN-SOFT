@@ -5,15 +5,20 @@ import AdvantagesVisualEffects from './AdvantagesVisualEffects';
 import AdvantagesInteractiveEffects from './AdvantagesInteractiveEffects';
 
 const ServiceAdvantages = () => {
-  const [hoveredAdvantage, setHoveredAdvantage] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
   const mountRef = useRef(null);
   const animationRef = useRef(null);
+  
+  // Detectar si es móvil
+  const isMobile = window.innerWidth < 768;
 
-  // Efectos 3D de fondo
+  // Efectos 3D de fondo - Solo en desktop
   useEffect(() => {
-    if (!mountRef.current) return;
+    if (!mountRef.current || isMobile) return;
+
+    // Capturar el ref al inicio para evitar problemas en cleanup
+    const currentMount = mountRef.current;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -22,7 +27,7 @@ const ServiceAdvantages = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0x000000, 0);
-    mountRef.current.appendChild(renderer.domElement);
+    currentMount.appendChild(renderer.domElement);
 
     // Colores impresionantes para las ventajas
     const colors = {
@@ -141,7 +146,6 @@ const ServiceAdvantages = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      const currentMount = mountRef.current;
       if (currentMount && renderer.domElement) {
         currentMount.removeChild(renderer.domElement);
       }
@@ -153,7 +157,7 @@ const ServiceAdvantages = () => {
         shape.material.dispose();
       });
     };
-  }, []);
+  }, [isMobile]);
 
   // Interacción con mouse
   useEffect(() => {
@@ -276,23 +280,23 @@ const ServiceAdvantages = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Efectos 3D de fondo */}
-      <div ref={mountRef} className="absolute inset-0 pointer-events-none" />
+    <div ref={containerRef} className="relative min-h-screen bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Efectos 3D de fondo - Solo en desktop */}
+      {!isMobile && <div ref={mountRef} className="absolute inset-0 pointer-events-none" />}
       
-      {/* Efectos visuales específicos para ventajas */}
-      <AdvantagesVisualEffects />
+      {/* Efectos visuales específicos para ventajas - Solo en desktop */}
+      {!isMobile && <AdvantagesVisualEffects />}
       
-      {/* Efectos interactivos de ventajas */}
-      <AdvantagesInteractiveEffects />
+      {/* Efectos interactivos de ventajas - Solo en desktop */}
+      {!isMobile && <AdvantagesInteractiveEffects />}
       
       {/* Elementos de fondo animados */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
-        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-rose-400 to-red-600 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-500 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-accent-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-darkBlue-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-accent-500 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 px-4">
@@ -303,13 +307,13 @@ const ServiceAdvantages = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 sm:mb-6 font-display tracking-tight drop-shadow-lg">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 sm:mb-6 font-display tracking-tight drop-shadow-lg">
             Ventajas de Nuestros Servicios
           </h2>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto font-body px-4">
+          <p className="text-lg sm:text-xl text-secondary-600 max-w-3xl mx-auto font-body px-4">
             Descubre todas las ventajas que obtienes al trabajar con INGENIUM SOFT
           </p>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
+          <div className="w-20 sm:w-24 h-1 bg-primary-500 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
         </motion.div>
 
         {/* Grid de ventajas */}
@@ -324,49 +328,47 @@ const ServiceAdvantages = () => {
               key={advantage.id}
               variants={itemVariants}
               className="relative group"
-              onHoverStart={() => setHoveredAdvantage(advantage.id)}
-              onHoverEnd={() => setHoveredAdvantage(null)}
             >
               <motion.div
-                className={`relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-lg p-6 sm:p-8 shadow-corporate-xl border border-white/20 cursor-pointer overflow-hidden touch-manipulation`}
+                className="relative bg-white backdrop-blur-xl rounded-lg p-6 sm:p-8 shadow-corporate-xl border border-primary-200 cursor-pointer overflow-hidden touch-manipulation"
                 whileTap={{ scale: 0.95 }}
-                whileHover={{ 
+                whileHover={!isMobile ? { 
                   scale: 1.02,
                   y: -5,
                   boxShadow: `0 25px 50px -12px ${advantage.glowColor}`,
                   borderColor: "rgba(255, 255, 255, 0.4)"
-                }}
-                animate={{
+                } : undefined}
+                animate={!isMobile ? {
                   y: mousePosition.y * 5,
                   x: mousePosition.x * 2
-                }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                } : undefined}
+                transition={{ type: isMobile ? "tween" : "spring", duration: isMobile ? 0.2 : undefined, stiffness: isMobile ? undefined : 200, damping: isMobile ? undefined : 25 }}
               >
                 {/* Efecto de brillo animado */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
                 {/* Icono */}
-                <div className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r ${advantage.color} rounded-lg flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-lg`}>
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary-500 rounded-lg flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6 shadow-lg">
                   {advantage.icon}
                 </div>
                 
                 {/* Título */}
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 font-display">
+                <h3 className="text-lg sm:text-xl font-bold text-darkBlue-900 mb-3 sm:mb-4 font-display">
                   {advantage.title}
                 </h3>
                 
                 {/* Descripción */}
-                <p className="text-white/90 text-sm font-body leading-relaxed mb-3 sm:mb-4">
+                <p className="text-secondary-600 text-sm font-body leading-relaxed mb-3 sm:mb-4">
                   {advantage.description}
                 </p>
                 
                 {/* Métricas */}
-                <div className={`inline-block bg-gradient-to-r ${advantage.color} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg`}>
+                <div className="inline-block bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                   {advantage.metrics}
                 </div>
                 
                 {/* Efecto de borde animado */}
-                <div className="absolute inset-0 rounded-corporate-lg border-2 border-transparent group-hover:border-white/30 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-corporate-lg border-2 border-transparent group-hover:border-primary-300 transition-all duration-300"></div>
               </motion.div>
             </motion.div>
           ))}

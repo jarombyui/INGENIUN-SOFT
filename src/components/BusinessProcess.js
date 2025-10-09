@@ -47,12 +47,12 @@ const BusinessProcess = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent-500 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-darkBlue-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
       
       {/* Glass Morphism Pattern */}
@@ -66,13 +66,13 @@ const BusinessProcess = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight mb-4 sm:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 font-display tracking-tight mb-4 sm:mb-6">
             Nuestro Proceso de Transformación
           </h2>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto font-body leading-relaxed px-4">
+          <p className="text-lg sm:text-xl text-secondary-600 max-w-3xl mx-auto font-body leading-relaxed px-4">
             Un enfoque metodológico comprobado que garantiza resultados exitosos en la digitalización de tu empresa
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-400 to-accent-600 mx-auto rounded-full mt-6 shadow-lg"></div>
+          <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full mt-6 shadow-lg"></div>
         </div>
 
         {/* Process Steps */}
@@ -83,28 +83,28 @@ const BusinessProcess = () => {
             }`}>
               {/* Content */}
               <div className="flex-1 lg:max-w-lg">
-                <div className="bg-white/10 backdrop-blur-xl rounded-lg p-6 sm:p-8 shadow-corporate-lg border border-white/20">
+                <div className="bg-white backdrop-blur-xl rounded-lg p-6 sm:p-8 shadow-corporate-lg border border-primary-200">
                   <div className="flex flex-col sm:flex-row items-start sm:items-center mb-4 sm:mb-6">
-                    <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-2xl sm:text-3xl font-bold text-white shadow-lg mb-4 sm:mb-0 sm:mr-4`}>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-500 flex items-center justify-center text-2xl sm:text-3xl font-bold text-white shadow-lg mb-4 sm:mb-0 sm:mr-4">
                       {step.icon}
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-accent-400 uppercase tracking-wider">Paso {step.step}</span>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                      <span className="text-sm font-bold text-primary-500 uppercase tracking-wider">Paso {step.step}</span>
+                      <h3 className="text-xl sm:text-2xl font-bold text-darkBlue-900 font-display">
                         {step.title}
                       </h3>
                     </div>
                   </div>
                   
-                  <p className="text-white/90 text-base sm:text-lg mb-4 sm:mb-6 font-body leading-relaxed">
+                  <p className="text-secondary-600 text-base sm:text-lg mb-4 sm:mb-6 font-body leading-relaxed">
                     {step.description}
                   </p>
 
                   <div className="space-y-2 sm:space-y-3">
                     {step.details.map((detail, detailIndex) => (
                       <div key={detailIndex} className="flex items-center space-x-3">
-                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${step.color} flex-shrink-0`}></div>
-                        <span className="text-white/80 font-medium text-sm sm:text-base">{detail}</span>
+                        <div className="w-2 h-2 rounded-full bg-primary-500 flex-shrink-0"></div>
+                        <span className="text-secondary-600 font-medium text-sm sm:text-base">{detail}</span>
                       </div>
                     ))}
                   </div>
@@ -117,10 +117,10 @@ const BusinessProcess = () => {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-48 sm:h-64 lg:h-80 object-cover rounded-lg shadow-corporate-xl border border-white/20 transition-transform duration-300 active:scale-95"
+                    className="w-full h-48 sm:h-64 lg:h-80 object-cover rounded-lg shadow-corporate-xl border border-primary-200 transition-transform duration-300 active:scale-95"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-                  <div className={`absolute top-3 sm:top-4 right-3 sm:right-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white font-bold text-2xl sm:text-3xl shadow-lg`}>
+                  <div className="absolute inset-0 bg-black/10 rounded-lg"></div>
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-2xl sm:text-3xl shadow-lg">
                     {step.step}
                   </div>
                 </div>

@@ -21,12 +21,20 @@ import ParallaxTransitions from './components/ParallaxTransitions';
 function App() {
   // eslint-disable-next-line no-unused-vars
   const message = 'Hola, estoy interesado en los servicios de INGENIUM SOFT';
+  
+  // Detectar si es móvil para optimizar efectos
+  const isMobile = window.innerWidth < 768;
+  
   return (
     <Router>
-      <div className="flex flex-col min-h-screen relative">
-        {/* Three.js Transitions - Global */}
-        <SectionTransitions />
-        <ParallaxTransitions />
+      <div className="flex flex-col min-h-screen relative bg-white">
+        {/* Three.js Transitions - Solo en desktop para mejor rendimiento */}
+        {!isMobile && (
+          <>
+            <SectionTransitions />
+            <ParallaxTransitions />
+          </>
+        )}
         
         <Navbar />
         <main className="flex-grow relative z-10">

@@ -2,10 +2,12 @@ import React, { useState, useRef } from 'react';
 import SEO from '../components/SEO';
 import ContactParticles from '../components/ContactParticles';
 import AdvancedContactEffects from '../components/AdvancedContactEffects';
-import ScrollAnimation from '../components/ScrollAnimation';
 import UniversalEffects from '../components/UniversalEffects';
 
 const Contact = () => {
+  // Detectar si es móvil
+  const isMobile = window.innerWidth < 768;
+  
   const form = useRef();
   const [formData, setFormData] = useState({
     user_name: '',
@@ -63,30 +65,30 @@ Espero su respuesta. ¡Gracias!`;
         keywords="contacto ingenium soft, desarrollo de software lima, consultoría tecnológica perú, soporte técnico software"
         ogUrl="https://software-ingeniun.netlify.app/contacto"
       />
-      <div className="min-h-screen bg-gradient-to-br from-light via-primary-50 to-secondary-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Three.js Particles for Contact */}
-      {/* Universal Effects - Garantiza cobertura completa */}
-      <UniversalEffects intensity={0.8} particleCount={150} colorScheme="blue" />
+      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Three.js Particles for Contact - Solo en desktop */}
+      {/* Universal Effects - Solo en desktop */}
+      {!isMobile && <UniversalEffects intensity={0.8} particleCount={150} colorScheme="blue" />}
       
-      {/* Three.js Particles for Contact */}
-      <ContactParticles />
+      {/* Three.js Particles for Contact - Solo en desktop */}
+      {!isMobile && <ContactParticles />}
       
-      {/* Advanced Contact Effects */}
-      <AdvancedContactEffects />
+      {/* Advanced Contact Effects - Solo en desktop */}
+      {!isMobile && <AdvancedContactEffects />}
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-500-800 mb-4 font-display tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-display tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Contáctanos
             </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-700 max-w-3xl mx-auto font-body px-4">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-body px-4">
               Estamos aquí para ayudarte con tu transformación digital. Envíanos un mensaje y te responderemos lo antes posible.
             </p>
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {/* Contact Information */}
-            <div className="bg-primary-900/10 backdrop-blur-xl rounded-corporate shadow-corporate p-6 border border-primary-700/20">
-              <h3 className="text-xl font-bold text-white mb-4 font-display">Información de Contacto</h3>
+            <div className="bg-white backdrop-blur-xl rounded-corporate shadow-corporate p-6 border border-primary-200">
+              <h3 className="text-xl font-bold text-darkBlue-900 mb-4 font-display">Información de Contacto</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start">

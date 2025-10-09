@@ -118,8 +118,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
       scrolled 
-        ? 'bg-primary-900/95 backdrop-blur-md shadow-corporate-lg border-b border-primary-700/20' 
-        : 'bg-gradient-to-r from-primary-900 via-primary-800 to-secondary-900'
+        ? 'bg-white/95 backdrop-blur-md shadow-corporate-lg border-b border-primary-200' 
+        : 'bg-darkBlue-900'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -127,7 +127,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center group">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-400/20 to-accent-400/20 blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110"></div>
+                <div className="absolute inset-0 rounded-full bg-primary-500/20 blur-md opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110"></div>
                 <img
                   src="/images/Ingeniumsoft_ultimo.png"
                   alt="Ingenium Soft Logo"
@@ -136,13 +136,17 @@ const Navbar = () => {
                 {/* Anillo animado */}
                 <div className="absolute inset-0 rounded-full border-2 border-accent-400/50 opacity-0 group-hover:opacity-100 animate-pulse-neon transition-all duration-500"></div>
                 {/* Efecto de brillo mejorado */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 via-primary-200/10 to-accent-200/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 rounded-full bg-primary-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div className="ml-3 hidden sm:block">
-                <div className="font-bold text-lg bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent group-hover:from-primary-500 group-hover:to-accent-500 transition-all duration-300">
+                <div className={`font-bold text-lg text-primary-600 group-hover:text-primary-500 transition-all duration-300 ${
+                  scrolled ? 'text-darkBlue-900' : 'text-white'
+                }`}>
                   INGENIUM
                 </div>
-                <div className="text-xs text-secondary-600 group-hover:text-cyber-600 transition-colors duration-300 font-medium tracking-wide">
+                <div className={`text-xs transition-colors duration-300 font-medium tracking-wide ${
+                  scrolled ? 'text-secondary-600 group-hover:text-accent-600' : 'text-white/80 group-hover:text-white'
+                }`}>
                   SOFTWARE
                 </div>
               </div>
@@ -156,7 +160,7 @@ const Navbar = () => {
                 {item.hasDropdown ? (
                   <div
                     className={`${
-                      scrolled ? 'text-white hover:text-accent-400' : 'text-white hover:text-accent-400'
+                      scrolled ? 'text-darkBlue-900 hover:text-accent-600' : 'text-white hover:text-accent-400'
                     } px-3 py-2 text-sm lg:text-base font-semibold transition-all duration-300 tracking-wide cursor-pointer flex items-center space-x-1 relative`}
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
@@ -171,11 +175,11 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     className={`${
-                      scrolled ? 'text-white hover:text-accent-400' : 'text-white hover:text-accent-400'
+                      scrolled ? 'text-darkBlue-900 hover:text-accent-600' : 'text-white hover:text-accent-400'
                     } px-3 py-2 text-sm lg:text-base font-semibold transition-all duration-300 tracking-wide relative group`}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-accent-400 to-accent-600 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 )}
                 

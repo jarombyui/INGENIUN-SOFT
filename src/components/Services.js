@@ -1,15 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ScrollEffects from './ScrollEffects';
 import AdvancedServicesEffects from './AdvancedServicesEffects';
 import { motion, useInView } from 'framer-motion';
-import AnimatedCard from './AnimatedCard';
 
 const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor, onClick }) => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <AnimatedCard
-      className="relative bg-white/10 backdrop-blur-xl rounded-lg shadow-corporate p-4 sm:p-6 active:shadow-corporate-2xl transition-all duration-200 cursor-pointer transform active:scale-95 overflow-hidden border border-white/20 group touch-manipulation"
+    <div
+      className="relative bg-white backdrop-blur-xl rounded-lg shadow-corporate p-4 sm:p-6 active:shadow-corporate-2xl transition-all duration-200 cursor-pointer transform active:scale-95 overflow-hidden border border-primary-200 group touch-manipulation"
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -17,15 +16,15 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
     >
       {/* Badge superior */}
       {badge && (
-        <div className={`absolute top-4 right-4 bg-gradient-to-r ${badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-pulse`}>
+        <div className="absolute top-4 right-4 bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10 animate-pulse">
           {badge}
         </div>
       )}
       
       {/* Espacio para imagen o video con efectos modernos */}
-      <div className="relative mb-4 sm:mb-6 h-40 sm:h-48 bg-gradient-to-br from-white/20 to-white/10 rounded-lg overflow-hidden border border-white/20 shadow-inner group-active:shadow-corporate-lg transition-all duration-200">
-        {/* Overlay con gradiente sutil */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent z-10"></div>
+      <div className="relative mb-4 sm:mb-6 h-40 sm:h-48 bg-primary-50 rounded-lg overflow-hidden border border-primary-200 shadow-inner group-active:shadow-corporate-lg transition-all duration-200">
+        {/* Overlay sutil */}
+        <div className="absolute inset-0 bg-darkBlue-900/10 z-10"></div>
         
         {image && !showVideo && (
           <img
@@ -82,23 +81,23 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
         )}
         
         {/* Efecto de brillo en hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-10"></div>
+        <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-10"></div>
       </div>
       
       {/* Icono principal mejorado */}
       <div className="flex justify-center mb-3 sm:mb-4">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-white/20 to-white/10 rounded-full flex items-center justify-center text-white group-active:from-white/30 group-active:to-white/20 group-active:text-accent-400 group-active:scale-110 transition-all duration-200 shadow-lg backdrop-blur-sm">{icon}</div>
+        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 group-active:bg-primary-200 group-active:text-accent-600 group-active:scale-110 transition-all duration-200 shadow-lg backdrop-blur-sm">{icon}</div>
       </div>
       
       {/* Contenido del texto */}
       <div className="text-center">
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 font-display group-active:text-accent-400 transition-colors duration-200 leading-tight">{title}</h3>
-        <p className="text-sm sm:text-base text-white/90 font-body leading-relaxed group-active:text-white transition-colors duration-200">{description}</p>
+        <h3 className="text-lg sm:text-xl font-bold text-darkBlue-900 mb-2 sm:mb-3 font-display group-active:text-accent-600 transition-colors duration-200 leading-tight">{title}</h3>
+        <p className="text-sm sm:text-base text-secondary-600 font-body leading-relaxed group-active:text-secondary-800 transition-colors duration-200">{description}</p>
       </div>
       
       {/* Indicador de interacción */}
       <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 opacity-0 group-active:opacity-100 transition-opacity duration-200">
-        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full flex items-center justify-center text-white shadow-lg">
+        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary-500 rounded-full flex items-center justify-center text-white shadow-lg">
           <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
@@ -106,8 +105,8 @@ const ServiceCard = ({ title, description, icon, image, video, badge, badgeColor
       </div>
       
       {/* Borde animado */}
-      <div className="absolute inset-0 rounded-lg border-2 border-transparent group-active:border-primary-300/50 transition-all duration-200"></div>
-    </AnimatedCard>
+      <div className="absolute inset-0 rounded-lg border-2 border-transparent group-active:border-primary-300 transition-all duration-200"></div>
+    </div>
   );
 };
 
@@ -115,13 +114,29 @@ const Services = () => {
   const [showModal, setShowModal] = useState(false);
   const [inputCode, setInputCode] = useState('');
   const [result, setResult] = useState(null);
+
+  // Detectar si es móvil - Reactivo
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Ref para detectar cuando la sección es visible
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verificar al montar
+    checkMobile();
+    
+    // Escuchar cambios de tamaño
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Ref para detectar cuando la sección es visible - Configuración mejorada
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { 
-    once: true, 
-    amount: 0.3,
-    margin: "-100px 0px -100px 0px"
+    once: false,  // Permitir re-activación
+    amount: 0.1,  // Activar cuando 10% sea visible (más permisivo)
+    margin: "0px 0px -50px 0px"  // Margen menos restrictivo
   });
 
   // Función para manejar clicks en las tarjetas
@@ -145,7 +160,7 @@ const Services = () => {
       ),
       image: "/images/procesos/analisis-procesos-4.jpeg",
       badge: "Paso 1",
-      badgeColor: "from-blue-500 to-blue-600"
+      badgeColor: "from-primary-500 to-primary-600"
     },
     {
       title: "Estandarización de Procesos",
@@ -158,7 +173,7 @@ const Services = () => {
       ),
       image: "/images/estandarizacion/estandarizacion-1.jpeg",
       badge: "Paso 2",
-      badgeColor: "from-purple-500 to-purple-600"
+      badgeColor: "from-darkBlue-500 to-darkBlue-600"
     },
     {
       title: "Automatización con ERP",
@@ -170,7 +185,7 @@ const Services = () => {
       ),
       image: "/images/ERP/erp-modulo-compras.jpeg",
       badge: "Paso 3",
-      badgeColor: "from-green-500 to-green-600"
+      badgeColor: "from-accent-500 to-accent-600"
     },
     {
       title: "Automatización de Procesos",
@@ -208,12 +223,12 @@ const Services = () => {
   };
 
   return (
-    <div ref={sectionRef} className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+    <div ref={sectionRef} className="py-8 sm:py-12 md:py-16 bg-white relative overflow-hidden">
+      {/* Background Elements - Sutiles para fondo blanco */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent-500 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-darkBlue-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
       
       {/* Glass Morphism Pattern */}
@@ -224,11 +239,11 @@ const Services = () => {
         }}></div>
       </div>
 
-      {/* Three.js Scroll Effects */}
-      <ScrollEffects />
+      {/* Three.js Scroll Effects - Solo en desktop */}
+      {!isMobile && <ScrollEffects />}
       
-      {/* Advanced Services Effects */}
-      <AdvancedServicesEffects />
+      {/* Advanced Services Effects - Solo en desktop */}
+      {!isMobile && <AdvancedServicesEffects />}
       
       <div className="max-w-7xl mx-auto relative z-10 px-4">
         <motion.div 
@@ -238,7 +253,7 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight pt-16 sm:pt-20 md:pt-24 scroll-mt-32"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 font-display tracking-tight pt-16 sm:pt-20 md:pt-24 scroll-mt-32"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -246,7 +261,7 @@ const Services = () => {
             Nuestros Servicios
           </motion.h2>
           <motion.div 
-            className="w-24 h-1 bg-gradient-to-r from-accent-400 to-accent-600 mx-auto rounded-full mt-4 shadow-lg"
+            className="w-24 h-1 bg-primary-500 mx-auto rounded-full mt-4 shadow-lg"
             initial={{ width: 0 }}
             animate={{ width: "6rem" }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -273,39 +288,33 @@ const Services = () => {
               variants={{
                 hidden: { 
                   opacity: 0, 
-                  y: index % 2 === 0 ? 80 : -80,  // Alternar dirección: arriba/abajo
-                  scale: 0.8,
-                  rotateX: index % 2 === 0 ? -15 : 15
+                  y: 50,  // Simplificado: siempre desde abajo
+                  scale: 0.95
                 },
                 visible: { 
                   opacity: 1, 
                   y: 0,
                   scale: 1,
-                  rotateX: 0,
                   transition: {
                     type: "spring",
-                    stiffness: 80,
-                    damping: 20,
-                    mass: 0.8,
-                    duration: 1,
-                    delay: index * 0.2
+                    duration: 0.6,
+                    stiffness: 100,
+                    damping: 15,
+                    delay: index * 0.15  // Stagger más rápido
                   }
                 }
               }}
-              whileHover={{
-                y: -20,
-                scale: 1.1,
-                rotateY: 8,
+              whileHover={!isMobile ? {
+                y: -10,
+                scale: 1.05,
                 transition: {
                   type: "spring",
                   stiffness: 300,
-                  damping: 20,
-                  mass: 0.6
+                  damping: 20
                 }
-              }}
+              } : {}}
               whileTap={{
-                scale: 0.95,
-                y: -8,
+                scale: 0.98,
                 transition: {
                   type: "spring",
                   stiffness: 500,
@@ -314,108 +323,16 @@ const Services = () => {
               }}
               className="transform-gpu"
             >
-              <motion.div
-                initial={{ 
-                  boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
-                  borderColor: "rgba(255,255,255,0.1)"
-                }}
-                whileHover={{
-                  boxShadow: "0 25px 80px rgba(0,0,0,0.4)",
-                  borderColor: "rgba(255,255,255,0.6)",
-                  transition: {
-                    duration: 0.5,
-                    ease: "easeOut"
-                  }
-                }}
-                className="relative"
-              >
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  icon={service.icon}
-                  image={service.image}
-                  video={service.video}
-                  badge={service.badge}
-                  badgeColor={service.badgeColor}
-                  onClick={() => handleCardClick(index)}
-                />
-                
-                {/* Efecto de brillo mejorado en hover */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none overflow-hidden rounded-corporate-lg"
-                  initial={{ opacity: 0 }}
-                  whileHover={{
-                    opacity: 1,
-                    transition: { duration: 0.5 }
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{
-                      x: "100%",
-                      transition: {
-                        duration: 1,
-                        ease: "easeInOut"
-                      }
-                    }}
-                  />
-                  
-                  {/* Partículas flotantes mejoradas */}
-                  <motion.div
-                    className="absolute top-4 left-4 w-2 h-2 bg-cyan-400 rounded-full"
-                    animate={{
-                      y: [0, -20, 0],
-                      opacity: [0, 1, 0],
-                      scale: [0.4, 1.2, 0.4]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: 0
-                    }}
-                  />
-                  <motion.div
-                    className="absolute top-8 right-6 w-1.5 h-1.5 bg-purple-400 rounded-full"
-                    animate={{
-                      y: [0, -15, 0],
-                      opacity: [0, 1, 0],
-                      scale: [0.3, 1, 0.3]
-                    }}
-                    transition={{
-                      duration: 3.5,
-                      repeat: Infinity,
-                      delay: 1
-                    }}
-                  />
-                  <motion.div
-                    className="absolute bottom-6 left-8 w-2 h-2 bg-emerald-400 rounded-full"
-                    animate={{
-                      y: [0, -25, 0],
-                      opacity: [0, 1, 0],
-                      scale: [0.5, 1.5, 0.5]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      delay: 2
-                    }}
-                  />
-                  <motion.div
-                    className="absolute bottom-8 right-8 w-1.5 h-1.5 bg-yellow-400 rounded-full"
-                    animate={{
-                      y: [0, -18, 0],
-                      opacity: [0, 1, 0],
-                      scale: [0.3, 0.8, 0.3]
-                    }}
-                    transition={{
-                      duration: 2.8,
-                      repeat: Infinity,
-                      delay: 0.5
-                    }}
-                  />
-                </motion.div>
-              </motion.div>
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              icon={service.icon}
+                image={service.image}
+                video={service.video}
+                badge={service.badge}
+                badgeColor={service.badgeColor}
+              onClick={() => handleCardClick(index)}
+            />
             </motion.div>
           ))}
         </motion.div>

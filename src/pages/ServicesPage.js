@@ -90,14 +90,14 @@ const ServicesPage = () => {
         keywords="desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad, consultoría digital, software a medida, transformación digital"
         ogUrl="https://software-ingeniun.netlify.app/servicios"
       />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full blur-xl animate-pulse-slow"></div>
-          <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-          <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
-          <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-gradient-to-br from-rose-400 to-red-600 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-primary-500 rounded-full blur-xl animate-pulse-slow"></div>
+          <div className="absolute top-1/3 right-20 w-24 h-24 bg-accent-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-darkBlue-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '3s'}}></div>
+          <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-accent-500 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
         </div>
 
       {/* Universal Effects - Garantiza cobertura completa */}
@@ -125,10 +125,10 @@ const ServicesPage = () => {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-12 sm:mb-16 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
               Nuestros Servicios
             </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-['Poppins'] px-4">
+            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-['Poppins'] px-4">
               Soluciones modernas en desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad y consultoría tecnológica
             </p>
           </div>
@@ -155,43 +155,43 @@ const ServicesPage = () => {
               <motion.div 
                 key={index}
                 id={anchorId}
-                className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-lg shadow-corporate-xl p-6 sm:p-8 md:p-12 transform active:scale-[0.98] transition-all duration-200 hover:shadow-corporate-2xl scroll-mt-24 border border-white/20 relative overflow-hidden touch-manipulation"
+                className="bg-white backdrop-blur-xl rounded-lg shadow-corporate-xl p-6 sm:p-8 md:p-12 transform active:scale-[0.98] transition-all duration-200 hover:shadow-corporate-2xl scroll-mt-24 border border-primary-200 relative overflow-hidden touch-manipulation"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {/* Efecto de brillo animado */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 
                 <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
                     {/* Contenido Principal */}
                     <div className="flex-1 lg:max-w-2xl">
                       {/* Badge del paso */}
-                      <div className={`inline-block bg-gradient-to-r ${stepColors[index]} text-white text-sm font-bold px-3 sm:px-4 py-2 rounded-full shadow-lg mb-4 sm:mb-6`}>
+                      <div className="inline-block bg-primary-500 text-white text-sm font-bold px-3 sm:px-4 py-2 rounded-full shadow-lg mb-4 sm:mb-6">
                         {stepBadges[index]}
                       </div>
                       
                       {/* Icono grande */}
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-white/20 to-white/10 rounded-lg flex items-center justify-center mb-4 sm:mb-6 shadow-lg backdrop-blur-sm">
-                        <div className="text-3xl sm:text-4xl text-white">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary-100 rounded-lg flex items-center justify-center mb-4 sm:mb-6 shadow-lg backdrop-blur-sm">
+                        <div className="text-3xl sm:text-4xl text-primary-600">
                   {service.icon}
                 </div>
                       </div>
                       
                       {/* Título */}
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 font-display leading-tight">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-darkBlue-900 mb-4 sm:mb-6 font-display leading-tight">
                   {service.title}
                 </h3>
                       
                       {/* Descripción */}
-                      <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 font-body leading-relaxed">
+                      <p className="text-base sm:text-lg text-secondary-600 mb-6 sm:mb-8 font-body leading-relaxed">
                   {service.description}
                 </p>
                       
                       {/* Botón de acción */}
                   <button
-                        className={`inline-flex items-center bg-gradient-to-r ${stepColors[index]} active:shadow-lg text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-200 transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 touch-manipulation`}
+                        className="inline-flex items-center bg-primary-500 hover:bg-primary-600 active:shadow-lg text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-200 transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 touch-manipulation"
                         style={{ minHeight: '48px' }}
                     onClick={() => handleOpenModal(index)}
                   >
@@ -215,10 +215,10 @@ const ServicesPage = () => {
                           alt={service.title}
                           className="w-full h-64 lg:h-80 object-cover object-center rounded-corporate-lg shadow-lg transform group-hover:scale-105 transition-transform duration-500"
                         />
-                        {/* Overlay con gradiente */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-corporate-lg"></div>
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-black/10 rounded-corporate-lg"></div>
                         {/* Badge de número de paso */}
-                        <div className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${stepColors[index]} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
+                        <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-primary-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                           {index + 1}
                         </div>
                       </div>
@@ -232,30 +232,30 @@ const ServicesPage = () => {
           {/* Modal */}
           {modalOpen && selectedService && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
-              <div className="bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl p-8 max-w-lg w-full relative animate-fade-in border border-white/20">
+              <div className="bg-white backdrop-blur-xl rounded-xl shadow-2xl p-8 max-w-lg w-full relative animate-fade-in border border-primary-200">
                 <button
-                  className="absolute top-4 right-4 text-white/70 hover:text-white text-2xl font-bold"
+                  className="absolute top-4 right-4 text-secondary-500 hover:text-darkBlue-900 text-2xl font-bold"
                   onClick={handleCloseModal}
                   aria-label="Cerrar"
                 >
                   &times;
                 </button>
-                <h3 className="text-2xl font-bold mb-4 text-white">{selectedService.title}</h3>
-                <p className="text-white/90 text-lg">{selectedService.details}</p>
+                <h3 className="text-2xl font-bold mb-4 text-darkBlue-900">{selectedService.title}</h3>
+                <p className="text-secondary-600 text-lg">{selectedService.details}</p>
               </div>
             </div>
           )}
 
           {/* Call to Action Section */}
-          <div className="mt-16 bg-white/10 backdrop-blur-xl rounded-xl shadow-lg p-8 text-white text-center border border-white/20">
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="mt-16 bg-white backdrop-blur-xl rounded-xl shadow-lg p-8 text-center border border-primary-200">
+            <h3 className="text-2xl font-bold mb-4 text-darkBlue-900">
               ¿Necesitas un servicio personalizado?
             </h3>
-            <p className="text-lg mb-6 text-white/90">
+            <p className="text-lg mb-6 text-secondary-600">
               Contáctanos para discutir tus necesidades específicas y encontrar la mejor solución para tu empresa
             </p>
             <button
-              className="bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold py-3 px-8 rounded-lg hover:from-accent-600 hover:to-accent-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-accent-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               onClick={() => {
                 const phone = '51947726382';
                 const message = `¡Hola! Me interesa conocer más sobre los servicios de INGENIUM SOFT

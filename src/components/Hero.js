@@ -10,6 +10,9 @@ const Hero = () => {
   const [showModal, setShowModal] = useState(false);
   const [inputCode, setInputCode] = useState('');
   const [result, setResult] = useState(null);
+  
+  // Detectar si es móvil
+  const isMobile = window.innerWidth < 768;
 
   const handleVerify = (e) => {
     e.preventDefault();
@@ -41,22 +44,22 @@ const Hero = () => {
           alt="Transformación Digital" 
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/85 via-primary-800/80 to-secondary-900/85"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-darkBlue-900/90"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-20 w-24 h-24 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-success-400 to-success-600 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-accent-500 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-20 w-24 h-24 bg-primary-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-accent-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Three.js Particle System */}
-      <ParticleBackground />
+      {/* Three.js Particle System - Solo en desktop */}
+      {!isMobile && <ParticleBackground />}
       
-      {/* Advanced Hero Effects */}
-      <AdvancedHeroEffects />
+      {/* Advanced Hero Effects - Solo en desktop */}
+      {!isMobile && <AdvancedHeroEffects />}
       
       {/* Glass Morphism Pattern */}
       <div className="absolute inset-0 opacity-20">

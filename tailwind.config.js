@@ -6,19 +6,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Esquema tecnológico de vanguardia 2025
+        // Esquema corporativo serio - Colores del logo
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
           300: '#7dd3fc',
           400: '#38bdf8',
-          500: '#0ea5e9',    // Azul cyan tecnológico vibrante
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
+          500: '#0284c7',    // Azul claro del logo
+          600: '#0369a1',
+          700: '#075985',
+          800: '#0c4a6e',
+          900: '#082f49',
+          950: '#022c52',
         },
         secondary: {
           50: '#f8fafc',
@@ -26,38 +26,39 @@ module.exports = {
           200: '#e2e8f0',
           300: '#cbd5e1',
           400: '#94a3b8',
-          500: '#64748b',    // Gris moderno y sofisticado
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+          500: '#475569',    // Gris corporativo
+          600: '#334155',
+          700: '#1e293b',
+          800: '#0f172a',
+          900: '#020617',
+          950: '#010b1a',
         },
         accent: {
-          50: '#fdf4ff',
-          100: '#fae8ff',
-          200: '#f5d0fe',
-          300: '#f0abfc',
-          400: '#e879f9',
-          500: '#d946ef',    // Magenta vibrante tech
-          600: '#c026d3',
-          700: '#a21caf',
-          800: '#86198f',
-          900: '#701a75',
-          950: '#4a044e',
-        },
-        success: {
           50: '#f0fdf4',
           100: '#dcfce7',
           200: '#bbf7d0',
           300: '#86efac',
           400: '#4ade80',
-          500: '#22c55e',    // Verde tech vibrante
+          500: '#22c55e',    // Verde del logo
           600: '#16a34a',
           700: '#15803d',
           800: '#166534',
           900: '#14532d',
           950: '#052e16',
+        },
+        // Azul oscuro del logo como color principal
+        darkBlue: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',    // Azul oscuro del logo
+          950: '#082f49',
         },
         warning: {
           50: '#fffbeb',
@@ -99,17 +100,17 @@ module.exports = {
           900: '#164e63',
           950: '#083344',
         },
-        // Colores de fondo tecnológicos
-        dark: '#020617',      // Azul muy oscuro tech
-        light: '#f8fafc',     // Gris muy claro
-        // Colores de texto mejorados
+        // Colores de fondo corporativos
+        dark: '#082f49',      // Azul oscuro del logo
+        light: '#ffffff',     // Blanco puro
+        // Colores de texto corporativos
         text: {
-          primary: '#020617',
-          secondary: '#475569',
-          muted: '#64748b',
-          light: '#f8fafc',
-          accent: '#d946ef',
-          cyber: '#14b8a6',
+          primary: '#082f49',    // Azul oscuro
+          secondary: '#475569',  // Gris medio
+          muted: '#64748b',      // Gris claro
+          light: '#ffffff',      // Blanco
+          accent: '#22c55e',     // Verde del logo
+          blue: '#0284c7',       // Azul claro del logo
         }
       },
       fontFamily: {
