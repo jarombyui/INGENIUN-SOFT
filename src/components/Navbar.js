@@ -110,6 +110,7 @@ const Navbar = () => {
     { name: 'INICIO', path: '/' },
     { name: '¿QUIÉNES SOMOS?', path: '/about' },
     { name: 'SERVICIOS', path: '/servicios', hasDropdown: true },
+    { name: 'PRODUCTOS', path: '/productos' },
     { name: 'BLOG', path: '/blog' },
     { name: 'CONTÁCTANOS', path: '/contacto' },
   ];

@@ -1,37 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import SEO from '../components/SEO';
-import ServicesParticles from '../components/ServicesParticles';
-import AdvancedServicesEffects from '../components/AdvancedServicesEffects';
-import AdvancedServicesVisualEffects from '../components/AdvancedServicesVisualEffects';
-import InteractiveServiceElements from '../components/InteractiveServiceElements';
-import ScrollAnimation from '../components/ScrollAnimation';
-import UniversalEffects from '../components/UniversalEffects';
 import { motion } from 'framer-motion';
+
+// Lazy load efectos Three.js para reducir bundle inicial
+const ServicesParticles = lazy(() => import('../components/ServicesParticles'));
+const AdvancedServicesEffects = lazy(() => import('../components/AdvancedServicesEffects'));
+const AdvancedServicesVisualEffects = lazy(() => import('../components/AdvancedServicesVisualEffects'));
+const InteractiveServiceElements = lazy(() => import('../components/InteractiveServiceElements'));
+const UniversalEffects = lazy(() => import('../components/UniversalEffects'));
 
 const serviceDetails = [
   {
     title: "ERP Moderno y Personalizado",
-    details: "Sistemas ERP personalizados y modernos que integran todos los procesos de tu empresa para una gestión eficiente y automatizada. Incluye gestión de inventario inteligente, módulo de ventas y CRM, contabilidad automatizada, recursos humanos integrado, reportes y analytics avanzados, e integración con sistemas existentes.",
+    details: "Sistemas ERP personalizados y modernos que integran todos los procesos de tu empresa para una gestión eficiente y automatizada.",
+    features: [
+      "📊 Gestión de inventario inteligente con control automático",
+      "💼 Módulo de ventas y CRM integrado",
+      "💰 Contabilidad automatizada y reportes financieros",
+      "👥 Recursos humanos con gestión de personal",
+      "📈 Analytics avanzados y dashboards ejecutivos",
+      "🔗 Integración con sistemas existentes"
+    ],
+    benefits: "Aumenta la eficiencia operativa en un 40% y reduce costos administrativos en un 30%",
+    duration: "3-6 meses"
   },
   {
     title: "Estandarización de Procesos",
-    details: "Optimizamos y estandarizamos los procesos de tu empresa mediante análisis detallado y mejores prácticas tecnológicas. Incluye análisis de procesos actuales, diseño de flujos optimizados, documentación de procedimientos, implementación de mejores prácticas, capacitación del personal y monitoreo y mejora continua.",
+    details: "Optimizamos y estandarizamos los procesos de tu empresa mediante análisis detallado y mejores prácticas tecnológicas.",
+    features: [
+      "🔍 Análisis completo de procesos actuales",
+      "📋 Diseño de flujos optimizados",
+      "📚 Documentación detallada de procedimientos",
+      "✅ Implementación de mejores prácticas",
+      "🎓 Capacitación especializada del personal",
+      "📊 Monitoreo y mejora continua"
+    ],
+    benefits: "Mejora la productividad en un 50% y reduce errores en un 60%",
+    duration: "2-4 meses"
   },
   {
     title: "Desarrollo Web Personalizado",
-    details: "Creamos páginas web, tiendas virtuales y aplicaciones web personalizadas con las últimas tecnologías. Incluye páginas web responsivas, tiendas virtuales e-commerce, aplicaciones web personalizadas, integración con APIs, optimización SEO y mantenimiento y soporte.",
+    details: "Creamos páginas web, tiendas virtuales y aplicaciones web personalizadas con las últimas tecnologías.",
+    features: [
+      "🌐 Páginas web responsivas y modernas",
+      "🛒 Tiendas virtuales e-commerce completas",
+      "💻 Aplicaciones web personalizadas",
+      "🔌 Integración con APIs y servicios externos",
+      "🚀 Optimización SEO y rendimiento",
+      "🛠️ Mantenimiento y soporte técnico"
+    ],
+    benefits: "Aumenta las conversiones en un 35% y mejora la experiencia del usuario",
+    duration: "1-3 meses"
   },
   {
     title: "Automatización de Procesos",
-    details: "Automatizamos tareas repetitivas y procesos complejos para aumentar la eficiencia y reducir costos. Incluye automatización de tareas repetitivas, workflows inteligentes, integración de sistemas, notificaciones automáticas, procesamiento de datos y reducción de errores humanos.",
+    details: "Automatizamos tareas repetitivas y procesos complejos para aumentar la eficiencia y reducir costos.",
+    features: [
+      "🤖 Automatización de tareas repetitivas",
+      "⚡ Workflows inteligentes y personalizados",
+      "🔗 Integración completa de sistemas",
+      "📱 Notificaciones automáticas",
+      "📊 Procesamiento inteligente de datos",
+      "❌ Reducción de errores humanos"
+    ],
+    benefits: "Reduce el tiempo de procesos en un 70% y elimina errores manuales",
+    duration: "2-5 meses"
   },
   {
     title: "Bases de Datos Inteligentes",
-    details: "Diseñamos y optimizamos bases de datos robustas que garantizan integridad, seguridad y rendimiento. Incluye diseño de base de datos, optimización de consultas, backup y recuperación, seguridad de datos, migración de datos y monitoreo de rendimiento.",
+    details: "Diseñamos y optimizamos bases de datos robustas que garantizan integridad, seguridad y rendimiento.",
+    features: [
+      "🗄️ Diseño de base de datos optimizado",
+      "⚡ Optimización de consultas y rendimiento",
+      "💾 Backup y recuperación automática",
+      "🔒 Seguridad avanzada de datos",
+      "🔄 Migración segura de datos",
+      "📈 Monitoreo continuo de rendimiento"
+    ],
+    benefits: "Mejora el rendimiento en un 80% y garantiza la seguridad de datos",
+    duration: "1-4 meses"
   },
   {
     title: "Consultoría Tecnológica",
-    details: "Asesoramiento especializado en transformación digital y estrategias de implementación tecnológica. Incluye auditoría tecnológica, estrategia de transformación digital, selección de tecnologías, plan de implementación, capacitación técnica y seguimiento y optimización.",
+    details: "Asesoramiento especializado en transformación digital y estrategias de implementación tecnológica.",
+    features: [
+      "🔍 Auditoría tecnológica completa",
+      "📋 Estrategia de transformación digital",
+      "🛠️ Selección de tecnologías adecuadas",
+      "📅 Plan de implementación detallado",
+      "🎓 Capacitación técnica especializada",
+      "📊 Seguimiento y optimización continua"
+    ],
+    benefits: "Acelera la transformación digital y maximiza el ROI tecnológico",
+    duration: "1-2 meses"
   }
 ];
 
@@ -90,7 +151,7 @@ const ServicesPage = () => {
         keywords="desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad, consultoría digital, software a medida, transformación digital"
         ogUrl="https://software-ingeniun.netlify.app/servicios"
       />
-      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-white pt-4 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-32 h-32 bg-primary-500 rounded-full blur-xl animate-pulse-slow"></div>
@@ -100,20 +161,14 @@ const ServicesPage = () => {
           <div className="absolute bottom-1/3 right-1/3 w-28 h-28 bg-accent-500 rounded-full blur-xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
         </div>
 
-      {/* Universal Effects - Garantiza cobertura completa */}
-      <UniversalEffects intensity={1.2} particleCount={250} colorScheme="corporate" />
-      
-      {/* Three.js Particles for Services */}
-      <ServicesParticles />
-      
-      {/* Advanced Services Effects */}
-      <AdvancedServicesEffects />
-      
-      {/* Advanced Visual Effects */}
-      <AdvancedServicesVisualEffects />
-      
-      {/* Interactive Service Elements */}
-      <InteractiveServiceElements />
+      {/* Efectos Three.js - Lazy loading para mejor rendimiento */}
+      <Suspense fallback={null}>
+        <UniversalEffects intensity={1.2} particleCount={250} colorScheme="corporate" />
+        <ServicesParticles />
+        <AdvancedServicesEffects />
+        <AdvancedServicesVisualEffects />
+        <InteractiveServiceElements />
+      </Suspense>
         
         {/* Glass Morphism Pattern */}
         <div className="absolute inset-0 opacity-20">
@@ -124,30 +179,25 @@ const ServicesPage = () => {
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12 sm:mb-16 px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
-              Nuestros Servicios
-            </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-['Poppins'] px-4">
-              Soluciones modernas en desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad y consultoría tecnológica
-            </p>
+          {/* Cabecera mejorada: más abajo y contenedor más estrecho */}
+          <div className="text-center mb-4 sm:mb-6 px-4 group transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+            {/* Fondo más estrecho horizontalmente para ver más efectos 3D */}
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl -mx-2 sm:-mx-3 transition-all duration-500 group-hover:bg-white/70 group-hover:backdrop-blur-md group-hover:shadow-xl"></div>
+            <div className="relative z-10 py-8 sm:py-10 lg:py-12 px-1 sm:px-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-darkBlue-900 mb-2 font-['Montserrat'] tracking-tight drop-shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:text-blue-800 group-hover:drop-shadow-2xl pt-24 sm:pt-28 scroll-mt-32">
+                Nuestros Servicios
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-700 max-w-4xl mx-auto font-['Poppins'] leading-relaxed font-medium transition-all duration-500 group-hover:text-gray-800 group-hover:scale-102">
+                Soluciones modernas en desarrollo web, aplicaciones personalizadas, bases de datos, ciberseguridad y consultoría tecnológica
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-8 sm:space-y-12 md:space-y-16 px-4">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8 px-4">
             {services.map((service, index) => {
               // Mapear índices a IDs de ancla
               const anchorIds = ['erp', 'estandarizacion', 'desarrollo', 'automatizacion', 'bases-datos', 'consultoria'];
               const anchorId = anchorIds[index] || '';
-              
-              // Colores impresionantes para cada servicio
-              const stepColors = [
-                'from-cyan-500 to-blue-600', // ERP - Cyan a Azul
-                'from-purple-500 to-pink-600', // Estandarización - Púrpura a Rosa
-                'from-emerald-500 to-teal-600', // Desarrollo Web - Esmeralda a Turquesa
-                'from-orange-500 to-red-600', // Automatización - Naranja a Rojo
-                'from-yellow-500 to-orange-600', // Bases de Datos - Amarillo a Naranja
-                'from-rose-500 to-pink-600' // Consultoría - Rosa a Rosa
-              ];
               
               const stepBadges = ['Paso 1', 'Paso 2', 'Paso 3', 'Tecnología', 'Automatización', 'Soporte'];
               
@@ -200,7 +250,7 @@ const ServicesPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                    </div>
+                </div>
                     
                     {/* Imagen o elemento visual */}
                     <div className="flex-1 lg:max-w-lg">
@@ -222,27 +272,104 @@ const ServicesPage = () => {
                           {index + 1}
                         </div>
                       </div>
-                    </div>
                 </div>
+              </div>
               </motion.div>
               )
             })}
           </div>
 
-          {/* Modal */}
+          {/* Modal Mejorado */}
           {modalOpen && selectedService && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
-              <div className="bg-white backdrop-blur-xl rounded-xl shadow-2xl p-8 max-w-lg w-full relative animate-fade-in border border-primary-200">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm p-4">
+              <motion.div 
+                className="bg-white backdrop-blur-xl rounded-xl shadow-2xl p-6 sm:p-8 max-w-2xl w-full relative border border-primary-200 max-h-[90vh] overflow-y-auto"
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Botón de cerrar */}
                 <button
-                  className="absolute top-4 right-4 text-secondary-500 hover:text-darkBlue-900 text-2xl font-bold"
+                  className="absolute top-4 right-4 text-secondary-500 hover:text-darkBlue-900 text-2xl font-bold w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
                   onClick={handleCloseModal}
                   aria-label="Cerrar"
                 >
                   &times;
                 </button>
-                <h3 className="text-2xl font-bold mb-4 text-darkBlue-900">{selectedService.title}</h3>
-                <p className="text-secondary-600 text-lg">{selectedService.details}</p>
+
+                {/* Header del modal */}
+                <div className="mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-darkBlue-900 pr-8">
+                    {selectedService.title}
+                  </h3>
+                  <p className="text-secondary-600 text-lg leading-relaxed">
+                    {selectedService.details}
+                  </p>
+                </div>
+
+                {/* Características principales */}
+                <div className="mb-6">
+                  <h4 className="text-xl font-bold mb-4 text-darkBlue-900 flex items-center">
+                    <span className="mr-2">✨</span>
+                    Características Principales
+                  </h4>
+                  <div className="grid gap-3">
+                    {selectedService.features.map((feature, index) => (
+                      <div key={index} className="flex items-start space-x-3 p-3 bg-primary-50 rounded-lg">
+                        <span className="text-lg flex-shrink-0">{feature.split(' ')[0]}</span>
+                        <span className="text-secondary-700 text-sm sm:text-base">{feature.substring(feature.indexOf(' ') + 1)}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Beneficios y duración */}
+                <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                  <div className="bg-accent-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-accent-700 mb-2 flex items-center">
+                      <span className="mr-2">📈</span>
+                      Beneficios
+                    </h5>
+                    <p className="text-accent-600 text-sm">{selectedService.benefits}</p>
+                  </div>
+                  <div className="bg-primary-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-primary-700 mb-2 flex items-center">
+                      <span className="mr-2">⏱️</span>
+                      Duración
+                    </h5>
+                    <p className="text-primary-600 text-sm font-semibold">{selectedService.duration}</p>
               </div>
+                </div>
+
+                {/* Botones de acción */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    className="flex-1 bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    onClick={() => {
+                      const phone = '51947726382';
+                      const message = `¡Hola! Me interesa el servicio "${selectedService.title}" de INGENIUM SOFT
+
+🏢 Empresa: INGENIUM SOFT
+📱 Contacto: [Mi número]
+📧 Email: [Mi email]
+
+Me gustaría obtener más información sobre este servicio específico y sus precios.
+
+¿Podrían brindarme más detalles? ¡Gracias!`;
+                      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                    }}
+                  >
+                    💬 Consultar por WhatsApp
+                  </button>
+                  <button
+                    className="flex-1 bg-accent-500 hover:bg-accent-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    onClick={handleCloseModal}
+                  >
+                    ✅ Entendido
+                  </button>
+                </div>
+              </motion.div>
             </div>
           )}
 

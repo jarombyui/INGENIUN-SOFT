@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
-import AdvantagesVisualEffects from './AdvantagesVisualEffects';
-import AdvantagesInteractiveEffects from './AdvantagesInteractiveEffects';
+
+// Lazy load efectos Three.js para reducir bundle inicial
+const AdvantagesVisualEffects = lazy(() => import('./AdvantagesVisualEffects'));
+const AdvantagesInteractiveEffects = lazy(() => import('./AdvantagesInteractiveEffects'));
 
 const ServiceAdvantages = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -285,10 +287,12 @@ const ServiceAdvantages = () => {
       {!isMobile && <div ref={mountRef} className="absolute inset-0 pointer-events-none" />}
       
       {/* Efectos visuales específicos para ventajas - Solo en desktop */}
-      {!isMobile && <AdvantagesVisualEffects />}
-      
-      {/* Efectos interactivos de ventajas - Solo en desktop */}
-      {!isMobile && <AdvantagesInteractiveEffects />}
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <AdvantagesVisualEffects />
+          <AdvantagesInteractiveEffects />
+        </Suspense>
+      )}
       
       {/* Elementos de fondo animados */}
       <div className="absolute inset-0 opacity-5">

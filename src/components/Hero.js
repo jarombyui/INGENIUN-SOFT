@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ParticleBackground from './ParticleBackground';
-import AdvancedHeroEffects from './AdvancedHeroEffects';
 import { motion } from 'framer-motion';
 import AnimatedButton from './AnimatedButton';
+
+// Lazy load efectos Three.js para reducir bundle inicial
+const ParticleBackground = lazy(() => import('./ParticleBackground'));
+const AdvancedHeroEffects = lazy(() => import('./AdvancedHeroEffects'));
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -55,11 +57,13 @@ const Hero = () => {
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-accent-500 rounded-full blur-lg animate-pulse-slow" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Three.js Particle System - Solo en desktop */}
-      {!isMobile && <ParticleBackground />}
-      
-      {/* Advanced Hero Effects - Solo en desktop */}
-      {!isMobile && <AdvancedHeroEffects />}
+      {/* Three.js Particle System - Solo en desktop con lazy loading */}
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <ParticleBackground />
+          <AdvancedHeroEffects />
+        </Suspense>
+      )}
       
       {/* Glass Morphism Pattern */}
       <div className="absolute inset-0 opacity-20">

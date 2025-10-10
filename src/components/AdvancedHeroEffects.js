@@ -8,18 +8,23 @@ const AdvancedHeroEffects = () => {
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Scene setup
+    // Scene setup - Optimizado para rendimiento
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      alpha: true, 
+      antialias: false, // Desactivado para mejor rendimiento
+      powerPreference: "high-performance",
+      precision: 'lowp'
+    });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Limitado para mejor rendimiento
     renderer.setClearColor(0x000000, 0);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Advanced particle system (optimizado para mejor rendimiento)
-    const particleCount = 800;
+    // Advanced particle system - Reducido para mejor rendimiento
+    const particleCount = 400; // Reducido de 800 a 400
     const particles = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);

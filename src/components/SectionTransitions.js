@@ -25,12 +25,15 @@ const SectionTransitions = () => {
     );
     camera.position.z = 5;
 
-    // Configuración del renderer
+    // Configuración del renderer - Optimizado para rendimiento
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
-      antialias: true 
+      antialias: false, // Desactivado para mejor rendimiento
+      powerPreference: "high-performance",
+      precision: 'lowp'
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Limitado para mejor rendimiento
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
     mountRef.current.appendChild(renderer.domElement);

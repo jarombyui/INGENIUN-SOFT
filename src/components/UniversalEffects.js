@@ -14,17 +14,18 @@ const UniversalEffects = ({
 
     console.log('🎯 Iniciando UniversalEffects...');
 
-    // Scene setup
+    // Scene setup - Optimizado para rendimiento
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
-      antialias: true,
-      powerPreference: "high-performance"
+      antialias: false, // Desactivado para mejor rendimiento
+      powerPreference: "high-performance",
+      precision: 'lowp' // Precisión baja para mejor rendimiento
     });
     
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Limitado a 1.5x
     renderer.setClearColor(0x000000, 0);
     
     // Asegurar que el canvas esté en la posición correcta

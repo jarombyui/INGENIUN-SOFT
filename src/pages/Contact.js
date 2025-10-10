@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import SEO from '../components/SEO';
-import ContactParticles from '../components/ContactParticles';
-import AdvancedContactEffects from '../components/AdvancedContactEffects';
-import UniversalEffects from '../components/UniversalEffects';
+
+// Lazy load efectos Three.js para reducir bundle inicial
+const ContactParticles = lazy(() => import('../components/ContactParticles'));
+const AdvancedContactEffects = lazy(() => import('../components/AdvancedContactEffects'));
+const UniversalEffects = lazy(() => import('../components/UniversalEffects'));
 
 const Contact = () => {
   // Detectar si es móvil
@@ -26,7 +28,7 @@ const Contact = () => {
     setStatus({ show: false, error: false, message: '' });
 
     // WhatsApp
-    const phone = '51950700541'; // Número de WhatsApp de contacto
+    const phone = '51947726382'; // Número de WhatsApp de contacto
     const message = `¡Hola! Soy ${formData.user_name} y me gustaría contactarlos por lo siguiente:
 
 📧 Email: ${formData.user_email}
@@ -67,22 +69,27 @@ Espero su respuesta. ¡Gracias!`;
       />
       <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Three.js Particles for Contact - Solo en desktop */}
-      {/* Universal Effects - Solo en desktop */}
-      {!isMobile && <UniversalEffects intensity={0.8} particleCount={150} colorScheme="blue" />}
-      
-      {/* Three.js Particles for Contact - Solo en desktop */}
-      {!isMobile && <ContactParticles />}
-      
-      {/* Advanced Contact Effects - Solo en desktop */}
-      {!isMobile && <AdvancedContactEffects />}
+      {/* Efectos Three.js - Solo en desktop con lazy loading */}
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <UniversalEffects intensity={0.8} particleCount={150} colorScheme="blue" />
+          <ContactParticles />
+          <AdvancedContactEffects />
+        </Suspense>
+      )}
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center px-4">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-display tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
-              Contáctanos
-            </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-body px-4">
-              Estamos aquí para ayudarte con tu transformación digital. Envíanos un mensaje y te responderemos lo antes posible.
-            </p>
+          {/* Cabecera mejorada: más abajo y contenedor más estrecho */}
+          <div className="text-center px-4 group transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-2xl cursor-pointer">
+            {/* Fondo más estrecho horizontalmente para ver más efectos 3D */}
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl -mx-2 sm:-mx-3 transition-all duration-500 group-hover:bg-white/70 group-hover:backdrop-blur-md group-hover:shadow-xl"></div>
+            <div className="relative z-10 py-8 sm:py-10 lg:py-12 px-1 sm:px-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-darkBlue-900 mb-2 font-['Montserrat'] tracking-tight drop-shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:text-blue-800 group-hover:drop-shadow-2xl pt-24 sm:pt-28 scroll-mt-32">
+                Contáctanos
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-700 max-w-4xl mx-auto font-['Poppins'] leading-relaxed font-medium transition-all duration-500 group-hover:text-gray-800 group-hover:scale-102">
+                Estamos aquí para ayudarte con tu transformación digital. Envíanos un mensaje y te responderemos lo antes posible.
+              </p>
+            </div>
           </div>
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">

@@ -24,18 +24,21 @@ const ParallaxTransitions = () => {
     );
     camera.position.z = 5;
 
-    // Configuración del renderer
+    // Configuración del renderer - Optimizado para rendimiento
     const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
-      antialias: true 
+      antialias: false, // Desactivado para mejor rendimiento
+      powerPreference: "high-performance",
+      precision: 'lowp'
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Limitado para mejor rendimiento
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
     mountRef.current.appendChild(renderer.domElement);
 
-    // Crear sistema de partículas para transiciones
-    const particleCount = 200;
+    // Crear sistema de partículas para transiciones - Optimizado
+    const particleCount = 120; // Reducido de 200 a 120
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
     const sizes = new Float32Array(particleCount);

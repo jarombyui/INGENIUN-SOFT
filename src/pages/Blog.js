@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import SEO from '../components/SEO';
-import AboutParticles from '../components/AboutParticles';
-import AdvancedBlogEffects from '../components/AdvancedBlogEffects';
-import UniversalEffects from '../components/UniversalEffects';
 import { motion } from 'framer-motion';
+
+// Lazy load efectos Three.js para reducir bundle inicial
+const AboutParticles = lazy(() => import('../components/AboutParticles'));
+const AdvancedBlogEffects = lazy(() => import('../components/AdvancedBlogEffects'));
+const UniversalEffects = lazy(() => import('../components/UniversalEffects'));
 
 const initialBlogPosts = [
   {
@@ -219,14 +221,14 @@ const Blog = () => {
       />
       <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Three.js Particles for Blog - Solo en desktop */}
-      {/* Universal Effects - Solo en desktop */}
-      {!isMobile && <UniversalEffects intensity={0.9} particleCount={180} colorScheme="blue" />}
-      
-      {/* Three.js Particles for Blog - Solo en desktop */}
-      {!isMobile && <AboutParticles />}
-      
-      {/* Advanced Blog Effects - Solo en desktop */}
-      {!isMobile && <AdvancedBlogEffects />}
+      {/* Efectos Three.js - Solo en desktop con lazy loading */}
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <UniversalEffects intensity={0.9} particleCount={180} colorScheme="blue" />
+          <AboutParticles />
+          <AdvancedBlogEffects />
+        </Suspense>
+      )}
       
       {/* Elementos de fondo animados */}
       <div className="absolute inset-0 opacity-5">
@@ -246,19 +248,24 @@ const Blog = () => {
       </div>
       
         <div className="max-w-7xl mx-auto relative z-10">
+          {/* Cabecera mejorada: más abajo y contenedor más estrecho */}
           <motion.div 
-            className="text-center mb-12 sm:mb-16 px-4"
+            className="text-center mb-12 sm:mb-16 px-4 group transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-darkBlue-900 mb-4 font-['Montserrat'] tracking-tight drop-shadow-lg pt-20 sm:pt-24 scroll-mt-32">
-              Blog INGENIUM SOFT
-            </h2>
-            <p className="mt-4 text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto font-['Poppins'] px-4">
-              Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
-            </p>
-            <div className="w-20 sm:w-24 h-1 bg-primary-500 mx-auto rounded-full mt-4 sm:mt-6 shadow-lg"></div>
+            {/* Fondo más estrecho horizontalmente para ver más efectos 3D */}
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-xl -mx-2 sm:-mx-3 transition-all duration-500 group-hover:bg-white/70 group-hover:backdrop-blur-md group-hover:shadow-xl"></div>
+            <div className="relative z-10 py-8 sm:py-10 lg:py-12 px-1 sm:px-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-darkBlue-900 mb-2 font-['Montserrat'] tracking-tight drop-shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:text-blue-800 group-hover:drop-shadow-2xl pt-24 sm:pt-28 scroll-mt-32">
+                Blog INGENIUM SOFT
+              </h2>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-secondary-700 max-w-4xl mx-auto font-['Poppins'] leading-relaxed font-medium transition-all duration-500 group-hover:text-gray-800 group-hover:scale-102">
+                Descubre las últimas tendencias en desarrollo de software, tecnología y negocios digitales.
+              </p>
+              <div className="w-20 sm:w-24 h-1 bg-primary-500 mx-auto rounded-full mt-3 sm:mt-4 shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:bg-blue-600"></div>
+            </div>
           </motion.div>
 
           <motion.div 
