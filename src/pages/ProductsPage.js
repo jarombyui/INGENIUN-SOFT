@@ -35,7 +35,7 @@ const ProductsPage = () => {
             "✅ Certificado SSL gratuito",
             "✅ Hosting profesional por 1 año"
           ],
-          price: "Desde $299",
+          price: "Desde $150",
           duration: "1-2 semanas",
           includes: ["Diseño personalizado único", "Optimización móvil completa", "Certificado SSL", "Hosting profesional 1 año", "Soporte técnico 30 días", "Capacitación básica"]
         },
@@ -54,7 +54,7 @@ const ProductsPage = () => {
             "✅ Optimización para Core Web Vitals",
             "✅ Backup automático diario"
           ],
-          price: "Desde $599",
+          price: "Desde $450",
           duration: "2-3 semanas",
           includes: ["Diseño premium personalizado", "Animaciones y efectos avanzados", "Sistema de testing A/B", "Dashboard analytics completo", "Integración CRM", "Soporte prioritario 60 días", "Capacitación avanzada"]
         },
@@ -73,7 +73,7 @@ const ProductsPage = () => {
             "✅ Integración con Google My Business",
             "✅ Sistema de backup automático y restauración"
           ],
-          price: "Desde $899",
+          price: "Desde $750",
           duration: "3-4 semanas",
           includes: ["Sitio web completo personalizado", "Panel de administración avanzado", "Sistema de gestión de contenido", "Capacitación completa del equipo", "Hosting premium 1 año", "Soporte técnico 90 días", "Manual de usuario detallado"]
         }
@@ -99,7 +99,7 @@ const ProductsPage = () => {
             "✅ Reportes de ventas básicos",
             "✅ Integración con redes sociales"
           ],
-          price: "Desde $1,299",
+          price: "Desde $1,150",
           duration: "4-6 semanas",
           includes: ["Tienda virtual completa", "Integración de métodos de pago", "Panel administrativo avanzado", "Capacitación completa del equipo", "Hosting e-commerce 1 año", "Certificado SSL", "Soporte técnico 90 días"]
         },
@@ -120,7 +120,7 @@ const ProductsPage = () => {
             "✅ Integración con sistemas ERP",
             "✅ Dashboard ejecutivo con KPIs"
           ],
-          price: "Desde $2,499",
+          price: "Desde $2,350",
           duration: "6-8 semanas",
           includes: ["Plataforma e-commerce avanzada", "App móvil nativa incluida", "Herramientas de marketing automation", "Documentación completa de API", "Sistema multi-vendor", "Capacitación ejecutiva", "Hosting empresarial 1 año", "Soporte prioritario 180 días"]
         }
@@ -148,7 +148,7 @@ const ProductsPage = () => {
             "✅ Analytics de rendimiento de ventas",
             "✅ Módulo de servicio al cliente integrado"
           ],
-          price: "Desde $1,899",
+          price: "Desde $1,750",
           duration: "5-7 semanas",
           includes: ["CRM completamente personalizado", "Integración con sistemas existentes", "Capacitación completa del equipo", "Migración de datos incluida", "Hosting dedicado 1 año", "Soporte técnico especializado 120 días", "Manual de usuario personalizado"]
         }
@@ -174,7 +174,7 @@ const ProductsPage = () => {
             "✅ Interfaz intuitiva y fácil de usar",
             "✅ Soporte técnico especializado"
           ],
-          price: "Desde $2,999",
+          price: "Desde $2,850",
           duration: "6-8 semanas",
           includes: ["ERP completo personalizado", "Capacitación del equipo completo", "Migración de datos incluida", "Hosting dedicado 1 año", "Soporte técnico 90 días", "Actualizaciones y mejoras 1 año", "Manual de usuario detallado"],
           personas: "01 - 05 personas"
@@ -194,7 +194,7 @@ const ProductsPage = () => {
             "✅ Reportes gerenciales avanzados",
             "✅ Sistema de alertas automáticas"
           ],
-          price: "Desde $4,499",
+          price: "Desde $4,350",
           duration: "8-10 semanas",
           includes: ["ERP intermedio completo", "Módulos adicionales especializados", "Capacitación extendida del equipo", "Integración con sistemas externos", "Hosting empresarial 1 año", "Soporte técnico 120 días", "Actualizaciones 1 año", "Consultoría de procesos"],
           personas: "05 - 10 personas"
@@ -214,7 +214,7 @@ const ProductsPage = () => {
             "✅ Módulo de compliance fiscal",
             "✅ Sistema de auditoría integrado"
           ],
-          price: "Desde $6,999",
+          price: "Desde $6,850",
           duration: "10-12 semanas",
           includes: ["ERP avanzado completo", "Módulos especializados", "Capacitación completa ejecutiva", "Integración con sistemas contables", "Hosting empresarial premium 1 año", "Soporte técnico especializado 180 días", "Actualizaciones y mejoras 2 años", "Consultoría estratégica incluida"],
           personas: "10 - 15 personas"
@@ -236,7 +236,7 @@ const ProductsPage = () => {
             "✅ Integración con IoT y sensores",
             "✅ API completa para integraciones"
           ],
-          price: "Desde $9,999",
+          price: "Desde $9,850",
           duration: "12-16 semanas",
           includes: ["ERP integral completo", "Todos los módulos disponibles", "Capacitación ejecutiva completa", "Integración con todos los sistemas", "Hosting empresarial premium 1 año", "Soporte técnico prioritario 365 días", "Actualizaciones y mejoras 3 años", "Consultoría estratégica completa", "Sistema de backup y recuperación", "Certificación de procesos"],
           personas: "15+ personas"
