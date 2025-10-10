@@ -437,20 +437,43 @@ Estoy interesado en el producto: ${productName}
                           }`}>
                             ⏱️ Entrega: {product.duration}
                           </div>
-                          <button
-                            className={`w-full text-white font-bold py-4 px-8 rounded-xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-2xl font-['Poppins'] text-lg ${
-                              categoryIndex === 0 ? 'bg-blue-500 hover:bg-blue-700 hover:shadow-blue-500/50 hover:border-2 hover:border-blue-300' : // Páginas Web - Azul claro
-                              categoryIndex === 1 ? 'bg-green-500 hover:bg-green-700 hover:shadow-green-500/50 hover:border-2 hover:border-green-300' : // E-commerce - Verde
-                              categoryIndex === 2 ? 'bg-slate-600 hover:bg-slate-800 hover:shadow-slate-500/50 hover:border-2 hover:border-slate-400' : // CRM - Azul oscuro
-                              'bg-orange-500 hover:bg-orange-700 hover:shadow-orange-500/50 hover:border-2 hover:border-orange-300' // ERP - Naranja claro
-                            }`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleOpenModal(product);
-                            }}
-                          >
-                            Ver Detalles Completos
-                          </button>
+                          <div className="flex flex-col gap-2">
+                            <button
+                              className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-green-500/50 hover:border-2 hover:border-green-300 font-['Poppins'] text-base"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                const phone = '51947726382';
+                                const message = `¡Hola! 👋 Me interesa el producto "${product.name}" de INGENIUM SOFT
+
+📦 Producto: ${product.name}
+💰 Precio: ${product.price}
+⏱️ Entrega: ${product.duration}
+
+Me gustaría obtener más información y una cotización personalizada.
+
+¿Podrían contactarme?
+
+¡Gracias! 😊`;
+                                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+                              }}
+                            >
+                              💬 Cotizar por WhatsApp
+                            </button>
+                            <button
+                              className={`w-full text-white font-bold py-3 px-6 rounded-xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 shadow-lg hover:shadow-2xl font-['Poppins'] text-base ${
+                                categoryIndex === 0 ? 'bg-blue-500 hover:bg-blue-700 hover:shadow-blue-500/50 hover:border-2 hover:border-blue-300' : // Páginas Web - Azul claro
+                                categoryIndex === 1 ? 'bg-green-600 hover:bg-green-800 hover:shadow-green-600/50 hover:border-2 hover:border-green-400' : // E-commerce - Verde
+                                categoryIndex === 2 ? 'bg-slate-600 hover:bg-slate-800 hover:shadow-slate-500/50 hover:border-2 hover:border-slate-400' : // CRM - Azul oscuro
+                                'bg-orange-500 hover:bg-orange-700 hover:shadow-orange-500/50 hover:border-2 hover:border-orange-300' // ERP - Naranja claro
+                              }`}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleOpenModal(product);
+                              }}
+                            >
+                              Ver Detalles
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </motion.div>

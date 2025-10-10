@@ -117,8 +117,8 @@ Espero su respuesta. ¡Gracias!`;
                     </svg>
                   </div>
                   <div className="ml-3">
-                    <p className="text-secondary-600 font-body">Teléfono: +51 947726382</p>
-                    <p className="text-secondary-600 font-body">WhatsApp: +51 950 700 541</p>
+                    <p className="text-secondary-600 font-body">Teléfono: +51 947 726 382</p>
+                    <p className="text-secondary-600 font-body">WhatsApp: +51 947 726 382</p>
                   </div>
                 </div>
 
